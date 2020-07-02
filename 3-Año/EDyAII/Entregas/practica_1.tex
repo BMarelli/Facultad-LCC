@@ -1,0 +1,23 @@
+\documentclass[12]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+  \title{Resolución Practica 1}
+  \author{Bautista Marelli}
+  \date{Abril 2, 2020}
+  \maketitle
+  \section{Ejercicio 7 - b}
+  Tenemos como recurrencia: $T(n)\ =\ T(n - 1)\ +\ n$
+
+  Para resolver este ejercicio usamos un árbol de recurrencia. En este caso, el árbol
+  es lineal.
+
+  Obtenemos que, $T(n)\ = \sum_{i = 0}^{n - 2} (n-i)\ + T(1)$
+      $$T(n)\ = \sum_{i = 0}^{n - 2} (n-i)\ - 1 + T(1)$$
+      $$T(n)\ = \sum_{i = 2}^{n} (i)\ - 1+ T(1)$$
+      $$T(n)\ = \frac{n*(n+1)}{2}\ - 1 + T(1)$$
+      $$T(n)\ = \frac{n^2 + n}{2} \  - 1 + T(1)$$
+  
+  Y como podemos ver, $T(n)\ = \frac{n^2 + n}{2} \  - 1 + T(1) \ \in O(n^2)$
+  
+\end{document}

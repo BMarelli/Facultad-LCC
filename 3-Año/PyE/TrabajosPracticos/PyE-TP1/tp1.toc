@@ -1,0 +1,17 @@
+\babel@toc {spanish}{}
+\contentsline {section}{\numberline {1}Introducción}{2}{section.1}%
+\contentsline {section}{\numberline {2}Análisis descriptivo}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Análisis univariado}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Origen}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Especie}{3}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Altura}{4}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Diámetro}{4}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}Inclinación}{5}{subsubsection.2.1.5}%
+\contentsline {subsubsection}{\numberline {2.1.6}Brotes}{5}{subsubsection.2.1.6}%
+\contentsline {subsection}{\numberline {2.2}Análisis bivariado}{5}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Origen + Especie}{5}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Brotes + Origen}{5}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Altura + Especie}{5}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Diámetro + Especie}{5}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Inclinación + Especie}{5}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Brotes + Especie}{5}{subsubsection.2.2.6}%

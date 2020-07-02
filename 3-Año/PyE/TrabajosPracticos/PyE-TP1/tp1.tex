@@ -1,0 +1,185 @@
+\documentclass[titlepage, 12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{float}
+
+% \usepackage{indentfirst}
+
+\renewcommand{\baselinestretch}{1.25}
+\renewcommand{\contentsname}{Índice}
+
+\def\sectionautorefname{Sección}
+
+\begin{document}
+\title{Trabajo Práctico 1}
+\author{Juan Cruz de La Torre, Bautista Marelli}
+\date{17 de abril, 2020}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introducción}
+\label{sec:introduccion}
+
+El objetivo de este informe es presentar un análisis sobre los datos registrados en el Censo Forestal Urbano Público del año 2011, realizado en dos comunas del sur de Buenos Aires con el objetivo de contabilizar y determinar el estado actual del arbolado urbano público.
+
+En dicho censo, se registraron las variables descritas a continuación.
+
+\begin{table}[H]
+  \begin{tabularx}{\linewidth}{|l|X|}
+    \hline
+    \textbf{Nombre} & \textbf{Descripción}                                                                                                      \\ \hline
+    ID              & Identificación del árbol.                                                                                                 \\ \hline
+    altura          & Altura de cada árbol, medida en metros (m).                                                                               \\ \hline
+    diámetro        & Diámetro de cada árbol, medida en centímetros (cm).                                                                       \\ \hline
+    inclinación     & Ángulo que forma el tronco del árbol respecto a una perpendicular al suelo, medido en grados ($^{\circ}$).                \\ \hline
+    especie         & Especie a la que pertenece el árbol: Eucalipto, Jacarandá, Palo borracho, Casuarina, Fresno, Ceibo, Ficus, Álamo, Acacia. \\ \hline
+    origen          & Procedencia de la especie: Exótico, Nativo/Autóctono, No Determinado.                                                     \\ \hline
+    brotes          & Número de brotes jóvenes crecidos durante el último año.                                                                  \\ \hline
+  \end{tabularx}
+
+  \caption{Variables registradas en el Censo Forestal Urbano Público 2011.}
+  \label{tbl:variables}
+\end{table}
+
+\newpage
+\section{Análisis descriptivo}
+
+TODO: En esta sección se hace x, y, z.
+
+\subsection{Análisis univariado}
+
+TODO: por cada una de las variables cualitativas, agregar piechart y texto
+
+TODO: por cada una de las variables cuantitativas, agregar histograma/barras, poligono acumulativo y texto
+
+TODO: agregar a los cuadros titulos, labels de axis, mas numeritos en los ejes, y labels+captions a las tablas / graficos.
+
+\subsubsection{Origen}
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{|l|X|X|}
+    \hline
+    Origen           & frecAbs & frecRel \\ \hline
+    Exótico          & 250     & 0.71    \\ \hline
+    Nativo/Autóctono & 100     & 0.29    \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsubsection{Especie}
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{|l|X|X|}
+    \hline
+    Especie       & frecAbs & frecRel \\ \hline
+    Acacia        & 12      & 0.03    \\ \hline
+    Álamo         & 66      & 0.19    \\ \hline
+    Casuarina     & 46      & 0.13    \\ \hline
+    Ceibo         & 12      & 0.03    \\ \hline
+    Eucalipto     & 73      & 0.21    \\ \hline
+    Ficus         & 17      & 0.05    \\ \hline
+    Fresno        & 38      & 0.11    \\ \hline
+    Jacarandá     & 41      & 0.12    \\ \hline
+    Palo borracho & 45      & 0.13    \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsubsection{Altura}
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+    \hline
+            & frecAbs & frecRel & frecAbsAcum & frecRelAcum \\ \hline
+    [0,3)   & 8       & 0.02    & 8           & 0.02        \\ \hline
+    [3,6)   & 20      & 0.06    & 28          & 0.08        \\ \hline
+    [6,9)   & 40      & 0.11    & 68          & 0.19        \\ \hline
+    [9,12)  & 45      & 0.13    & 113         & 0.32        \\ \hline
+    [12,15) & 49      & 0.14    & 162         & 0.46        \\ \hline
+    [15,18) & 70      & 0.20    & 232         & 0.66        \\ \hline
+    [18,21) & 49      & 0.14    & 281         & 0.80        \\ \hline
+    [21,24) & 39      & 0.11    & 320         & 0.91        \\ \hline
+    [24,27) & 13      & 0.04    & 333         & 0.95        \\ \hline
+    [27,30) & 6       & 0.02    & 339         & 0.97        \\ \hline
+    [30,33) & 7       & 0.02    & 346         & 0.99        \\ \hline
+    [33,36) & 3       & 0.01    & 349         & 1.00        \\ \hline
+    [36,39) & 1       & 0.00    & 350         & 1.00        \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsubsection{Diámetro}
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+    \hline
+            & frecAbs & frecRel & frecAbsAcum & frecRelAcum \\ \hline
+    [0,3)   & 257     & 0.73    & 257         & 0.73        \\ \hline
+    [3,6)   & 23      & 0.07    & 280         & 0.80        \\ \hline
+    [6,9)   & 16      & 0.05    & 296         & 0.85        \\ \hline
+    [9,12)  & 23      & 0.07    & 319         & 0.91        \\ \hline
+    [12,15) & 6       & 0.02    & 325         & 0.93        \\ \hline
+    [15,18) & 9       & 0.03    & 334         & 0.95        \\ \hline
+    [18,21) & 8       & 0.02    & 342         & 0.98        \\ \hline
+    [21,30) & 5       & 0.01    & 347         & 0.99        \\ \hline
+    [30,60) & 3       & 0.01    & 350         & 1.00        \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsubsection{Inclinación}
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+    \hline
+             & frecAbs & frecRel & frecAbsAcum & frecRelAcum \\ \hline
+    [0,3)    & 257     & 0.73    & 257         & 0.73        \\ \hline
+    [3,6)    & 23      & 0.07    & 280         & 0.80        \\ \hline
+    [6,9)    & 16      & 0.05    & 296         & 0.85        \\ \hline
+    [9,12)   & 23      & 0.07    & 319         & 0.91        \\ \hline
+    [12,15)  & 6       & 0.02    & 325         & 0.93        \\ \hline
+    [15,18)  & 9       & 0.03    & 334         & 0.95        \\ \hline
+    [18,21)  & 8       & 0.02    & 342         & 0.98        \\ \hline
+    [21,30)  & 5       & 0.01    & 347         & 0.99        \\ \hline
+    [30, 45) & 0       & 0.00    & 347         & 0.99        \\ \hline
+    [30,60)  & 3       & 0.01    & 350         & 1.00        \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsubsection{Brotes}
+
+\begin{table}[H]
+  \begin{tabularx}{\textwidth}{|c|X|X|X|X|}
+    \hline
+      & frecAbs & frecRel & frecAbsAcum & frecRelAcum \\ \hline
+    0 & 1       & 0.00    & 1           & 0.00        \\ \hline
+    1 & 15      & 0.04    & 16          & 0.05        \\ \hline
+    2 & 59      & 0.17    & 75          & 0.21        \\ \hline
+    3 & 116     & 0.33    & 191         & 0.55        \\ \hline
+    4 & 74      & 0.21    & 265         & 0.76        \\ \hline
+    5 & 42      & 0.12    & 307         & 0.88        \\ \hline
+    6 & 30      & 0.09    & 337         & 0.96        \\ \hline
+    7 & 11      & 0.03    & 348         & 0.99        \\ \hline
+    8 & 2       & 0.01    & 350         & 1.00        \\ \hline
+  \end{tabularx}
+\end{table}
+
+\subsection{Análisis bivariado}
+
+\subsubsection{Origen + Especie}
+
+\subsubsection{Brotes + Origen}
+
+\subsubsection{Altura + Especie}
+
+\subsubsection{Diámetro + Especie}
+
+\subsubsection{Inclinación + Especie}
+
+\subsubsection{Brotes + Especie}
+
+
+\end{document}
