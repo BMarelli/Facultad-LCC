@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}    
+\title{Árboles recubridores minimales: Algoritmo de Kruskal}
+\author{Bautista Marelli}
+\date{Octubre 22, 2019}
+\maketitle
+\section{Demostración de que el algoritmo termina}
+Como $G = (V,E)$ es un grafo, que como sabemos, tiene una cantidad finita de aristas y vértices, el 
+algoritmo termina cuando tenemos $n - 1$ aristas $(|V| = n)$
+
+Suponemos que $T$ es disconexo luego de considerar todas las aristas ($T$ es el resultado del algoritmo). Como $G$ es conexo,
+admite al menos una arista $e$ de menor peso que une dos componentes distintas de $T$. Luego, al momento de ser considerada, $e$ debió haber 
+sido agregada a $T$ (por unir dos componentes distintas de $T$ también en ese momento). Esta contradicción muestra que en alguna iteración $T$ se vuelve conexo y el
+algoritmo se detiene. Además, $T$ no tiene ciclos puesto que la adición de una arista que une componentes distintas no introduce
+un ciclo. De esta forma concluimos que la salida $T$ del algoritmo es un grafo conexo y sin clico, es decir, un árbol.
+
+
+\section{Demostración de la corrección}
+Sea $G = (V,E)$ un grafo ponderado no dirigido, conexo y sin lazos, sea $T$ un subgrafo de $G$ 
+generado por el algoritmo. Como T es un árbol, T es conexo y no tiene ciclos.
+
+Luego, sea $T_1$ el árbol recubridor de peso mínimo de $G$ y que tenga la mayor cantidad de aristas
+en común con $T$. Si $T = T_1$ entonces listo, $T$ es un árbol recubridor de peso mínimo. 
+En el caso contrario, sea $e \in E(T)$ la primera arista considerada por el algoritmo $/ \ e \notin E(T_1)$.
+
+Sean $H_1 \ y \ H_2$ las componentes de $T$ que conecta la arista $e$. Ya que $T_1$ es un árbol, entonces $T_1 + e$ tiene
+un ciclo y $\exists \ v$ arista en ese ciclo que también conecta a las componentes $H_1 \ y \ H_2$ (es decir, $v \in E(T_1)$). Entonces si remplazamos en $T_1$ 
+la arista $v$ por la $e$, $T_2 = T_1 - v + e$ tenemos también un árbol recubridor. Ya que $e$ fue considerada antes que $v$ por el 
+algoritmo de Kruskal, tenemos $p(e) \leq p(v)$ y como $T_1$ es un árbol recubridor de peso mínimo, se tiene que $p(e) = p(v)$.
+
+$\therefore T_2$ es un árbol recubridor de peso mínimo con mas aristas en común con $T$ que $T_1$, lo que contradice con la hipótesis que
+establecimos para $T_1$. De esta forma probamos que $T$ es un árbol recubridor de peso mínimo.
+\end{document}
