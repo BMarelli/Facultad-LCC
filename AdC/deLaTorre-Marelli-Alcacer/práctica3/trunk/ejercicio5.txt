@@ -1,0 +1,28 @@
+
+Realice el procedimiento de suma (simple presicion) del numero N = 1.75 x 2^-79
+con el siguiente numero expresado en IEEE 754:
+
+M = 0|00110000|10100000000000000000000
+
+Convertir el 1.75 a binario: (1.75) = (1.11)
+
+  (1.11) * 2^-79
+
+  E = exponente + sesgo = -79 + 127 = 48 = (0011 0000)
+
+Conversion de N a IEEE 754 simple precision:
+
+  (1.75 * 2**-79) = 0|0011 0000|1100 0000 0000 0000 0000 000
+
+Igualar los exponentes (no es necesario).
+
+    1.1100 0000 0000 0000 0000 000
+  +
+    1.1010 0000 0000 0000 0000 000
+    ------------------------------
+   11.0110 0000 0000 0000 0000 000
+
+Normalizamos el resultado:
+  E = 0011 0001 (le sumamos uno al exponente por el acarreo)
+
+N + M = 0|00110001|10110000000000000000000

@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "util.h"
+
+char* codificar(char* entrada, char const* codigo) {
+  int longitud = strlen(entrada);
+  for (int i = 0; i < longitud; i++) {
+    entrada[i] = (int)entrada[i] ^ (int)codigo[i % strlen(codigo)];
+  }
+  return entrada;
+}
+
+char* descodificar(char* entrada, char const* codigo) {
+  int longitud = strlen(entrada);
+  for (int i = 0; i < longitud; i++) {
+    entrada[i] = (int)entrada[i] ^ (int)codigo[i % strlen(codigo)];
+  }
+  return entrada;
+}
+
+int main(int argc, char const* argv[]) {
+  if (argc != 2) {
+    printf("La cantidad de argumentos es incorrecta!\n");
+    return 1;
+  }
+
+  char entrada[50];
+  int salir = 0;
+  while (!salir) {
+    printf("Entrada (salir para terminar el programa):> ");
+    scanf("%s", entrada);
+    if (strcmp(entrada, "salir")) {
+      char* codificado = malloc(sizeof(char) * strlen(entrada));
+      codificado = codificar(entrada, argv[1]);
+      printf("Codificada: %s\n", codificado);
+      printf("Descodificado: %s\n", descodificar(codificado, argv[1]));
+    } else
+      salir = 1;
+  }
+  return 0;
+}

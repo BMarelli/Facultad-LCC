@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int isOne(long n, int pos) { return (n >> pos) & 1; }
+
+void printbin(long n) {
+  for (int i = 7; i >= 0; i--) {
+    for (int j = 7; j >= 0; j--) {
+      printf("%d", isOne(n, 8 * i + j));
+    }
+    printf(" ");
+  }
+  printf("\n");
+}
+
+void rotar(long *a, long *b, long *c) {
+  *a = *a ^ *c;
+  *c = *a ^ *c;
+  *a = *a ^ *c;
+  *b = *b ^ *c;
+  *c = *b ^ *c;
+  *b = *b ^ *c;
+}

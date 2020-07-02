@@ -1,0 +1,85 @@
+#if !defined(__NRO__)
+#define __NRO__
+
+#define TAMANO 256 / ((int)sizeof(short) * 8)
+
+// Un nro representa un entero de 256 bits.
+typedef struct {
+  unsigned short n[TAMANO];
+} nro;
+
+// nro_crear: -> nro
+// Devuelve un nuevo nro que vale 0.
+nro nro_crear();
+
+// nro_es_cero: nro -> int
+// Recibe un nro,
+// Devuelve 1 si el número es 0, 0 en caso contrario.
+int nro_es_cero(nro numero);
+
+// nro_es_uno: nro -> int
+// Recibe un nro,
+// Devuelve 1 si el número es 1, 0 en caso contrario.
+int nro_es_uno(nro numero);
+
+// nro_es_par: nro -> int
+// Recibe un nro,
+// Devuelve 1 si el número es par, 0 en caso contrario.
+int nro_es_par(nro numero);
+
+// nro_es_impar: nro -> int
+// Recibe un nro,
+// Devuelve 1 si el número es impar, 0 en caso contrario.
+int nro_es_impar(nro numero);
+
+// nro_shiftl: nro int -> nro
+// Recibe un nro y un entero "n",
+// Desplaza "n" bits del nro hacia la izquierda.
+nro nro_shiftl(nro numero, int n);
+
+// nro_shiftr: nro int -> nro
+// Recibe un nro y un entero "n",
+// Desplaza "n" bits del nro hacia la derecha.
+nro nro_shiftr(nro numero, int n);
+
+// nro_not: nro -> nro
+// Recibe un nro,
+// Aplica el operador ~ bit a bit, y devuelve ese nro.
+nro nro_not(nro numero);
+
+// nro_or: nro nro -> nro
+// Recibe dos nro(s),
+// Les aplica el operador |, y devuelve ese nro.
+nro nro_or(nro numero1, nro numero2);
+
+// nro_and: nro nro -> nro
+// Recibe dos nro(s),
+// Les aplica el operador &, y devuelve ese nro.
+nro nro_and(nro numero1, nro numero2);
+
+// nro_xor: nro nro -> nro
+// Recibe dos nro(s),
+// Les aplica el operador ^, y devuelve ese nro.
+nro nro_xor(nro numero1, nro numero2);
+
+// nro_suma: nro nro -> nro
+// Recibe dos nro(s),
+// Devuelve su suma.
+nro nro_suma(nro numero1, nro numero2);
+
+// nro_mult: nro nro -> nro
+// Recibe dos nro(s),
+// Devuelve su producto aplicando el algoritmo del campesino ruso.
+nro nro_mult(nro numero1, nro numero2);
+
+// nro_printbin: nro -> void
+// Recibe un nro,
+// Lo imprime en binario.
+void nro_printbin(nro numero);
+
+// nro_print: nro -> void
+// Recibe un nro,
+// Imprime el valor que representa como una suma de términos.
+void nro_print(nro numero);
+
+#endif  // __NRO__

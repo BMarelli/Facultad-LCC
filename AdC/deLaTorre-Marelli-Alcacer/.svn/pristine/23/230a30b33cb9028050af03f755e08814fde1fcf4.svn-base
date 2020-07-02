@@ -1,0 +1,8 @@
+.text
+.global main
+main:
+ movl $-1, %eax
+ movl $255, %ecx
+ notl %ecx
+ andl %ecx, %eax
+ ret

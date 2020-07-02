@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include "nro.h"
+#include "util.h"
+
+int main(int argc, char const *argv[]) {
+  // Ejercicio 1
+  printf("1) a) ");
+  printbin32(1 << 31);
+
+  printf("1) b) ");
+  printbin32((1 << 31) | (1 << 15));
+
+  printf("1) c) ");
+  printbin32(-1 & ~255);
+
+  printf("1) d) ");
+  printbin32(0xAA | (0xAA << 24));
+
+  printf("1) e) ");
+  printbin32(5 << 8);
+
+  printf("1) f) ");
+  printbin32(-1 & (~(1 << 8)));
+
+  // Ejercicio 2
+  // isOne(...);
+
+  // Ejercicio 3
+  // printbin64(...);
+
+  // Ejercicio 4
+  // rotar(...);
+
+  // Ejercicio 6
+  // mult(...);
+
+  // Ejercicio 7
+  // nro_crear(...);
+}

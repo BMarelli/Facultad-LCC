@@ -1,0 +1,64 @@
+.text
+.global buscar_caracter
+  buscar_caracter:
+    movq %rcx, %r9
+    movq %rdx, %rcx
+    movb %sil, %al
+    xorq %r8, %r8
+    cld
+    repetir:
+      scasb
+      je fin
+      incq %r8
+      loop repetir
+      movq $-1, %r8
+    
+    fin:
+      movq %r8, %rax
+      movq %r9, %rcx
+      ret
+
+.global comparar_cadenas
+  comparar_cadenas:
+    movq %rcx, %r9
+    movq %rdx, %rcx
+    cld
+    repetir2:
+      cmpsb
+      jnz diferente
+      loop repetir2
+      
+      movq $0, %rax
+      movq %r9, %rcx
+      ret
+    
+    diferente:
+      movq %r9, %rcx
+      decq %rsi
+      decq %rdi
+      cmpsb
+      ja menor
+
+      movq $1, %rax
+      ret
+    
+    menor:
+      movq $-1, %rax
+      ret
+
+.global fuerza_bruta
+  fuerza_bruta:
+    subq %rcx, %rdx
+    incq %rdx
+    call buscar_caracter
+    cmpq $-1, %rax
+    je fin2
+    movq %rax, %r8
+    movq %rcx, %rdx
+    call comparar_cadenas
+    cmpq $0, %rax
+    jnz 
+
+    no_encontrado: 
+    fin2:
+      ret

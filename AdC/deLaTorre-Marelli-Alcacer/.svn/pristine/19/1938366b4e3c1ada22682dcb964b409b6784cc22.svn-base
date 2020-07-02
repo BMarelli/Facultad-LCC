@@ -1,0 +1,8 @@
+# main: util.o
+# 	gcc -o main main.c util.o -Wall -pedantic
+
+ejercicio5:
+	gcc -o ejercicio5 ejercicio5.c -Wall -pedantic
+
+util.o: util.c
+	gcc -c util.c -Wall -pedantic

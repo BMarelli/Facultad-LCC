@@ -1,0 +1,124 @@
+#include "nro.h"
+#include <stdio.h>
+#include "util.h"
+
+nro nro_crear() {
+  nro numero;
+  for (int i = 0; i < TAMANO; i++) numero.n[i] = 0;
+
+  return numero;
+}
+
+int nro_es_cero(nro numero) {
+  int esCero = 1;
+  for (int i = 0; i < TAMANO && esCero; i++) esCero = numero.n[i] == 0;
+
+  return esCero;
+}
+
+int nro_es_uno(nro numero) {
+  int esUno = 1;
+  for (int i = 0; i < TAMANO && esUno; i++) esUno = numero.n[i] == 1;
+
+  return esUno;
+}
+
+int nro_es_par(nro numero) { return !(numero.n[0] & 1); }
+
+int nro_es_impar(nro numero) { return numero.n[0] & 1; }
+
+nro nro_shiftl(nro numero, int n) {
+  if (!n) return numero;
+
+  while (n >= TAMANO) {
+    for (int i = TAMANO - 1; i > 0; i--) numero.n[i] = numero.n[i - 1];
+
+    numero.n[0] = 0;
+    n -= TAMANO;
+  }
+
+  for (int i = TAMANO - 1; i > 0; i--)
+    numero.n[i] = (numero.n[i] << n) | (numero.n[i - 1] >> (TAMANO - n));
+
+  numero.n[0] = numero.n[0] << n;
+
+  return numero;
+}
+
+nro nro_shiftr(nro numero, int n) {
+  if (!n) return numero;
+
+  while (n >= TAMANO) {
+    for (int i = 0; i < TAMANO - 1; i++) numero.n[i] = numero.n[i + 1];
+
+    numero.n[TAMANO - 1] = 0;
+    n -= TAMANO;
+  }
+
+  for (int i = 0; i < TAMANO - 1; i++)
+    numero.n[i] = (numero.n[i] >> n) | (numero.n[i + 1] << (TAMANO - n));
+
+  numero.n[TAMANO - 1] = numero.n[TAMANO - 1] >> n;
+
+  return numero;
+}
+
+nro nro_not(nro numero) {
+  for (int i = 0; i < TAMANO; i++) numero.n[i] = ~numero.n[i];
+
+  return numero;
+}
+
+nro nro_or(nro numero1, nro numero2) {
+  nro resultado = nro_crear();
+  for (int i = 0; i < TAMANO; i++) resultado.n[i] = numero1.n[i] | numero2.n[i];
+
+  return resultado;
+}
+
+nro nro_and(nro numero1, nro numero2) {
+  nro resultado = nro_crear();
+  for (int i = 0; i < TAMANO; i++) resultado.n[i] = numero1.n[i] & numero2.n[i];
+
+  return resultado;
+}
+
+nro nro_xor(nro numero1, nro numero2) {
+  nro resultado = nro_crear();
+  for (int i = 0; i < TAMANO; i++) resultado.n[i] = numero1.n[i] ^ numero2.n[i];
+
+  return resultado;
+}
+
+nro nro_suma(nro numero1, nro numero2) {
+  nro resultado = nro_crear();
+  int aux, carry = 0;
+
+  for (int i = 0; i < TAMANO; i++) {
+    aux = (int)numero1.n[i] + (int)numero2.n[i] + carry;
+    carry = isOne(aux, sizeof(short) * 8);
+
+    resultado.n[i] = aux;
+  }
+
+  return resultado;
+}
+
+nro nro_mult(nro numero1, nro numero2) {
+  if (nro_es_cero(numero2)) return nro_crear();
+  if (nro_es_uno(numero2)) return numero1;
+
+  nro producto = nro_mult(nro_shiftl(numero1, 1), nro_shiftr(numero2, 1));
+  if (nro_es_par(numero2)) return producto;
+  return nro_suma(numero1, producto);
+}
+
+void nro_printbin(nro numero) {
+  for (int i = TAMANO - 1; i >= 0; i--) {
+    for (int j = sizeof(short) - 1; j >= 0; j--) {
+      for (int k = 7; k >= 0; k--) printf("%d", isOne(numero.n[i], 8 * j + k));
+      printf(" ");
+    }
+  }
+  printf("\n");
+}

@@ -1,0 +1,12 @@
+.text
+.global sum
+  sum:
+  movq %rdx, %rcx
+  repetir:
+    movss (%rdi), %xmm0
+    movss (%rsi), %xmm1
+    addss %xmm0, %xmm1
+    movss %xmm1, (%rdi)
+    addq $4, %rdi
+    loop repetir
+

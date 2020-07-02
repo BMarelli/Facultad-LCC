@@ -1,0 +1,2 @@
+1) Ejecutamos el programa, y inmediatamente después ejecutamos el comando "echo $?"
+2) Ejecutamos el programa con gdb, y al finalizar la ejecución muestra el código de salida del programa.

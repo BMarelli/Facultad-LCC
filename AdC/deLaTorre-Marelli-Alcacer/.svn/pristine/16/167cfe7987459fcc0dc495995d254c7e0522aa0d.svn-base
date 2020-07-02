@@ -1,0 +1,7 @@
+all: main
+
+main: util.o
+	gcc -o main main.c util.o -Wall -pedantic
+
+util.o: util.c
+	gcc -c util.c -Wall -pedantic

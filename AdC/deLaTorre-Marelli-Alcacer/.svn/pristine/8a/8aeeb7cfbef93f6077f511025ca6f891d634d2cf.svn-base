@@ -1,0 +1,44 @@
+.text
+.global solve
+  solve:
+  movss %xmm0, %xmm6
+  movss %xmm1, %xmm7
+  mulss %xmm4, %xmm6 # e*a
+  mulss %xmm3, %xmm7  
+  subss %xmm7, %xmm6 # xmm6 det
+  ucomiss %xmm10, %xmm6
+  jz mas_de_una
+
+  movss %xmm2, %xmm6
+	movss %xmm4, %xmm7
+	mulss %xmm6, %xmm7
+	movss %xmm7, %xmm8 #xmm8 -> c*e
+
+  movss %xmm1, %xmm6
+	movss %xmm5, %xmm7
+	mulss %xmm6, %xmm7  #xmm7 -> b*f
+	subss %xmm7, %xmm8  #xmm8 -> c*e - b*f
+
+  movss %xmm0, %xmm9
+	movss %xmm4, %xmm7
+	mulss %xmm7, %xmm9  #xmm9 -> a*e
+
+  movss %xmm1, %xmm6
+  movss %xmm3, %xmm7
+  mulss %xmm6, %xmm7  #xmm7 -> b*d
+  subss %xmm7, %xmm9  #xmm9 -> a*e - b*d
+	divss %xmm9, %xmm8  #xmm8 -> (c*e - b*f)/(e*a - b*d)
+	movss %xmm8, (%rdi)
+
+  mulss %xmm3, %xmm8
+	subss %xmm8, %xmm5
+	divss %xmm4, %xmm5
+	movss %xmm5, (%rsi)
+  
+  xorq %rax, %rax
+	ret
+
+  mas_de_una:
+	movq $-1, %rax
+	ret
+

@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <string.h>
+
+unsigned long buscar_caracter(char* cadena, char caracter,
+                              unsigned long longitud);
+unsigned long comparar_cadenas(char* cadena1, char* cadena2,
+                               unsigned long longitud);
+
+int main() {
+  char cadena1[] = "supercalifrajilisticoespialidoso";
+  char cadena2[] = "tupercalifrajilisticoespialidoso";
+  char caracter = 'x';
+
+  printf("a): %ld\n", buscar_caracter(cadena1, caracter, strlen(cadena1)));
+  printf("b): %ld\n", comparar_cadenas(cadena1, cadena2, strlen(cadena1)));
+  return 0;
+}
