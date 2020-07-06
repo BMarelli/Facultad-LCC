@@ -1,60 +1,50 @@
 -module(ms).
-
--import(lists, [nth/2]).
-
--export([start/1, to_slave/2]).
--export([echo/0, master_work/1, master_start/1, replacenth/3]).
+-export([start/1, master_init/1, master/1]).
+-export([to_slave/0, echo/0, start_slaves/1, replace_slave/3]).
 
 echo() ->
-  receive
-    die ->
-      exit(die);
-    Msj ->
-      io:format("~p -> ~p~n", [self(), Msj]),
-      echo()
-  end.
+    receive
+        die -> exit(die);
+        Msj -> io:format("[slave: ~p] ~s~n", [self(), Msj]), echo()
+    end.
 
-start_slave(0) ->
-  [];
-start_slave(N) ->
-  New = spawn_link(?MODULE, echo, []),
-  io:format("start ~p ~n", [New]),
-  [New | start_slave(N - 1)].
+replace_slave(X, Y, [Z | Zs]) when Y == Z -> [X | Zs];
+replace_slave(X, Y, [Z | Zs]) -> [Z | replace_slave(X, Y, Zs)].
 
-replacenth(_, _, []) ->
-  [];
-replacenth(X, Y, [Z | Zs]) ->
-  if Y == Z ->
-       [X | Zs];
-     true ->
-       [Z | replacenth(X, Y, Zs)]
-  end.
+to_slave() ->
+    CMDString = string:trim(io:get_line(">> ")),
+    [Msj, N] = string:lexemes(CMDString, " "),
+    case Msj of
+        "EXIT" -> ok;
+        "DIE" -> master ! {to_slave, die, list_to_integer(N)};
+        _ -> master ! {to_slave, Msj, list_to_integer(N)}
+    end,
+    to_slave().
 
-master_start(N) ->
-  Ps = start_slave(N),
-  process_flag(trap_exit, true),
-  master_work(Ps),
-  ok.
+start_slaves(0) -> [];
+start_slaves(N) ->
+    New = spawn_link(?MODULE, echo, []),
+    io:format("start ~p ~n", [New]),
+    [New | start_slaves(N - 1)].
 
-master_work(Ps) ->
-  receive
-    {'EXIT', Slave, die} ->
-      New = spawn_link(?MODULE, echo, []),
-      io:format("start ~p ~n", [New]),
-      master_work(replacenth(New, Slave, Ps));
-    {Msj, N} ->
-      Slave = lists:nth(N, Ps),
-      Slave ! Msj,
-      master_work(Ps)
-  end.
+master_init(N) ->
+    io:format("[master: ~p] start ~n", [self()]),
+    Slaves = start_slaves(N),
+    process_flag(trap_exit, true),
+    master(Slaves).
 
-to_slave(Msj, N) ->
-  master ! {Msj, N},
-  ok.
+master(Slaves) ->
+    receive
+        {'EXIT', Slave, die} ->
+            New = spawn_link(?MODULE, echo, []),
+            io:format("start ~p ~n", [New]),
+            master(replace_slave(New, Slave, Slaves));
+        {to_slave, Msj, Slave} ->
+            SlavePID = lists:nth(Slave, Slaves),
+            SlavePID ! Msj,
+            master(Slaves)
+    end.
 
 start(N) ->
-  Master = spawn(?MODULE, master_start, [N]),
-  io:format("master: start ~p~n", [Master]),
-  register(master, Master),
-  ok.
-
+    register(master, spawn(?MODULE, master_init, [N])),
+    ok.
