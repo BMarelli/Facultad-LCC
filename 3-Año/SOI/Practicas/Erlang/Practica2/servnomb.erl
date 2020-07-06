@@ -1,71 +1,43 @@
 -module(servnomb).
 
-%% Creación y eliminación del servicio
--export([iniciar/0, finalizar/1]).
-%% Servidor
--export([servnombres/2]).
-%% Librería de Acceso
--export([nuevoNombre/2, quienEs/2, listaDeIds/1]).
+-export([start/0, client/0, listanombres/2]).
 
-% Iniciar crea el proceso servidor, y devuelve el PId.
-iniciar() ->
-    spawn(?MODULE,
-          servnombres,
-          %% El servidor comienza con un mapa vacÃ­o
-          %% y el contador en 1
-          [maps:new(), 1]).
+start() ->
+    register(listanombres, spawn(?MODULE, listanombres, [maps:new(), 1])),
+    ok.
 
-%% Función de servidor de nombres.
-servnombres(Map, N) ->
+listanombres(Nombres, Id) ->
     receive
-      %% Llega una peticiÃ³n para crear un Id para nombre
-      {nuevoId, Nombre, CId} ->
-          NMap = maps:put(N, Nombre, Map),
-          CId ! {ok, N, Nombre},
-          servnombres(NMap, N + 1);
-      %% Llega una peticiÃ³n para saber el nombre de tal Id
-      {buscarId, NId, CId} ->
-          Value = maps:get(NId, Map, none),
-          CId ! Value;
-      %% Entrega la lista completa de Ids con Nombres.
-      {verLista, CId} ->
-          Lista = maps:to_list(Map),
-          CId ! Lista;
-      %% Cerramos el servidor. Va gratis
-      {finalizar, CId} ->
-          CId ! ok
+        {nuevoId, NombreId, Caller} ->
+            Caller ! {nuevoId, Id},
+            listanombres(maps:put(Id, NombreId, Nombres), Id + 1);
+        {verLista, Caller} ->
+            Caller ! {verLista, maps:keys(Nombres)},
+            listanombres(Nombres, Id);
+        {buscarId, NombreId, Caller} ->
+            Caller ! {buscarId, maps:find(NombreId, Nombres)},
+            listanombres(Nombres, Id);
+        {finalizar, Caller} -> Caller ! {finalizar, ok}
     end.
 
-%% Dado un nombre y un servidor le pide que cree un identificador
-%% único.
-nuevoNombre(Nombre, NMServ) ->
-    NMServ ! {nuevoId, Nombre, self()},
-    receive
-      _ ->
-          vacioilegal
+client() ->
+    CMDString = string:trim(io:get_line(">> ")),
+    Lexemes = string:lexemes(CMDString, " "),
+    case Lexemes of
+        [] -> client();
+        ["BYE"] ->
+            listanombres ! {finalizar, self()},
+            receive {finalizar, Res} -> io:format("[BYE] ~p~n", [Res]) end;
+        ["LSG"] -> 
+            listanombres ! {verLista, self()}, 
+            receive {verLista, Lista} -> io:format("[LSG] ~p~n", [Lista]) end,
+            client();
+        ["NEW" | NombreId] ->
+            listanombres ! {nuevoId, NombreId, self()},
+            receive {nuevoId, Id} -> io:format("[NEW] ~p~n", [Id]) end,
+            client();
+        ["SCH" | NombreId] ->
+            listanombres ! {buscarId, NombreId, self()},
+            receive {buscarId, Id} -> io:format("[SCH] ~p~n", [Id]) end,
+            client()
     end.
-
-%% Función que recupera el nombre desde un Id
-quienEs(Id, NMServ) ->
-    NMServ ! {buscarId, Id, self()},
-    receive
-      Msj ->
-          io:format("-> ~p~n", [Msj])
-    end.
-
-%% Pedimos la lista completa de nombres e identificadores.
-listaDeIds(NMServ) ->
-    NMServ ! {verLista, self()},
-    receive
-      Msj ->
-          io:format("=> ~p~n", [Msj])
-    end.
-
-% Ya implementada :D!
-finalizar(NMServ) ->
-    NMServ ! {finalizar, self()},
-    receive
-      ok ->
-          ok
-    end.
-
