@@ -36,17 +36,17 @@ tabulateS_ f 0 = emptyS_
 tabulateS_ f n = tabulateS_' f n 0
                 where
                     tabulateS_' f 0 _ = emptyS_
-                    tabulateS_' f n i =  let
+                    tabulateS_' f n i = let
                                             (x,xs) = f i ||| tabulateS_' f (n-1) (i+1)
                                         in x : xs
 
 mapS_ f [] = []
 mapS_ f (x:xs) = let 
                     (y, ys) = f x ||| mapS_ f xs
-                in  y : ys
+                 in  y : ys
 
 filterS_ p [] = []
-filterS_ p (x:xs) =  let 
+filterS_ p (x:xs) = let 
                         (y, ys) = p x ||| filterS_ p xs
                     in  if y then x : ys else ys
 
