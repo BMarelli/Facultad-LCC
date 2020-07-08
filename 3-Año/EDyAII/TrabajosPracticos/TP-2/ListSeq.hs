@@ -76,10 +76,9 @@ dropS_ xs n = drop n xs
 
 showtS_ [] = EMPTY
 showtS_ [x] = ELT x
-showtS_ xs =  let
-                  (l,r) = (takeS_ xs (div len 2)) ||| (dropS_ xs (div len 2))
-                in NODE l r
-                where len = lengthS_ xs
+showtS_ xs =  let (l,r) = (takeS_ xs (div len 2)) ||| (dropS_ xs (div len 2))
+              in NODE l r
+      where len = lengthS_ xs
 
 showlS_ [] = NIL
 showlS_ (x:xs) = CONS x xs

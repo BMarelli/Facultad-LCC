@@ -28,13 +28,15 @@ singletonS_ x = fromList [x]
 
 mapS_ f xs = tabulateS (\i -> (f (nthS xs i))) (lengthS xs)
 
-filterS_ p xs | len == 0     = emptyS
-              | len == 1     = if p (nthS xs 0) then xs else emptyS
-              | otherwise    = let 
-                                  m = (div len 2)
-                                  (ys, zs) = filterS_ p (takeS_ xs m) ||| filterS_ p (dropS_ xs m)
-                               in appendS_ ys zs
-    where len = lengthS xs
+-- filterS_ p xs | len == 0     = emptyS
+--               | len == 1     = if p (nthS xs 0) then xs else emptyS
+--               | otherwise    = let 
+--                                   m = (div len 2)
+--                                   (ys, zs) = filterS_ p (takeS_ xs m) ||| filterS_ p (dropS_ xs m)
+--                                in appendS_ ys zs
+--     where len = lengthS xs
+
+filterS_ p xs = joinS (mapS_ (\x -> if p x then (singletonS_ x) else emptyS) xs)
 
 appendS_ xs ys = tabulateS f (n + m)
     where 
@@ -60,7 +62,7 @@ showtS_ xs | len == 0       = EMPTY
     where len = lengthS xs
 
 showlS_ xs | len == 0       = NIL
-           | otherwise      = CONS (nthS xs 0)  xs
+           | otherwise      = CONS (nthS xs 0)  (dropS_ xs 1)
     where len = lengthS xs
 
 contract :: (a -> a -> a) -> A.Arr a -> A.Arr a
