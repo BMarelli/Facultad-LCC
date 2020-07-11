@@ -91,23 +91,28 @@ psocket(Socket) ->
     receive
         {tcp, Socket, Data} ->
             Lexemes = string:lexemes(string:trim(Data), " "),
+            io:format("~p~n", [Lexemes]),
             case Lexemes of
                 ["NEW", Username] ->
-                    listclient ! {new, Username},
+                    listclient ! {new, Username, self()},
                     psocket(Socket);
                 ["DEP", Username, Amount] ->
-                    listclient ! {dep, Username, list_to_integer(Amount)},
+                    listclient ! {dep, Username, list_to_integer(Amount), self()},
                     psocket(Socket);
                 ["EXT", Username, Amount] ->
-                    listclient ! {ext, Username, list_to_integer(Amount)},
+                    listclient ! {ext, Username, list_to_integer(Amount), self()},
                     psocket(Socket);
                 ["AMO", Username] ->
-                    listclient ! {amo, Username},
+                    listclient ! {amo, Username, self()},
                     psocket(Socket)
             end;
         {tcp_closed, Socket} -> io:format(">> Se ha desconectado el cliente ~p~n", [Socket]);
         {new, Username} ->
-            gen_tcp:send(Socket, format("OK ~p ~s", [new, Username]));
+            gen_tcp:send(Socket, format("OK ~p ~s", [new, Username])), psocket(Socket);
         {dep, Username, Amount} ->
-            gen_tcp:send(Socket, format("OK ~p ~s ~p", [dep, Username, Amount]))
+            gen_tcp:send(Socket, format("OK ~p ~s ~p", [dep, Username, Amount])), psocket(Socket);
+        {ext, Username, Amount} ->
+            gen_tcp:send(Socket, format("OK ~p ~s ~p", [ext, Username, Amount])), psocket(Socket);
+        {amo, Username, Amount} ->
+            gen_tcp:send(Socket, format("OK ~p ~s ~p", [amo, Username, Amount])), psocket(Socket)
     end.
