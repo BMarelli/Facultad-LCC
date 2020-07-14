@@ -13,7 +13,13 @@ start(Port) ->
         _ -> start_tcp_server(Port)
     end.
 
-start_node_server() -> ok.
+start_node_server() ->
+    case nodes() of
+        [] -> io:format("Error: no se hay ningun nodo conectado");
+        Nodes ->
+            io:format("Se encuentran conectados los siguientes nodos: ~p~n", [Nodes]),
+            register(listclient, spawn(?MODULE, listclient, [maps:new()]))
+    end.
 
 start_tcp_server(Port) ->
     case gen_tcp:listen(Port, [{active, false}]) of
@@ -104,7 +110,8 @@ psocket(Socket) ->
                     psocket(Socket);
                 ["AMO", Username] ->
                     listclient ! {amo, Username, self()},
-                    psocket(Socket)
+                    psocket(Socket);
+                _ -> io:format("Error: No se pudo ejecutar el comando~n"), psocket(Socket)
             end;
         {tcp_closed, Socket} -> io:format(">> Se ha desconectado el cliente ~p~n", [Socket]);
         {new, Username} ->
