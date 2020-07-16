@@ -27,13 +27,11 @@ matchParen xs = let ys = mapS parenToInt xs
       parenToInt Close = -1
 
 {- Ejercicio 6 -}
-tuplasMultiplos :: Seq s => s a -> s (a, s a)
-tuplasMultiplos ys = tabulateS (\i -> (nthS ys i, dropS ys i)) ((lengthS ys) - 1)
-
-multiplos :: Seq s => (Int, s Int) -> Int
-multiplos (n, ys) = lengthS (filterS (\y -> (mod n y) == 0) ys)
-
 cantMultiplos :: Seq s => s Int -> Int
 cantMultiplos xs = let ys = tuplasMultiplos xs
                        zs = mapS multiplos ys
                    in reduceS (+) 0 zs
+    where
+      tuplasMultiplos :: Seq s => s Int -> s (Int, s Int)
+      tuplasMultiplos ys = tabulateS (\i -> (nthS ys i, dropS ys (i + 1))) ((lengthS ys) - 1)
+      multiplos (n, ys) = lengthS (filterS (\y -> (mod n y) == 0) ys)

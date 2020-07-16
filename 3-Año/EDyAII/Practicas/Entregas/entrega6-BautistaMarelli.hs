@@ -25,6 +25,18 @@ cantMultiplos xs = let ys = tuplasMultiplos xs
       multiplos (n, ys) = lengthS (filterS (\y -> (mod n y) == 0) ys)
 -}
 
+{- Solucion al problema -}
+{-
+cantMultiplos :: Seq s => s Int -> Int
+cantMultiplos xs = let ys = tuplasMultiplos xs
+                       zs = mapS multiplos ys
+                   in reduceS (+) 0 zs
+      where
+        tuplasMultiplos :: Seq s => s Int -> s (Int, s Int)
+        tuplasMultiplos ys = tabulateS (\i -> (nthS ys i, dropS ys (i + 1))) ((lengthS ys) - 1)
+        multiplos (n, ys) = lengthS (filterS (\y -> (mod n y) == 0) ys)
+-}
+
 -- Esta es la versión que anda:
 
 tuplasMultiplos :: Seq s => s a -> s (a, s a)
