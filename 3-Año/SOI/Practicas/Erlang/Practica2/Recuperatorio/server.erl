@@ -121,5 +121,7 @@ psocket(Socket) ->
         {ext, Username, Amount} ->
             gen_tcp:send(Socket, format("OK ~p ~s ~p", [ext, Username, Amount])), psocket(Socket);
         {amo, Username, Amount} ->
-            gen_tcp:send(Socket, format("OK ~p ~s ~p", [amo, Username, Amount])), psocket(Socket)
+            gen_tcp:send(Socket, format("OK ~p ~s ~p", [amo, Username, Amount])), psocket(Socket);
+        {error, Reason} ->
+            gen_tcp:send(Socket, format("ERROR ~s", [Reason])), psocket(Socket)
     end.
