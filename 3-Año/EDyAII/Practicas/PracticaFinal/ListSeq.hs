@@ -25,7 +25,6 @@ instance Seq [] where
   maxE = maxE_
   maxS = maxS_
   zipS = zip
-  mapreduceS = mapreduceS_
 
 emptyS_ = []
 
@@ -135,15 +134,3 @@ maxS_ cmp xs = let
               in i
     where
       g x@(v, _) y@(v', _) = if cmp v v' == LT then y else x
-
-mapreduceS_ :: (a -> b) -> (b -> b -> b) -> b -> [a] -> b
-mapreduceS_ _ _ e [] = e
-mapreduceS_ f g e [x] = g e (f x)
-mapreduceS_ f g e xs = let ys = mapcontract f g xs
-                       in mapreduceS_ id g e ys
-    where
-      mapcontract :: (a -> b) -> (b -> b -> b) -> [a] -> [b]
-      mapcontract _ _ [] = []
-      mapcontract f _ [x] = [f x]
-      mapcontract f g (x:y:xs) = let (z, zs) = g (f x) (f y) ||| mapcontract f g xs
-                                 in z:zs

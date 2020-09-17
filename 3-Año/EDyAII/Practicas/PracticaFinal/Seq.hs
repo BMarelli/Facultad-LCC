@@ -24,7 +24,6 @@ class Seq s where
    maxE       :: (a -> a -> Ordering) -> s a -> a
    maxS       :: (a -> a -> Ordering) -> s a -> Int
    zipS       :: s a -> s b -> s (a, b)
-   mapreduceS :: (a -> b) -> (b -> b -> b) -> b -> s a -> b
 
 data TreeView a t = EMPTY | ELT a | NODE t t
                     deriving Show

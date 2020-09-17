@@ -74,9 +74,9 @@ mcss = (\(m, _, _, _) -> m) . mapreduce f g n
 
 {- Ejercicio 3 -}
 reduceT :: (a -> a -> a) -> a -> Tree a -> a
-reduceT _ n E = n
-reduceT f n (Leaf v) = v
-reduceT f n (Join xs ys) = let (l, r) = (reduceT f n xs, reduceT f n ys)
+reduceT _ e E = n
+reduceT f e (Leaf v) =f e v
+reduceT f e (Join xs ys) = let (l, r) = (reduceT f e xs, reduceT f e ys)
                            in f l r
 
 sufijos :: Tree Int -> Tree (Tree Int)
@@ -92,18 +92,12 @@ sufijos t = sufijos_ t E
 conSufijos :: Tree Int -> Tree (Int, Tree Int)
 conSufijos E = E
 conSufijos t = let suf = sufijos t
-                in conSufijos_ t suf
+               in conSufijos_ t suf
         where
           conSufijos_ (Leaf v) (Leaf v') = Leaf (v, v')
           conSufijos_ (Join xs ys) (Join xs' ys') = let (l, r) = (conSufijos_ xs xs', conSufijos_ ys ys')
                                                     in Join l r
 
-{- maxT :: Tree Int -> Int
-maxT (Leaf v) = v
-maxT (Join xs ys) = case ys of
-                        E -> maxT xs
-                        _ -> let (x, y) = (maxT xs, maxT ys)
-                             in max x y -}
 maxT :: Tree Int -> Int
 maxT t = reduceT max minBound t
 
