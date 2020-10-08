@@ -18,11 +18,13 @@ data Exp a where
   BFalse ::Exp Bool
   Lt ::Exp Int -> Exp Int -> Exp Bool
   Gt ::Exp Int -> Exp Int -> Exp Bool
-  And ::Exp Bool -> Exp Bool -> Exp Bool
+  And ::Exp Bool -> Exp Bool -> Exp Bool  
   Or ::Exp Bool -> Exp Bool -> Exp Bool
   Not ::Exp Bool -> Exp Bool
   Eq ::Exp Int -> Exp Int -> Exp Bool
   NEq ::Exp Int -> Exp Int -> Exp Bool
+  EAssgn ::Variable -> Exp Int -> Exp Int
+  ESeq ::Exp Int -> Exp Int -> Exp Int
 
 deriving instance Show (Exp a)
 deriving instance Eq (Exp a)
