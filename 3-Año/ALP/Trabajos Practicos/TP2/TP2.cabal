@@ -1,0 +1,66 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 5e30934757af69509fab8b4a635b782e8a4fc5f5efd94d415f8c3a3814a51179
+
+name:           TP2
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/TP2#readme>
+homepage:       https://github.com/githubuser/TP2#readme
+bug-reports:    https://github.com/githubuser/TP2/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/TP2
+
+library
+  exposed-modules:
+      Common
+      Parser
+      PrettyPrinter
+      Untyped
+  other-modules:
+      Paths_TP2
+  hs-source-dirs:
+      src
+  default-extensions: TupleSections MultiWayIf LambdaCase
+  build-depends:
+      ansi-wl-pprint
+    , base >=4.7 && <5
+    , exceptions
+    , haskeline >=0.8.0.0
+    , mtl
+    , parsec
+    , pretty
+  default-language: Haskell2010
+
+executable TP2-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_TP2
+  hs-source-dirs:
+      app
+  default-extensions: TupleSections MultiWayIf LambdaCase
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      TP2
+    , ansi-wl-pprint
+    , base >=4.7 && <5
+    , exceptions
+    , haskeline >=0.8.0.0
+    , mtl
+    , parsec
+    , pretty
+  default-language: Haskell2010

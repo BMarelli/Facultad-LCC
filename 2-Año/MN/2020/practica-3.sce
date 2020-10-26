@@ -43,3 +43,22 @@ endfunction
 //  ans  =
 //    0.7392822
 
+function v = metodo_punto_fijo(f, x0, e)
+  while abs(f(x0) - x0) > e then
+    x0 = f(x0)
+  end
+
+  v = x0
+endfunction
+
+function v = metodo_newton(f, x0, e, iter)
+  i = 0
+  xn = x0 - (f(x0) / numderivative(f, x0))
+  while (abs(xn - x0) > e) && (i < iter) then
+    x0 = xn
+    xn = x0 - (f(x0) / numderivative(f, x0))
+    i = i + 1
+  end
+
+  v = xn
+endfunction
