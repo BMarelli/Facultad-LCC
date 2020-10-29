@@ -10,11 +10,10 @@ def mapN =
     (\f xs . mapN' f xs 0 0)
 
 -- Idea en Haskell
--- data Array a = Nil | Cons a (Array a) deriving Show
 
--- mapN :: (a -> a) -> Array a -> Array a
+-- mapN :: (a -> a) -> [a] -> [a]
 -- mapN f xs = mapN' f xs 0 0
 --     where
---       mapN' f Nil _ _ = Nil
---       mapN' f (Cons x xs) 0 n = Cons x (mapN' f xs (n+1) (n+1))
---       mapN' f (Cons x xs) i n = mapN' f (Cons (f x) xs) (i - 1) n
+--       mapN' f [] _ _ = []
+--       mapN' f (x:xs) 0 n = x : (mapN' f xs (n+1) (n+1))
+--       mapN' f (x:xs) i n = mapN' f ((f x) : xs) (i - 1) n
