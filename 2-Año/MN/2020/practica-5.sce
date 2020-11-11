@@ -1,5 +1,3 @@
-// FIXME: Me parece que hace pocas iteraciones
-
 // converge :: [[Float]] ->Bool
 // Dada una matriz cuadrada Norma (n*n) (La matriz de iteracion)
 // Determina si el sistema converge o no a una solucion
@@ -63,6 +61,7 @@ function v = pivotear(A)
 
   v = A
 endfunction
+
 // CASOS DE PRUEBA:
 // --> A = [3 4 0; 1 -8 3; 1 2 2];
 // --> pivotear(A)
@@ -392,25 +391,26 @@ function x = resolver_metodo_SOR(A, b, x0, w, e, iter)
     abort
   end
 
-  // D = diag(diag(A))
-  // T = eye(nA, nA) - (inv(D) * A)
-  // radioSpec = max(abs(spec(T))) 
-
-  
-  // if radioSpec >= 1 then
-  //   x = %nan
-  //   error('resolver_metodo_SOR - El sistema Ax = b no converge')
-  //   abort
-  // end
-
   N = tril(A)
   invN = inv(N)
   I = eye(nA, nA)
   Norma = I - (invN * A)
   xk = x0
   for cnt = 0 : iter
-    xk = w * invN * ((N - A) * x0 + b) + (1 - w) * x0
+    for i = 1 : nA
+      sum = 0
+      sumk = 0
+      for j = 1 : nA
+        if i < j then
+          sum = sum + (A(i, j) * x0(j))
+        elseif j < i then
+          sumk = sumk + (A(i, j) * xk(j))
+        end
+      end
+      xk(i) = (1 - w) * x0(i) + (b(i) - sum - sumk) * w / A(i, i)
+    end
 
+    // Criterio de corte
     if norm(xk - x0) < e then
       x = xk
       disp(cnt)
@@ -430,7 +430,7 @@ endfunction
 // --> rho = (max(abs(spec(T))));
 // --> w = 2 / (1 + sqrt(1 - rho ^ 2 ));
 // --> resolver_metodo_SOR(A, b, [0 0 0 0]', w, 10^-8, 1000)
-//    16.
+//    12.
 //  ans  =
 //   -36.923611
 //   -42.847222
@@ -453,7 +453,7 @@ endfunction
 // --> w = 2 / (1 + sqrt(1 - rho ^ 2 ));
 
 // --> resolver_metodo_SOR(A, b, [0 0 0]', w, 10^-8, 1000)
-//    30.
+//    16.
 //  ans  =
 //    3.
 //    4.

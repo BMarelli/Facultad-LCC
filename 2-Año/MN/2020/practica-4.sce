@@ -1,5 +1,4 @@
 // TODO: Realizar nuevos casos de prueba para cada funcion
-// CONSULTA: Cantidad de operaciones
 
 // Ejercicio 1
 // resolver_triangular_superior :: [[Float]] [Float] -> [[Float], Int]

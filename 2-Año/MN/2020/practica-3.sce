@@ -141,8 +141,8 @@ endfunction
 // Corroboramos que si -inf <= x <= 1.53 => -inf <= g (x) <= 1.53
 // Por lo tanto, converge si partimos de un x < 1.53
 // Luego como la solucion es unica, podemos obtener esta con:
-// --> deff('y=g(x)', 'y = 2^(x-1)')
-// --> metodo_punto_fijo(g, 0, 10^-8)
+deff('y=g5(x)', 'y = 2^(x-1)')
+// --> metodo_punto_fijo(g5, 0.5, 10^-8)
 //  ans  =
 //    1.
 
