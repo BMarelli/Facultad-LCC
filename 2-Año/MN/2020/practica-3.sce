@@ -9,6 +9,8 @@ function y = dibujar(f, x)
 endfunction
 
 // CASOS DE PRUEBA:
+// --> deff("y = h(x)", "y = 2*x - 2")
+// --> dibujar(h, [-5:0.1:5])
 
 // --> dibujar(f1, [0:0.1:8])
 // Podemos ver que las primeras 3 raices positivas son apoximadamente:

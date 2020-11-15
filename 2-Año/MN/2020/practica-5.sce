@@ -378,7 +378,10 @@ endfunction
 // Lo deje correr por aproximadamente 10 mins y no habia terminado y por eso
 // decidi cortarlo
 
-// TODO: Cuando converge este metodo
+// resolver_metodo_SOR :: [[Float]] [Float] [Float] Float Float Int -> [Float]
+// Dada una matriz cuadrada A (n*n), un vector columna b (n), un parametro de
+// relajacion w, una tolerancia de error e y una cantidad maxima de iteraciones
+// Calcula la solucion del sistema Ax = b
 function x = resolver_metodo_SOR(A, b, x0, w, e, iter)
   [nA, mA] = size(A)
   [nb, mb] = size(b)
@@ -397,16 +400,19 @@ function x = resolver_metodo_SOR(A, b, x0, w, e, iter)
   Norma = I - (invN * A)
   xk = x0
   for cnt = 0 : iter
+    // Iteramos por filas
     for i = 1 : nA
       sum = 0
       sumk = 0
       for j = 1 : nA
+        // Calculamos las sumas
         if i < j then
           sum = sum + (A(i, j) * x0(j))
         elseif j < i then
           sumk = sumk + (A(i, j) * xk(j))
         end
       end
+      // Calculamos los valores de la iteracion actual
       xk(i) = (1 - w) * x0(i) + (b(i) - sum - sumk) * w / A(i, i)
     end
 
