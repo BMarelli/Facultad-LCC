@@ -37,9 +37,9 @@ create table SPJ (
     `J#`        int             not null,
     cantidad    int,
     PRIMARY KEY (`S#`, `P#`, `J#`),
-    FOREIGN KEY (`S#`) REFERENCES `S` (`S#`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`P#`) REFERENCES `P` (`P#`) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (`J#`) REFERENCES `J` (`J#`) ON DELETE CASCADE ON UPDATE CASCADE 
+    FOREIGN KEY (`S#`) REFERENCES S (`S#`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`P#`) REFERENCES P (`P#`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`J#`) REFERENCES J (`J#`) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
 insert into S values (default, 'Salazar', 20, 'Londres');
