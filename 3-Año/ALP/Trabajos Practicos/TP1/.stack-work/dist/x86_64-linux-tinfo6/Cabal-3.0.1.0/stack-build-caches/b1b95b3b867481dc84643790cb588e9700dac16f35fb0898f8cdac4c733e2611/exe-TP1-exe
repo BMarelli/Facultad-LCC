@@ -1,20 +1,18 @@
+? /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.0.1.0/build/TP1-exe/autogen/Paths_TP1.hs
+: hash: e451cc70e4cc118cd0844296354e56d62655429d034af75eabc674fd751b5d83
 /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/app/Main.hs:
   hash: b6a80b18a1b3f94ef9a27605513b1b5fc71ab92e6d2b2c7e534f0426b7e8834d
-  size: 2299
-  modtime: 1602789888
 /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/TP1.cabal:
   hash: db16702fab766bdfd74b8b204bed86e502d3cd7e03e4190a3fe1e5b54eb27391
-  size: 1617
-  modtime: 1602789888
 /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/ChangeLog.md:
   hash: d671c1d73cb79102b61920326ee7d43c81e9d4d770677cfaccbcfd6c725e41a9
-  size: 43
-  modtime: 1602789888
+/usr/include/stdc-predef.h:
+  hash: 64fdf694f7b3d51ec6c45c06dcb71ebbe9455742d3ea673012016668853d3bff
+/home/bautistamarelli/.stack/programs/x86_64-linux/ghc-tinfo6-8.8.3/lib/ghc-8.8.3/include/ghcversion.h:
+  hash: 40d1b759f485f1cd5a54141a6412691ac2b76930507289a16a6a7b89b045b4d2
+? /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.0.1.0/build/TP1-exe/autogen/cabal_macros.h
+: hash: bb31b570d3660126cb3a856e8c271c69f83fbf76030cdb5a1bf72f7f3b32f11e
 /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/package.yaml:
   hash: b417439568f6de8225c9fc59666bb0da24b57344610892b81a2c919028743663
-  size: 1143
-  modtime: 1602789888
 /home/bautistamarelli/Facultad-LCC/3-Año/ALP/Trabajos Practicos/TP1/README.md:
   hash: ea60c288f6932e34e269e17df780c0c805d9ade594b18b292dad2ea0777ffb6a
-  size: 9922
-  modtime: 1602789888
