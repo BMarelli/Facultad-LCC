@@ -94,7 +94,6 @@ isVertex v (Node v' xs) = if v == v' then True else or (map (isVertex v) xs)
 esVertice :: Ord a => a -> Bosque a -> Bool
 esVertice _ [] = False
 esVertice v xs = or (map (isVertex v) xs)
-      
 
 esCamino :: Ord a => a -> a -> Bosque a -> Bool
 esCamino _ _ [] = False

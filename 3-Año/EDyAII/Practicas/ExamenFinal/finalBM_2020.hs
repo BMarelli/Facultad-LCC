@@ -42,11 +42,20 @@ getLast t = get' t E
       get' (N _ E v E) t2 = (v, t2)
       get' (N n l v r) t2 = get' l (N n r v t2)
 
+-- appendT :: Tree a -> Tree a -> Tree a
+-- appendT t1 E = t1
+-- appendT E t2 = t2
+-- appendT t1 (N n l v r) = let r' = (appendT l r)
+--                          in N (1 + max (size r') (size t1)) t1 v r'
+
+first :: Tree a -> (a,Tree a)
+first (N _ E x E) = (x,E)
+first (N i l x r) = let (v,l') = first l in (v,N (i-1) l' x r)
+
 appendT :: Tree a -> Tree a -> Tree a
-appendT t1 E = t1
-appendT E t2 = t2
-appendT t1 (N n l v r) = let r' = (appendT l r)
-                         in N (1 + max (size r') (size t1)) t1 v r'
+appendT xs E = xs
+appendT E xs = xs
+appendT xs ys = let (v,ys') = first ys in N (size xs + size ys) xs v ys'
 
 -- combinar :: Tree a -> Tree a -> Tree a
 -- combinar E t2 = t2
