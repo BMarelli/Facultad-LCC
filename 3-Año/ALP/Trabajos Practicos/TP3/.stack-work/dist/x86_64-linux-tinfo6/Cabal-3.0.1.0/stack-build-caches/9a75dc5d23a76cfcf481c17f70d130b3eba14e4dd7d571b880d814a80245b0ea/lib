@@ -1,0 +1,44 @@
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/src/Simplytyped.hs:
+  hash: cffff0ecb758d92be0fbd9d6a62fea08b6c0467d97e4dc89df2a8fac86e6b905
+  size: 6562
+  modtime: 1605305691
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/ChangeLog.md:
+  hash: b6db31e04d81c0e662bab2cbee2044b15c6a17422f0ed7b23ee85da5086cf956
+  size: 43
+  modtime: 1604237488
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/src/Common.hs:
+  hash: c420a43798b875435d305a2c0ec4f2edba2a732165fcaa3b45f1091deba04cd3
+  size: 2310
+  modtime: 1604237488
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/src/PrettyPrinter.hs:
+  hash: ccd4943757a3794c9601295b26813efe8def4b7605c90cf0fc1ecb5219aeea52
+  size: 3364
+  modtime: 1605308502
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/src/Parse.y:
+  hash: 1d3aeb5d4224220fe850e684fe8991c9a69b58964bd87d59cffe90611bd752cc
+  size: 6421
+  modtime: 1605305346
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/TP3.cabal:
+  hash: df3ba92ab697be81884495610852d27296c4e784b4c35cf607fbe952a6b5ea2a
+  size: 1708
+  modtime: 1604237488
+/usr/include/stdc-predef.h:
+  hash: 64fdf694f7b3d51ec6c45c06dcb71ebbe9455742d3ea673012016668853d3bff
+  size: 2290
+  modtime: 1586892364
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/README.md:
+  hash: 63dfb24a514903f0913bbb4655d17884430ef41a2f46731bf150d313a5385948
+  size: 3553
+  modtime: 1604237488
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/package.yaml:
+  hash: 1c0597cc880570cf0e87d28fdc9bdc85bda4c4bdf5cb4deb3e8077f07f4caa0c
+  size: 1205
+  modtime: 1604237488
+/home/bautistamarelli/.stack/programs/x86_64-linux/ghc-tinfo6-8.8.3/lib/ghc-8.8.3/include/ghcversion.h:
+  hash: 40d1b759f485f1cd5a54141a6412691ac2b76930507289a16a6a7b89b045b4d2
+  size: 524
+  modtime: 1601324284
+? /mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.0.1.0/build/autogen/cabal_macros.h
+: hash: 16e815653ba810b4ef63b1ea01f6648a1c6caffea304b77fdcd92365bb6b87b3
+  size: 7331
+  modtime: 1604600489
