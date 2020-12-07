@@ -1,0 +1,109 @@
+// name .conf ns1
+zone "acme.ar" {
+	type: master;
+	file "etc/bin/db.acme";
+	allow-transfer {slave};
+	allow-query {any};
+}
+zone "147.13.200-in.addr.arpa"{
+	type: master;
+        file "etc/bin/rev.acme";
+}
+
+// name .conf ns2
+zone "cs.acme.ar" {
+	type: slave;
+	file "etc/bin/db.acme";
+	masters {200.13.147.60}
+
+//
+$TTL 2d;
+$ORIGIN acme.ar.
+ @ IN SOA ns1.acme.ar root (
+	0;
+	1w;
+	15m;
+	3w;
+	2h;
+)
+    IN	NS	ns1.acme.ar
+    IN	NS	ns2.cs.acme.ar
+    IN 	MX  10	mx.acme.ar
+    IN 	MX  20	mx.cs.acme.ar
+
+www	IN	A	200.13.147.60
+ns1	IN	CNAME	www
+ns2	IN	A	200.13.147.90
+mx	IN	A	200.13.147.59
+mx.cs	IN	A	200.13.147.113
+---------------------------------------
+// Ejercicio 4
+// ns1
+zone "lcc.ar" {
+	type: master;
+	file "ext/bin/db.lcc.ar"
+	allow-query {any};
+	allow-transfer{slave};
+}
+
+zone "235.168.192-in.addr.arpa" {
+	type: master;
+	file "ext/bin/rev.db.lcc.ar"
+}
+
+zone "comunic.lcc.ar" {
+	type: slave;
+	master {192.168.235.160};
+	file "ext/bin/db.comunic.lcc.ar"
+}
+
+zone "acme.ar" {
+	type: master;
+	file "ext/bin/db.acme.ar"
+}
+
+// ns.comunic
+zone "comunic.lcc.ar" {
+	type: master;
+	file "ext/bin/db.comunic.lcc.ar"
+}
+zone "128/25.235.168.192.in-addr.arpa" {
+	type: master;
+	file "ext/bin/rev.comunic.lcc.ar";
+}
+
+// db.lcc.ar
+$TTL 2d;
+$ORIGIN	lcc.ar
+ @ IN	ns1.lcc.ar	host.lcc.ar	(
+	0;
+	1w;
+	1w;
+	1w;
+	1w;
+)
+	IN	NS	ns1.lcc.ar
+	IN	NS	ns2.lcc.ar
+	IN  10  MX	mx.comunic.lcc.ar
+
+www		IN	A	192.168.235.1
+ns2 		IN	A	192.168.235.2
+ns.comunic	IN	A	192.168.235.160
+acme		IN	A	192.168.254.237
+comunic		IN	NS	ns1.lcc.ar
+			NS	ns.comunic.lcc.ar
+
+// db.comunic.lcc.ar
+$TTL 2d;
+$ORIGIN comunic.lcc.ar
+ @ IN	ns.comunic.lcc.ar	host.lcc.ar	(
+	0;
+        1w;
+        1w;
+        1w;
+        1w;
+)
+	IN 	NS	ns1.lcc.ar
+	IN	NS	ns.comunic.lcc.ar
+ns1.lcc.ar	IN	A	192.168.235.1
+

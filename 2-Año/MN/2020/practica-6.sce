@@ -1,3 +1,6 @@
+// CONSULTA: Ejemplo 8, pagina 7 apunte. Calcular circulos por filas, y columnas
+// CONSULTA: Ver bien esto
+
 // Ejercicio 1
 // b)
 a1 = [1 0 0; -1 0 1; -1 -1 2];
@@ -52,10 +55,10 @@ endfunction
 // valores i = 0, ..., 10
 function v = ejercicio3_resolver()
   for e = 0 : 10
-    [p, r] = ejercicio3_obtener_poly_roots(e)
-    A = [1 -1 0; -2 4 -2; 0 -1 (1+e)];
+    [p, r] = ejercicio3_obtener_poly_roots((.1 * e))
+    A = [1 -1 0; -2 4 -2; 0 -1 (1+(.1 * e))];
     spc = spec(A)
-    printf("Polinomio Caracteristico de e = %d", e)
+    printf("Polinomio Caracteristico de e = %f", (.1*e))
     disp(p)
     printf("Autovalores - (Raices PC / spec)")
     disp(r)
@@ -245,28 +248,27 @@ endfunction
 // CASOS DE PRUEBA:
 
 
-// CONSULTA: A necesita ser simetrica?
-// TODO: b) No lo entiendo xd
+// FIXME:
 // metodo_de_la_potencia :: [[Float]] [Float] -> [Float, [Float]]
-// Dada una matriz cuadrada A (n*n) y un vector columna z (n)
+// Dada una matriz cuadrada A (n*n) y un vector columna z0 (n)
 // Calcula el maximo autovalor de A y su respectivo autovector
-function [l, v] = metodo_de_la_potencia(A, z0)
+function [l, v, i] = metodo_de_la_potencia(A, z0)
   [nA, mA] = size(A)
 
   if nA<>mA then
     error('metodo_de_la_potencia - La matriz A debe ser cuadrada')
     abort
-  elseif A <> A' then
-    error('metodo_de_la_potencia - La matriz A debe ser simetrica')
-    abort
+  // elseif A <> A' then
+  //   error('metodo_de_la_potencia - La matriz A debe ser simetrica')
+  //   abort
   end
 
   eps = 1e-10
 
   w = A * z0
   z = w / norm(w, "inf")
-  [wk, k] = max(abs(w))
-  l = wk / z0(k)
+  [_, k] = max(abs(w))
+  l = w(k) / z0(k)
 
   i = 1
   while norm(z - z0) > eps
@@ -274,26 +276,26 @@ function [l, v] = metodo_de_la_potencia(A, z0)
     w = A * z0
     z = w / norm(w, "inf")
     [wk, k] = max(abs(w))
-    l = wk / z0(k)
+    l = w(k) / z0(k)
     i = i + 1
   end
-  disp(i)
 
   v = z
 endfunction
 // CASOS DE PRUEBA:
 
 // Ejercicio 5
-// --> A = [12 1 3 4; 1 -3 1 5; 3 1 6 -2; 4 5 -2 -1];
-// --> [l, v] = metodo_de_la_potencia(A, [1 0 0 0]')
-//    24.  --> Cantidad de iteraciones
+// --> A = [6 4 4 1; 4 6 1 4; 4 1 6 4; 1 4 4 6];
+// --> [l, v, i] = metodo_de_la_potencia(A, [1 2 3 4]')
+//  i  = 
+//    22.
 //  v  = 
 //    1.
-//    0.1558606
-//    0.3183534
-//    0.2725212
+//    1.
+//    1.
+//    1.
 //  l  = 
-//    14.201006
+//    15.
 
 // --> A = [12 1 3 4; 1 -3 1 5; 3 1 6 -2; 4 5 -2 -1];
 // --> [l, v] = metodo_de_la_potencia(A, [1 0 0 0]')
@@ -305,3 +307,28 @@ endfunction
 //    0.2725212
 //  l  = 
 //    14.201006
+
+// TODO: b) No lo entiendo xd
+// ejercicio5b_resolver :: [[Float]] [Float] -> [Float, [Float]]
+// Dada una matriz cuadrada A (n*n) y un vector columna z (n)
+// Calcula el maximo autovalor de A y su respectivo autovector
+// Muestra la cantidad de iteraciones realizadas y el error de calculo
+function [l, v] = ejercicio5b_resolver(A, z0)
+  [nA, mA] = size(A)
+
+  if nA<>mA then
+    error('ejercicio5b_resolver - La matriz A debe ser cuadrada')
+    abort
+  end
+
+  [l, v, i] = metodo_de_la_potencia(A, z0)
+  spc = spec(A)
+  [_, k] = max(abs(spc))
+  spc_max = spc(k)
+
+  printf("Cantidad de iteraciones: ")
+  disp(i)
+  
+  printf("Error: ")
+  disp(abs(spc_max - l))
+endfunction

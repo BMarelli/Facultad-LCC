@@ -1,5 +1,10 @@
 data Tree a = E | L a | N (Tree a) (Tree a) deriving Show
 
+inorder :: Tree a -> [a]
+inorder E = []
+inorder (L v) = [v]
+inorder (N xs ys) = inorder xs ++ inorder ys 
+
 sufijos :: Tree Int -> Tree (Tree Int)
 sufijos t = sufijos_ t E
       where
@@ -31,23 +36,40 @@ separar t = let prjs = prefijos t
                                              in N l r
 
 mayor :: Int -> Tree Int -> Bool
-mayor _ E = True
+mayor _ E = False
 mayor v (L v') = v > v'
 mayor v (N xs ys) = let (l, r) = (mayor v xs, mayor v ys)
-                    in l && r
+                    in l || r
 
 menor :: Int -> Tree Int -> Bool
-menor _ E = True
+menor _ E = False
 menor v (L v') = v < v'
 menor v (N xs ys) = let (l, r) = (menor v xs, menor v ys)
-                    in l && r
+                    in l || r
 
 addInfo :: Tree Int -> Tree (Bool, Int, Bool)
 addInfo t = let tps = separar t
             in comparar tps
     where
       comparar :: Tree (Tree Int, Int, Tree Int) -> Tree (Bool, Int, Bool)
+      comparar E = E
       comparar (L (ps, v, ss)) = L (mayor v ps, v, menor v ss)
+      comparar (N xs ys) = let (l, r) = (comparar xs, comparar ys)
+                           in N l r
+
+-- Otra forma con mapreduce
+mapreduceT :: (a -> b) -> (b -> b -> b) -> b -> Tree a -> b
+mapreduceT _ _ e E = e
+mapreduceT f g e (L v) = g e (f v)
+mapreduceT f g e (N xs ys) = let (l, r) = (mapreduceT f g e xs, mapreduceT f g e ys)
+                                 in g l r
+
+addInfo2 :: Tree Int -> Tree (Bool, Int, Bool)
+addInfo2 t = let tps = separar t
+            in comparar tps
+    where
+      comparar E = E
+      comparar (L (ps, v, ss)) = L (mapreduceT (< v) (||) False ps, v,  mapreduceT (> v) (||) False ss)
       comparar (N xs ys) = let (l, r) = (comparar xs, comparar ys)
                            in N l r
 
