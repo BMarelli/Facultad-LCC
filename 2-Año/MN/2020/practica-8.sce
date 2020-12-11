@@ -31,7 +31,7 @@ endfunction
 // Ejercicio 1
 // --> regla_del_trapecio(log, 1, 2)
 //  ans  =
-//    0.3465736
+//    0.3465736 
 // --> regla_de_Simpson(log, 1, 2)
 //  ans  =
 //    0.3858346
@@ -291,15 +291,17 @@ endfunction
 //  ans  =
 //    0.
 
-// regla_trapecio_extendido :: (Float -> Float) Float Float Float Float -> Float
-function I = regla_trapecio_extendido(f, a, b, c, d)
+// regla_trapecio_ext :: (Float Float -> Float) Float Float Float Float -> Float
+// Dada una funcion f de 2 variables y 2 intervalos [a, b], [c, d]
+// Aproxima el valor de la integral bidimencional en los intervalos dados
+function I = regla_trapecio_ext(f, a, b, c, d)
   I = (f(c, a) + f(c, b) + f(d, a) + f(d, b))*((d-c)*(b-a))/4
 endfunction
 // CASOS DE PRUEBA:
 
 // Ejercicio 5
 // --> deff('z=g(x, y)', 'z=sin(x+y)')
-// --> regla_trapecio_extendido(g, 0, 2, 0, 1)
+// --> regla_trapecio_ext(g, 0, 2, 0, 1)
 //  ans  =
 //    0.9459442
 

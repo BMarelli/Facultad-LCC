@@ -70,7 +70,7 @@ function v = ejercicio3_resolver()
 endfunction
 
 // --> ejercicio3_resolver()
-// Polinomio Caracteristico de e = 0
+// Polinomio Caracteristico de e = 0.000000
 //          2   3
 //   -5x +6x  -x 
 // Autovalores - (Raices PC / spec)
@@ -82,7 +82,115 @@ endfunction
 //    1.  
 //    0.  
 
-// Polinomio Caracteristico de e = 1
+// Polinomio Caracteristico de e = 0.100000
+//                   2   3
+//    0.2 -5.5x +6.1x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0102088  
+//    1.0518401  
+//    0.0379511  
+
+//    5.0102088  
+//    0.0379511  
+//    1.0518401  
+
+// Polinomio Caracteristico de e = 0.200000
+//                 2   3
+//    0.4 -6x +6.2x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0208508  
+//    1.1071946  
+//    0.0719546  
+
+//    5.0208508  
+//    0.0719546  
+//    1.1071946  
+
+// Polinomio Caracteristico de e = 0.300000
+//                   2   3
+//    0.6 -6.5x +6.3x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0319506  
+//    1.1657664  
+//    0.102283  
+
+//    5.0319506  
+//    0.102283  
+//    1.1657664  
+
+// Polinomio Caracteristico de e = 0.400000
+//                 2   3
+//    0.8 -7x +6.4x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0435344  
+//    1.2272145  
+//    0.1292512  
+
+//    5.0435344  
+//    0.1292512  
+//    1.2272145  
+
+// Polinomio Caracteristico de e = 0.500000
+//                 2   3
+//    1 -7.5x +6.5x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0556299  
+//    1.2911771  
+//    0.153193  
+
+//    5.0556299  
+//    0.153193  
+//    1.2911771  
+
+// Polinomio Caracteristico de e = 0.600000
+//                 2   3
+//    1.2 -8x +6.6x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0682668  
+//    1.3572923  
+//    0.1744409  
+
+//    5.0682668  
+//    0.1744409  
+//    1.3572923  
+
+// Polinomio Caracteristico de e = 0.700000
+//                   2   3
+//    1.4 -8.5x +6.7x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0814764  
+//    1.4252116  
+//    0.193312  
+
+//    5.0814764  
+//    0.193312  
+//    1.4252116  
+
+// Polinomio Caracteristico de e = 0.800000
+//                 2   3
+//    1.6 -9x +6.8x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.0952921  
+//    1.4946092  
+//    0.2100986  
+
+//    5.0952921  
+//    0.2100986  
+//    1.4946092  
+
+// Polinomio Caracteristico de e = 0.900000
+//                   2   3
+//    1.8 -9.5x +6.9x  -x 
+// Autovalores - (Raices PC / spec)
+//    5.1097493  
+//    1.5651862  
+//    0.2250644  
+
+//    5.1097493  
+//    0.2250644  
+//    1.5651862  
+
+// Polinomio Caracteristico de e = 1.000000
 //              2   3
 //    2 -10x +7x  -x 
 // Autovalores - (Raices PC / spec)
@@ -94,113 +202,6 @@ endfunction
 //    0.2384428  
 //    1.6366718  
 
-// Polinomio Caracteristico de e = 2
-//              2   3
-//    4 -15x +8x  -x 
-// Autovalores - (Raices PC / spec)
-//    5.3234043  
-//    2.3579264  
-//    0.3186694  
-
-//    5.3234043  
-//    0.3186694  
-//    2.3579264  
-
-// Polinomio Caracteristico de e = 3
-//              2   3
-//    6 -20x +9x  -x 
-// Autovalores - (Raices PC / spec)
-//    5.6457513  
-//    3.  
-//    0.3542487  
-
-//    0.3542487  
-//    3.  
-//    5.6457513  
-
-// Polinomio Caracteristico de e = 4
-//               2   3
-//    8 -25x +10x  -x 
-// Autovalores - (Raices PC / spec)
-//    6.1413361  
-//    3.484862  
-//    0.3738019  
-
-//    0.3738019  
-//    3.484862  
-//    6.1413361  
-
-// Polinomio Caracteristico de e = 5
-//                2   3
-//    10 -30x +11x  -x 
-// Autovalores - (Raices PC / spec)
-//    6.810821  
-//    3.8031132  
-//    0.3860658  
-
-//    0.3860658  
-//    3.8031132  
-//    6.810821  
-
-// Polinomio Caracteristico de e = 6
-//                2   3
-//    12 -35x +12x  -x 
-// Autovalores - (Raices PC / spec)
-//    7.6055513  
-//    4.  
-//    0.3944487  
-
-//    0.3944487  
-//    4.  
-//    7.6055513  
-
-// Polinomio Caracteristico de e = 7
-//                2   3
-//    14 -40x +13x  -x 
-// Autovalores - (Raices PC / spec)
-//    8.4753118  
-//    4.1241562  
-//    0.400532  
-
-//    0.400532  
-//    4.1241562  
-//    8.4753118  
-
-// Polinomio Caracteristico de e = 8
-//                2   3
-//    16 -45x +14x  -x 
-// Autovalores - (Raices PC / spec)
-//    9.3883549  
-//    4.2065011  
-//    0.4051441  
-
-//    0.4051441  
-//    4.2065011  
-//    9.3883549  
-
-// Polinomio Caracteristico de e = 9
-//                2   3
-//    18 -50x +15x  -x 
-// Autovalores - (Raices PC / spec)
-//    10.327185  
-//    4.2640561  
-//    0.4087593  
-
-//    0.4087593  
-//    4.2640561  
-//    10.327185  
-
-// Polinomio Caracteristico de e = 10
-//                2   3
-//    20 -55x +16x  -x 
-// Autovalores - (Raices PC / spec)
-//    11.28218  
-//    4.3061512  
-//    0.4116685  
-
-//    0.4116685  
-//    4.3061512  
-//    11.28218  
 //  ans  =
 //    0.
 
@@ -219,7 +220,7 @@ endfunction
 
 // circulos_Gerschgorin :: [[Float]] -> Float
 // Dada una matriz cuadrada A (n*n)
-// Calcula los circulos de Gershgorin y llama dibujar_circulo para plotearlos
+// Calcula los circulos de Gerschgorin y llama dibujar_circulo para plotearlos
 // Tambien calcula los autovalores y los plotea con una +
 // Devuelve los autovalores
 function v = circulos_Gerschgorin(A)
@@ -237,7 +238,8 @@ function v = circulos_Gerschgorin(A)
   c = max(centros)
   r = max(radio)
   rect = [c-r,-r,c+r,r]
-  plot2d(real(spec(A)),imag(spec(A)),-1,"032","", rect)
+  // plot2d(real(spec(A)),imag(spec(A)),-1,"032","", rect)
+  scatter(real(spec(A)), imag(spec(A)))
   // xgrid(1) 
   for i = 1: nA
     dibujar_circulo(centros(i), radio(i))
@@ -258,9 +260,6 @@ function [l, v, i] = metodo_de_la_potencia(A, z0)
   if nA<>mA then
     error('metodo_de_la_potencia - La matriz A debe ser cuadrada')
     abort
-  // elseif A <> A' then
-  //   error('metodo_de_la_potencia - La matriz A debe ser simetrica')
-  //   abort
   end
 
   eps = 1e-10
@@ -313,22 +312,43 @@ endfunction
 // Dada una matriz cuadrada A (n*n) y un vector columna z (n)
 // Calcula el maximo autovalor de A y su respectivo autovector
 // Muestra la cantidad de iteraciones realizadas y el error de calculo
-function [l, v] = ejercicio5b_resolver(A, z0)
+function [l, v, d] = ejercicio5b_resolver(A, z0)
   [nA, mA] = size(A)
 
   if nA<>mA then
-    error('ejercicio5b_resolver - La matriz A debe ser cuadrada')
+    error('metodo_de_la_potencia - La matriz A debe ser cuadrada')
     abort
   end
 
-  [l, v, i] = metodo_de_la_potencia(A, z0)
+  eps = 1e-10
+
   spc = spec(A)
   [_, k] = max(abs(spc))
   spc_max = spc(k)
 
-  printf("Cantidad de iteraciones: ")
-  disp(i)
+  w = A * z0
+  z = w / norm(w, "inf")
+  [_, k] = max(abs(w))
+  l = w(k) / z0(k)
   
-  printf("Error: ")
-  disp(abs(spc_max - l))
+  i = 1
+  printf("(iteracion:%d) Error: ", i)
+  d(1) = abs(spc_max - l)
+  disp(d(1))
+
+  while norm(z - z0) > eps
+    z0 = z
+    w = A * z0
+    z = w / norm(w, "inf")
+    [wk, k] = max(abs(w))
+    l = w(k) / z0(k)
+    i = i + 1
+    printf("(iteracion:%d) Error: ", i)
+    d(i) = abs(spc_max - l)
+    disp(d(i))
+  end
+
+  plot([1:i], d(1:i)')
+
+  v = z
 endfunction

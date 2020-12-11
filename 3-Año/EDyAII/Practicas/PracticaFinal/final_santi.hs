@@ -26,21 +26,28 @@ size :: Tree a -> Int
 size E = 0
 size (N n _ _ _) = n
 
+-- dropWhileEnd :: (a -> Bool) -> Tree a -> Tree a
+-- dropWhileEnd _ E = E
+-- dropWhileEnd p (N _ xs v ys) = let ((l, r), x) = (dropWhileEnd p xs ||| dropWhileEnd p ys) ||| p v
+--                                in if x then case l of
+--                                                 E -> r
+--                                                 _ -> N (size l + size ys) l v ys
+--                                   else N (size l + size ys) l v ys
+
 dropWhileEnd :: (a -> Bool) -> Tree a -> Tree a
 dropWhileEnd _ E = E
-dropWhileEnd p (N _ xs v ys) = let ((l, r), x) = (dropWhileEnd p xs ||| dropWhileEnd p ys) ||| p v
-                               in if x then case l of
-                                                E -> r
-                                                _ -> N (size l + size ys) l v ys
-                                  else N (size l + size ys) l v ys
-
+dropWhileEnd p (N _ l x r) = let ((l',r'),x') = (dropWhileEnd p l ||| dropWhileEnd p r) ||| p x
+                               in if x' then case r' of
+                                            E -> l'
+                                            _ -> N (size l + size r' + 1) l x r'
+                                        else N (size l + size r' + 1) l x r'
 
 data T a = Empty | Leaf a | Node (T a) (T a) deriving Show
 
 sufijos :: T a -> T (T a)
 sufijos t = sufijos_ t Empty
       where
-        sufijos_ Empty _         = Leaf Empty
+        sufijos_ Empty _            = Leaf Empty
         sufijos_ (Leaf _) zs        = Leaf zs
         sufijos_ (Node xs ys) zs    = let (l, r) = case zs of
                                                       Empty -> (sufijos_ xs ys, sufijos_ ys Empty)
@@ -50,8 +57,8 @@ sufijos t = sufijos_ t Empty
 prefijos :: T a -> T (T a)
 prefijos t = prefijos_ t Empty
       where
-        prefijos_ Empty _             = Leaf Empty
-        prefijos_ (Leaf _) zs     = Leaf zs
+        prefijos_ Empty _            = Leaf Empty
+        prefijos_ (Leaf _) zs        = Leaf zs
         prefijos_ (Node xs ys) zs    = let (l, r) = case zs of
                                                       Empty -> (prefijos_ xs Empty, prefijos_ ys xs)
                                                       _ -> (prefijos_ xs zs, prefijos_ ys (Node xs zs))

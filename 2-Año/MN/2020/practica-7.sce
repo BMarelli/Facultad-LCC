@@ -89,6 +89,27 @@ function p = metodo_interpolacion_dif_divididas_newton(x, y)
 endfunction
 // CASOS DE PRUEBA:
 
+// metodo_interpolacion_dif_divididas_newton_encajado :: [Float] [Float] -> Poly
+// Dado dos vectores filas x, y (n, n)
+// Realiza el metodo interpolacion diferencia divididas de newton
+// Devuelve el polinomio de grado (n-1) que interpola por esos puntos
+function p = metodo_interpolacion_dif_divididas_newton_encajado(x, y)
+  xn = size(x, 2)
+  yn = size(x, 2)
+
+  if xn <> yn then
+    error("metodo_interpolacion_dif_divididas_newton_encajado - x y tienen que tener el mismo tamaño")
+    abort
+  end
+
+  p = diferencias_divididas(x(1), y(1))
+  p_n = 1
+  // Calculamos las diferencias divididas y el polinomio de interpolacion
+  for i = 2 : xn
+    p_n = poly(x(1:i-1), 'x', 'r')
+    p = p + p_n * diferencias_divididas(x(1:i), y(1:i))
+  end
+endfunction
 
 // Ejercicio 1
 // a)
@@ -96,37 +117,42 @@ endfunction
 // --> y = exp(x);
 // --> p = metodo_interpolacion_largrange(x(2:3), y(2:3))
 //  p  =                   
-//    0.9509808 +1.3521097x
+//    0.951 +1.352x
 // --> horner(p, 1/3)
 //  ans  =
-//    1.4016841
+//    1.4016667
 // --> p = metodo_interpolacion_largrange(x, y)
 //  p  =
 //                             2            3
 //    1 +1.0025541x +0.4770775x  +0.2261038x 
 // --> horner(p, 1/3)
 //  ans  =
-//    1.3955675
+//    1.3955494
 
 // --> p = metodo_interpolacion_dif_divididas_newton(x(2:3), y(2:3))
 //  p  =                 
-//    0.9509808 +1.3521097x
+//    0.951 +1.352x
 // --> horner(p, 1/3)
 //  ans  =
-//    1.4016841
+//    1.4016667
 // --> p = metodo_interpolacion_dif_divididas_newton(x, y)
 //  p  = 
-//                             2            3
-//    1 +1.0025541x +0.4770775x  +0.2261038x 
+//                           2            3
+//    1 +1.0026667x +0.47625x  +0.2270833x  
 // --> horner(p, 1/3)
 //  ans  =
-//    1.3955675
+//    1.3955494
 
 // b) CONSULTA: De todos hay que hacer!
 // --> x = [0 0.2 0.4 0.6];
 // --> y = exp(x);
 
 // Ejercicio 4
+function I = ej4J0(x)
+  deff("y = f(t)", "y = cos(x * sin(t))")
+  I = (1/%pi) * intg(0, %pi, f)
+endfunction
+
 // --> x = [2:.1:2.5];
 // --> J0 = [0.2239 0.1666 0.1104 0.0555 0.0025 -0.0484];
 // -> p = metodo_interpolacion_dif_divididas_newton(x, J0)
@@ -152,7 +178,8 @@ endfunction
 //    2.875
 
 // Ejercicio 6
-function p = ejercicio_6()
+// CONSULTA: Papel o Scilab
+function p = resolver_ejercicio6()
   x = [-1, 1, 2, 4]
   dd = [2, 1, -2, 2]
 
@@ -165,7 +192,7 @@ function p = ejercicio_6()
 endfunction
 
 // a)
-// --> p = ejercicio_6()
+// --> p = resolver_ejercicio6()
 //  p  = 
 //            2    3
 //    9 -x -6x  +2x 
@@ -173,6 +200,7 @@ endfunction
 // --> horner(p, 0)
 //  ans  =
 //    9.
+// c) TODO:
 
 // metodo_minimos_cuadrados :: [Float] [Float] Int -> Poly
 // Dado 2 vectores x, y (n, n) y un entero gr
@@ -199,6 +227,7 @@ endfunction
 // CASOS DE PRUEBA:
 
 
+// FIXME:
 // function f = metodo_minimos_cuadrados_fs(x, y, f, gr)
 //   n = size(x, 2)
 //   A = zeros(n, gr)
@@ -220,22 +249,44 @@ endfunction
 // endfunction
 
 // Ejercicio 7
-// --> x = [0 .15 .31 .5 .6 .75];
-// --> y = [1 1.004 1.31 1.117 1.223 1.422];
-// --> p = metodo_minimos_cuadrados(x, y, 1)
-//  p  = 
+function v = resolver_ejercicio7()
+  x = [0 .15 .31 .5 .6 .75]
+  y = [1 1.004 1.31 1.117 1.223 1.422];
+  p(1) = metodo_minimos_cuadrados(x, y, 1)
+  p(2) = metodo_minimos_cuadrados(x, y, 2)
+  p(3) = metodo_minimos_cuadrados(x, y, 3)
+
+  for i = 1 : 3
+    printf("Polinomion: ")
+    disp(p(i))
+    printf("Error: ")
+    disp(sum(abs(horner(p(i), x) - y)))
+  end
+
+  v = 0
+endfunction
+// --> resolver_ejercicio7()
+// Polinomion:                 
 //    0.9960666 +0.4760174x
-// --> p = metodo_minimos_cuadrados(x, y, 2)
-//  p  = 
+// Error: 
+//    0.4784433
+// Polinomion: 
 //                                    2
 //    1.007732 +0.3542987x +0.1635646x 
-// --> p = metodo_minimos_cuadrados(x, y, 3)
-//  p  = 
+// Error: 
+//    0.4665116
+// Polinomion: 
 //                                     2          3
 //    0.9653196 +1.6154731x -4.3450249x  +3.97241x 
+// Error: 
+//    0.3821412
+//  ans  =
+//    0.
+// Como podemos ver, el polinomio con menos error es el de grado 3, por lo que
+// es la mejor opcion
 
 // Ejercicio 8
-function y = dibujar_ejercicio6(p1, p2, p3, x, y)
+function y = dibujar_ejercicio8(p1, p2, p3, x, y)
   plot(x, horner(p1, x))
   plot(x, horner(p2, x), 'r')
   plot(x, horner(p2, x), 'g')
@@ -258,7 +309,7 @@ endfunction
 //  p3  = 
 //                                     2            3
 //    3.4290944 -2.3792211x +6.8455778x  -0.0136746x
-// --> dibujar(p1 ,p2 ,p3, x, y)
+// --> dibujar_ejercicio8(p1 ,p2 ,p3, x, y)
 //  ans  =
 //    0.
 // Comentario: Podemos ver que el polinomio p2 es tapado por el p3
@@ -280,7 +331,7 @@ function p = dibujar_ejercicio9(f, ns)
     x = linspace(-5, 5, ns(i))
     p(i) = metodo_interpolacion_largrange(x, f(x))
     x_ = [-5 : .1 :5]
-    plot(x_, f(x_) - horner(p(i), x_), colors(i))
+    plot(x_, f(x_) - horner(p(i), x_), colors(i)) // graficamos el error
     a=gca();
     a.x_location = "origin";
     a.y_location = "origin";
@@ -309,6 +360,10 @@ endfunction
 // Dado un entero n >= 0
 // Calcula el polinomio de Chebyshev de grado (n-1) y sus raices (vector fila)
 function [p, r] = polinomio_Chebyshev(n)
+  if n < 0 then
+    error("polinomio_Chebyshev - n tiene que ser positivo")
+    abort
+  end
   t(1) = 1
   t(2) = poly([0 1], 'x', 'c')
   
@@ -369,3 +424,22 @@ endfunction
 //    0.
 
 // Ejercicio 11
+// raices_cambio_variable_Chebyshev :: Float Float Int -> [Float]
+// Dado un intervalo [a, b] y un entero n
+// Calcula las raices del polinomio de Chebychev con cambio de variable en el
+// intervalo dado
+function r = raices_cambio_variable_Chebyshev(a, b, n)
+  [_, r_] = polinomio_Chebyshev(4)
+  for i = 1 : size(r_, 2)
+    r(1,i) = ((a + b) + r_(i)*(b - a)) / 2
+  end
+endfunction
+
+function p = resolver_ejercicio11()
+  r = raices_cambio_variable_Chebyshev(0, %pi/2, 4)
+  y = cos(r)
+  p = metodo_interpolacion_largrange(r, y)
+  x = [0:.1:%pi/2]
+  plot(x, horner(p, x))
+endfunction
+

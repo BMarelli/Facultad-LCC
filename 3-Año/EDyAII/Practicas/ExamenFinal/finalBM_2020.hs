@@ -71,3 +71,5 @@ appendT xs ys = let (v,ys') = first ys in N (size xs + size ys) xs v ys'
 --                                         (l, (x, r)) = create' min (mid - 1) ||| (p mid ||| create (mid + 1) max)
 --                                     in if x then N ((size l) + (size r) + 1) l (f mid) r
 --                                        else appendT l r
+
+t = N 9 (N 4 (N 2 (N 0 E 2 E) 4 (N 0 E 1 E)) 3 (N 0 E 6 E)) 1 (N 4 (N 0 E 2 E) 3 (N 2 (N 0 E 4 E) 5 (N 0 E 6 E)))
