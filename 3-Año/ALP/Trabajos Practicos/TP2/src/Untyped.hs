@@ -60,9 +60,3 @@ quote v = quote' v 0
                                               Quote k -> Bound (i - k  - 1) 
                                               Global _ -> Free name
       quote' (VNeutral (NApp neu v)) i = (quote' (VNeutral neu) i) :@: (quote' v i)
-
-
-
-
-
-

@@ -109,12 +109,9 @@ scanS_ f e xs | len == 0        = (emptyS, e)
 
 maxE_ cmp xs = reduceS_ (\x y -> if cmp x y == LT then y else x) (nthS xs 0) xs
 
-zipS_ xs ys | x == 0 || y == 0   = emptyS
-            | x > y              = tabulateS (\i -> (nthS xs i, nthS ys i)) y
-            | otherwise          = tabulateS (\i -> (nthS xs i, nthS ys i)) x
+zipS_ xs ys = tabulateS (\i -> (nthS xs i, nthS ys i)) len
     where
-      x = lengthS xs
-      y = lengthS ys
+      len = min (lengthS xs) (lengthS ys)
 
 maxS_ cmp xs = let
                 ys = tabulateS (\i -> (nthS xs i, i)) (lengthS xs)

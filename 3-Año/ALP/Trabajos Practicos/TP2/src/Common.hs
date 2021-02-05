@@ -38,7 +38,3 @@ data Value
 data Neutral
     =  NFree  Name
     |  NApp   Neutral Value
-
-
-
-

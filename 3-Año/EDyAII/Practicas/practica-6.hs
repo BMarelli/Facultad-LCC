@@ -49,12 +49,28 @@ matchParen xs = let ys = mapS parenToInt xs
 
 {- Ejercicio 5 -}
 
+{-
+mcss :: (Num a, Ord a, Seq s) => s a -> a
+mcss t = fst' (reduceS g (0,0,0,0) (mapS f t)) 
+    where
+    fst' (a,_,_,_) = a
+    f x = (max x 0, max x 0, max x 0, x)
+    g (a,b,c,d) (w,x,y,z) = (maximum [a, w, c+x],max b (d + x),max y (z+c),d+z)
+
+sccml :: Seq s => s Int -> Int
+sccml xs = mcss (tabulateS f (lengthS xs) :: A.Arr Int)
+    where
+    f 0 = 0
+    f n | nthS xs n > nthS xs (n-1) = 1
+        | otherwise = negate (lengthS xs)
+-}
+
 sccml :: Seq s => s Int -> Int
 sccml xs = let
               ys = mapS (\x -> (x,x,1,1)) xs
               (zs, z) = scanS cmb (minBound, minBound, 0, 0) ys
               ws = mapS ext zs
-           in reduceS max (ext z) ws
+           in reduceS max (ext z) ws - 1
     where
       ext (_, _, _, x) = x
       cmb (p1, u1, l1, s1) (p2, u2, l2, s2) = if u1 < p2 && l2 == s2 then (p1, u2, l1+l2, s1+s2)
@@ -149,4 +165,4 @@ group' s =
 -- collect (fromList [(2, "a"), (1, "b"), (1, "c"), (2, "d")] :: A.Arr (Int, String))
 collectS :: (Seq s, Ord a) => (a -> a -> Ordering) -> s (a, b) -> s (a, s b)
 collectS cmp xs = let ys = sortS' (\(x,_) (y,_) -> cmp x y) xs
-                 in group' ys
+                  in group' ys

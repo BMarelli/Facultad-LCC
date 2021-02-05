@@ -74,8 +74,8 @@ mcss = (\(m, _, _, _) -> m) . mapreduce f g n
 
 {- Ejercicio 3 -}
 reduceT :: (a -> a -> a) -> a -> Tree a -> a
-reduceT _ _ E = n
-reduceT f e (Leaf v) =f e v
+reduceT _ e E = e
+reduceT f e (Leaf v) = f e v
 reduceT f e (Join xs ys) = let (l, r) = (reduceT f e xs, reduceT f e ys)
                            in f l r
 

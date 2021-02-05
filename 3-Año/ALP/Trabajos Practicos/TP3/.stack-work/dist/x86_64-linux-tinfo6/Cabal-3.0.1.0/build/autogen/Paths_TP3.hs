@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/bin"
-libdir     = "/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/lib/x86_64-linux-ghc-8.8.3/TP3-0.1.0.0-3wIuWwJF7pK8gcr8VLPaSx"
-dynlibdir  = "/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/lib/x86_64-linux-ghc-8.8.3"
-datadir    = "/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/share/x86_64-linux-ghc-8.8.3/TP3-0.1.0.0"
-libexecdir = "/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/libexec/x86_64-linux-ghc-8.8.3/TP3-0.1.0.0"
-sysconfdir = "/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/etc"
+bindir     = "/home/bautistamarelli/Facultad-LCC/3-A\241o/ALP/Trabajos Practicos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/bin"
+libdir     = "/home/bautistamarelli/Facultad-LCC/3-A\241o/ALP/Trabajos Practicos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/lib/x86_64-linux-ghc-8.8.3/TP3-0.1.0.0-3wIuWwJF7pK8gcr8VLPaSx"
+dynlibdir  = "/home/bautistamarelli/Facultad-LCC/3-A\241o/ALP/Trabajos Practicos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/lib/x86_64-linux-ghc-8.8.3"
+datadir    = "/home/bautistamarelli/Facultad-LCC/3-A\241o/ALP/Trabajos Practicos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/share/x86_64-linux-ghc-8.8.3/TP3-0.1.0.0"
+libexecdir = "/home/bautistamarelli/Facultad-LCC/3-A\241o/ALP/Trabajos Practicos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/libexec/x86_64-linux-ghc-8.8.3/TP3-0.1.0.0"
+sysconfdir = "/home/bautistamarelli/Facultad-LCC/3-A\241o/ALP/Trabajos Practicos/TP3/.stack-work/install/x86_64-linux-tinfo6/9a75dc5d23a76cfcf481c17f70d130b3eba14e4dd7d571b880d814a80245b0ea/8.8.3/etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "TP3_bindir") (\_ -> return bindir)
