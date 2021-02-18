@@ -1,0 +1,32 @@
+/usr/lib/ghc/include/ghcversion.h:
+  hash: ca33eca9a5d6d6c3a4138d1ebf5808e19d48d89df6929099f6aaebd64ffe7843
+? /mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.0.1.0/build/autogen/Paths_TP4.hs
+: hash: 0738d69d405a05d4012df91bfb7f2369618dcfd2656937748fb13e8d8204505e
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/Eval1.hs:
+  hash: 372b88e983b5b843dd19b0e11232f8eca6c79bb9e29ccb024bbdaf477fb404a0
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/Parser.hs:
+  hash: ece8ed35f8ba6a22f7d39ee00c6a2ed95265c7830013a93c7160cf021004df23
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/package.yaml:
+  hash: 2b26884f82e8c52ee8d76e1cf6b1a3e0207b43c0b138e3a9cc379c058c44c320
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/TP4.cabal:
+  hash: 729d63ce01b645a1bf76a097124040b200873a395791c3215a5be3a73f56b478
+? /mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.0.1.0/build/autogen/cabal_macros.h
+: hash: c7a8d91ceef56c6a2c8707a5de2c2afd75b762b00fee24a58b05e7e2a0db97e8
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/Eval2.hs:
+  hash: e0284e04a588ba573635e68bdca8e550acc9e8b671f81bf9b72ebba9fcf99f3e
+/usr/include/stdc-predef.h:
+  hash: 64fdf694f7b3d51ec6c45c06dcb71ebbe9455742d3ea673012016668853d3bff
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/Monads.hs:
+  hash: a8984fee19f34802d3d5ae15981d45d547f759913905254000a827714657cb78
+/home/bautistamarelli/.stack/programs/x86_64-linux/ghc-tinfo6-8.8.3/lib/ghc-8.8.3/include/ghcversion.h:
+  hash: 40d1b759f485f1cd5a54141a6412691ac2b76930507289a16a6a7b89b045b4d2
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/Eval3.hs:
+  hash: 50dd64547b0832c68088982f7eb864831bafccd68a76a5827fe793ff218b579f
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/ChangeLog.md:
+  hash: 2988da173f5da20cdf97238775211e1f9a9d287b30af970ba3eff4acac848fe0
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/README.md:
+  hash: fe95c0d5d3071fe892649d0c1ae40b8fdd819783b9e4db918a554c3cba148783
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/PPLis.hs:
+  hash: c148d0ca9d28b34df7f6e807f4ab0fdfd3eea4029ca206c775f52d542a1522fd
+/mnt/c/Users/Bautista Marelli/Documents/Facultad/ALP/TrbajosPracticos/TP4/src/AST.hs:
+  hash: b655cfbd53d4a851c614440f5f5cadabbc1c6ed2193caba7c9631ab823ed87ff
