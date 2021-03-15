@@ -25,16 +25,28 @@ tomar(M) ->
 
 %% Función que libera el mutex
 soltar(M) ->
-    M ! {unlock, self()}.
+    M ! unlock.
 
 %% Servidor de lock
 locker(unlocked) ->
-    ok.
-
+    receive
+        {lock, Caller} -> Caller ! go,
+                          locker(locked);
+        unlock -> locker(unlocked);
+        finish -> ok
+    end;
+locker(locked) ->
+    receive
+        {lock, Caller} -> Caller ! locked,
+                          locker(locked);
+        unlock -> locker(unlocked);
+        finish -> ok
+    end.
 %% Test de la implementación
 testLock() ->
     L = crear(),
     W = spawn(?MODULE, waiter, [L, 3]),
+    io:format("mutex: ~p~n", [L]),
     spawn(?MODULE, f, [L, W]),
     spawn(?MODULE, f, [L, W]),
     spawn(?MODULE, f, [L, W]),

@@ -50,5 +50,5 @@ int main() {
   for (i = 0; i < N_FILOSOFOS; i++)
     pthread_create(&filo[i], NULL, filosofo, &i);
   pthread_join(filo[0], NULL);
-  return 0;
+  return 0; 
 }

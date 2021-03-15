@@ -8,7 +8,7 @@
 int main() {
   char comando[MAX];
   while (1) {
-    printf(">");
+    printf("> ");
     fgets(comando, MAX, stdin);
     int largo = strlen(comando);
     if (!fork()) {
