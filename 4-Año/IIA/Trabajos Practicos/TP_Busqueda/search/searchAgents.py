@@ -1,3 +1,4 @@
+# coding=utf-8
 # searchAgents.old.py
 # -------------------
 # Licensing Information: Please do not distribute or publish solutions to this
@@ -5,7 +6,6 @@
 # purposes. The Pacman AI projects were developed at UC Berkeley, primarily by
 # John DeNero (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
-
 """
 This file contains all of the agents that can be selected to
 control Pacman.  To select an agent, use the '-p' option
@@ -342,7 +342,7 @@ class CornersProblem(search.SearchProblem):
         return len(actions)
 
 # Podemos demostrar que nuestra heuristica es admisible demostrando que es consistente
-# En efecto, la heuristica planteada surge como la solución al problema relajado de eliminar
+# En efecto, la heuristica planteada surge como la solucion al problema relajado de eliminar
 # todas las paredes del laberinto. Como tal, cornersHeuristic(state, problem) representa el costo
 # del camino más corto que recorre las esquinas no visitadas partiendo desde el estado state.
 # Si en s faltan recorrer las 4 esquinas, cornersHeuristic devuelve el costo de ir a la esquina
