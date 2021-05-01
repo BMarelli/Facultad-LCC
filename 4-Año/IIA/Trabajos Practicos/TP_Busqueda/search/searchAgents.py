@@ -256,6 +256,9 @@ def euclideanHeuristic(position, problem, info={}):
 # This portion is incomplete.  Time to write code!  #
 #####################################################
 
+#############
+#
+
 class CornersProblem(search.SearchProblem):
     """
     This search problem finds paths through all four corners of a layout.
@@ -277,16 +280,20 @@ class CornersProblem(search.SearchProblem):
         self._expanded = 0 # Number of search nodes expanded
 
         "*** YOUR CODE HERE ***"
+        self.shortside = min(top, right) - 1
+        self.longside = max(top, right) - 1
 
     def getStartState(self):
         "Returns the start state (in your state space, not the full Pacman state space)"
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+
+        return (self.startingPosition, tuple(corner for corner in self.corners if corner != self.startingPosition))
 
     def isGoalState(self, state):
         "Returns whether this search state is a goal state of the problem"
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+
+        return len(state[1]) == 0
 
     def getSuccessors(self, state):
         """
@@ -309,7 +316,14 @@ class CornersProblem(search.SearchProblem):
             #   nextx, nexty = int(x + dx), int(y + dy)
             #   hitsWall = self.walls[nextx][nexty]
 
-            "*** YOUR CODE HERE ***"
+            x, y = state[0]
+            dx, dy = Actions.directionToVector(action)
+            nextx, nexty = int(x + dx), int(y + dy)
+            hitsWall = self.walls[nextx][nexty]
+
+            if not hitsWall:
+                corners = tuple(corner for corner in state[1] if corner != (nextx, nexty))
+                successors.append((((nextx, nexty), corners), action, 1))
 
         self._expanded += 1
         return successors
@@ -327,6 +341,22 @@ class CornersProblem(search.SearchProblem):
             if self.walls[x][y]: return 999999
         return len(actions)
 
+# Podemos demostrar que nuestra heuristica es admisible demostrando que es consistente
+# En efecto, la heuristica planteada surge como la solución al problema relajado de eliminar
+# todas las paredes del laberinto. Como tal, cornersHeuristic(state, problem) representa el costo
+# del camino más corto que recorre las esquinas no visitadas partiendo desde el estado state.
+# Si en s faltan recorrer las 4 esquinas, cornersHeuristic devuelve el costo de ir a la esquina
+# más cercana sumado al mínimo costo de recorrer las 3 esquinas restantes (bordeando primero el lado
+# corto del laberinto, luego el largo, y por último, el corto opuesto).
+# Si faltan recorrer 3 esquinas, hay una de esas esquinas que se encuentra "entre medio" de las otras dos.
+# La forma más eficiente de recorrer las esquinas es ir a la esquina más cercana que no sea esa del medio,
+# y luego las otras dos en orden de cercanía. La heurística devuelve ese costo.
+# Si faltan 2 esquinas, el costo es el de ir a la esquina más cercana y de allí a la restante.
+# Finalmente, si solo falta recorrer una esquina, el costo es la distancia manhattan a esta esquina.
+# De esta manera, es evidente que la heuristica es consistente. El costo que la heurística asigna a
+# cualquier sucesor s' de un estado s es por lo menos el que asigna a s menos 1 (si s' está en
+# el recorrido optimo desde s, es decir se acerca a la esquina que hay que recorrer). Por ende,
+#   cornersHeuristic(s, problem) <= 1 + cornersHeuristic(s', problem)
 
 def cornersHeuristic(state, problem):
     """
@@ -345,7 +375,33 @@ def cornersHeuristic(state, problem):
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
     "*** YOUR CODE HERE ***"
-    return 0 # Default to trivial solution
+    if problem.isGoalState(state): return 0
+
+    # heuristica 1
+    # return max([util.manhattanDistance(state[0], corner) for corner in state[1]])
+
+    # heuristica 2
+    # closest_corner = min(state[1], key=lambda corner: util.manhattanDistance(state[0], corner))
+    # return util.manhattanDistance(state[0], closest_corner) + max([util.manhattanDistance(closest_corner, corner) for corner in state[1]])
+
+    # heuristica 3
+    if len(state[1]) == 1:
+        return util.manhattanDistance(state[0], state[1][0])
+
+    if len(state[1]) == 2:
+        corners_sorted = sorted(state[1], key=lambda corner: util.manhattanDistance(state[0], corner))
+        return util.manhattanDistance(state[0], corners_sorted[0]) + util.manhattanDistance(corners_sorted[0], corners_sorted[1])
+
+    if len(state[1]) == 3:
+        corner_1, corner_2 = max([(c1, c2) for c1 in state[1] for c2 in state[1]], key=lambda zcorners: util.manhattanDistance(*zcorners))
+        first_stop_cost = min(util.manhattanDistance(state[0], corner_1), util.manhattanDistance(state[0], corner_2))
+        return first_stop_cost + problem.shortside + problem.longside
+
+    if len(state[1]) == 4:
+        closest_corner = min(state[1], key=lambda corner: util.manhattanDistance(state[0], corner))
+        return util.manhattanDistance(state[0], closest_corner) + 2 * problem.shortside + problem.longside
+
+
 
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
@@ -436,7 +492,12 @@ def foodHeuristic(state, problem):
     """
     position, foodGrid = state
     "*** YOUR CODE HERE ***"
-    return 0
+
+    foodList = foodGrid.asList()
+    if len(foodList) == 0: return 0
+
+    return min([util.manhattanDistance(position, food) for food in foodList]) + max([util.manhattanDistance(food1, food2) for food1 in foodList for food2 in foodList])
+
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"

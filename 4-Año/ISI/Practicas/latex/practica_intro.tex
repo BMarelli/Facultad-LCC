@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{util/czt}
+
+\begin{document}
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{util/Logo-UNR.png}
+\end{figure}
+
+\title{Ingeniería de Software - Practica Apunte Z}
+\author{Bautista Marelli
+}
+\date{\today}
+
+\maketitle
+\newpage
+
+\begin{enumerate}
+  \item 
+    \begin{zed}
+      MESAJES ::= ok | clienteInexistente | montoNulo \\
+                | noPoseeSaldoSuficiente | saldoNoNulo 
+    \end{zed}
+  \item ?
+  \item ?
+  \item 
+    \begin{schema}{NuevoClienteOk}
+      \Delta Banco \\
+      d? : DNI \\
+      rep! : MESAJES
+      \where
+      d? \notin \dom ca \\
+      ca' = ca \cup \{d? \mapsto 0\} \\
+      rep! = ok
+    \end{schema}
+
+    \begin{schema}{ClienteExiste}
+      \Xi Banco \\
+      d? : DNI \\
+      rep! : MESAJES
+      \where
+      d? \in \dom ca \\
+      rep! = numeroClienteEnUso
+    \end{schema}
+
+    \begin{schema}{MontoRequeridoOk}
+      \Delta Banco \\
+      d? : DNI \\
+      m? : DINERO \\
+      rep! : MENSAJE
+      \where
+      d? \in \dom ca \\
+      m? >= 200 \\
+      ca' = ca \oplus \{ d? \mapsto (ca \; d?) + m? \} \\
+      rep! = ok
+    \end{schema}
+    
+    \begin{schema}{MontoRequeridoError}
+      \Xi Banco \\
+      m? : DINERO \\
+      rep! : MENSAJE
+      \where
+      m? < 200 \\
+      rep! = montoInsuficiente
+    \end{schema}
+
+    \begin{zed}
+      MontoRequerido == MontoRequeridoOk \cup MontoRequeridoError
+    \end{zed}
+
+    \begin{zed}
+      NuevoCliente = (NuevoClienteOk \lor ClienteExiste) \land MontoRequerido 
+    \end{zed}
+    \item 
+      \begin{zed}
+        MENSAJE ::= ok | clienteInexistente | montoNulo \\
+                  | noPoseeSaldoSuficiente | saldoNoNulo | numeroClienteEnUso \\
+                  | montoInsuficiente
+      \end{zed}
+    \item
+      
+\end{enumerate}
+
+
+\end{document}

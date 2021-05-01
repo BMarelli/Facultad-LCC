@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{util/czt}
+
+\begin{document}
+\begin{figure}
+\centering
+\includegraphics[width=5cm]{util/Logo-UNR.png}
+\end{figure}
+
+\title{Ingeniería de Software - Practica 1}
+\author{Bautista Marelli}
+\date{\today}
+
+\maketitle
+\newpage
+
+\section{Apartado 1}
+  \begin{zed}
+    ESTADO ::= on | off
+  \end{zed}
+  \begin{schema}{Sistema}
+    lamp: ESTADO
+  \end{schema}
+  \begin{schema}{SistemaInicial}
+    lamp: ESTADO
+    \where
+    lamp = off
+  \end{schema}
+  \begin{schema}{PrenderB1}
+    \Delta Sistema \\
+    lamp: ESTADO \\
+    \where
+    lamp == off \\
+    lamp' = on
+  \end{schema}
+  \begin{schema}{ApagarB1}
+    \Delta Sistema \\
+    lamp: ESTADO
+    \where
+    lamp == on \\
+    lamp' = off
+  \end{schema}
+  Idem con el boton 2
+\section{Apartado 2}
+\begin{zed}
+  [MENSAJES] \\
+  ESTADO ::= enviando | recibiendo \\
+  BUFFER ::= \langle MENSAJES \rangle \\
+  ERROR ::= si | no \\
+  PARIEDADOK ::= P(MENSAJES)
+\end{zed}
+\begin{schema}{Dispacher}
+  buff: BUFFER \\
+  estado: ESTADO
+\end{schema}
+\begin{schema}{DispacherInicial}
+  buff: \langle \rangle \\
+  estado: recibiendo
+\end{schema}
+\begin{schema}{Canal1Ok}
+  \Delta Dispacher \\
+  m1?: MENSAJES \\
+  rep1!: ERROR
+  \where
+  \# buff \leq 9 \\
+  m? \in PARIEDADOK \\
+  estado: recibiendo \\
+  buff' = buff \dcat m1? \\
+  estado' = estado \\
+  resp1: no
+\end{schema}
+\begin{schema}{Canal1Error}
+  \Xi Dispacher \\
+  m1?: MENSAJES \\
+  buff: BUFFER \\
+  estado: ESTADO \\
+  rep1: ERROR
+  \where
+  \# buff == 10 \cup m1? \notin PARIEDADOK \\
+  buff' = buff \\
+  estado' = estado \\
+  rep1: si
+\end{schema}
+\begin{schema}{VaciarBuffer}
+  \Delta Dispacher \\
+  rep1?: MENSAJES \\
+  \where
+  \# buff == 10 \\
+  estado = enviando \\
+  rep1 = head\ buff \\
+  estado' = recibiendo \\
+  buff' = tail\ buff
+\end{schema}
+\begin{zed}
+  Canal1 = Canal1Ok \cup Canal1Error \cup VaciarBuffer
+\end{zed}
+
+\section{Apartado 3}
+Especificamos nuestros tipos:
+\begin{zed}
+  [PERSONAS] \\
+  DIRECTOR: P(PERSONAS) \\
+  GUIONISTA: P(PERSONAS)
+\end{zed}
+
+\end{document}
