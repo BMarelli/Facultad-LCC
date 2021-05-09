@@ -1,0 +1,18 @@
+1) Las clases dijuntas entre si son:
+ - Diario, Materiales, Campos
+ - Columnas de opiniones, pronostico del clima, juegos
+Las clases que no son disjuntas son:
+ - Politica, negocios, deportes
+
+2) Como definimos 2 relaciones, Diario - cubre -> Campos     (con su inversa)
+                              , Diario - tiene -> Materiales (con su inversa)
+   Podemos decir que:
+    - Un diario tiene un Sudoku, ya que un diario tiene materiales y dentro de
+      materiales estan los juegos, y dentro de los juegos esta sudoku.
+
+3) Representamos las restricciones con '#'.
+4) Representamos las instancias con '-'.
+(a) Como infoBae es un diario solo virtual, lo instanciamos en la clase WEB.
+(b) Para este enunciado creamos un subclase de Materiales llamada Noticias, la
+cual podemos instanciar las noticias del diario como la que tenemos en este
+enunciado. 
