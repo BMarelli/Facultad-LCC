@@ -1,7 +1,0 @@
-.vscode
-test
-main
-slist.o
-util.o
-salida.txt
-mapa.txt

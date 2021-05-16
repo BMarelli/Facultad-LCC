@@ -6,3 +6,7 @@ slist.o: slist/slist.c
 
 util.o: util/util.c
 			gcc -g -c util/util.c -Wall -pedantic
+
+.PHONY : clean
+clean:
+			rm *.o main
