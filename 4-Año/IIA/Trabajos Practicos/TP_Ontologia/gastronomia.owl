@@ -1,0 +1,1778 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/delat/ontologies/2021/4/gastronomia-rosario"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/delat/ontologies/2021/4/gastronomia-rosario">
+    <Prefix name="" IRI="http://www.semanticweb.org/delat/ontologies/2021/4/gastronomia-rosario"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#ACargoDeTerceros"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ACargoDelLocal"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Agua_Saborizada"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AptaParaCeliaco"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AptaParaVegano"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bar"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Barrio"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bebida"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BebidaAlcoholica"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BebidaNoAlcoholica"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CeliacFriendly"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cerveceria"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Cerveza"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Comida"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Delivery"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Fernet"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Franquicia"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Gaseosa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Gin"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Hamburguesa"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Hamburgueseria"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Heladeria"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Helado"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Infusion"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Local"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MetodoDeEntrega"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Papas_Fritas"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pescado"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pizza"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Pizzeria"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Producto"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Restaurant"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Takeaway"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VeganFriendly"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Vino"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VinoBlanco"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VinoRosado"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#VinoTinto"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Whiskey"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#alcanzaA"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#concedeA"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#contieneA"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#entregaPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esAlcanzadoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esConcedidoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esEntregaDe"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#ofrece"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#aptoParaVegano"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#contacto"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#costoAdicional"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#horarioApertura"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#horarioCierre"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#internacional"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#puntuacion"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#tieneDineIn"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Alberto_Olmedo"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Aldea"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Amber_Lager"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Americana"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Antares"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Antartida"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Burger_King"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Cafe"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Chocolate"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Coca-Cola"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Corona"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Cuatro_Quesos"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Doble_JyQ_XL"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Dulce_de_leche"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Ensalada_Cesar"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Especial"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fernet_Branca"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Fisherton"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Frutilla_a_la_crema"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Granizado"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Grido"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Guinness"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Hamburguesa_clásica"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Heineken"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Johnny_Walker_Etiqueta_Negra"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Las_Malvinas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Levite_naranja"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Limon_al_agua"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Ludueña"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Margarita"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Merlusa"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Nero_53"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Papas_Endiabladas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Papas_fritas"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Papas_fritas_con_cheddar"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Patagonia_24.7"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pepsi"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Philly_Cheese_Steak"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pichincha"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PizzaHut"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pizza_de_pollo_a_la_crema"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Pizza_de_rucula_y_queso"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Quinotos_al_Whiskey"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Republica_de_la_sexta"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Sambayon"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Santa_Fe"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Stacker_Crispy_Cuádruple"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#SuperFlan"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Te"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Tramontana"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Rutini_malbec_(2010)"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:time"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#AptaParaCeliaco"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Comida"/>
+            <DataHasValue>
+                <DataProperty IRI="#aptoParaCeliaco"/>
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+            </DataHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#AptaParaVegano"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Comida"/>
+            <DataHasValue>
+                <DataProperty IRI="#aptoParaVegano"/>
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+            </DataHasValue>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#CeliacFriendly"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#ofrece"/>
+            <Class IRI="#AptaParaCeliaco"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Cerveceria"/>
+        <ObjectMinCardinality cardinality="5">
+            <ObjectProperty IRI="#ofrece"/>
+            <Class IRI="#Cerveza"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Hamburgueseria"/>
+        <ObjectMinCardinality cardinality="4">
+            <ObjectProperty IRI="#ofrece"/>
+            <Class IRI="#Hamburguesa"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Heladeria"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Local"/>
+            <ObjectMinCardinality cardinality="10">
+                <ObjectProperty IRI="#ofrece"/>
+                <Class IRI="#Helado"/>
+            </ObjectMinCardinality>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#Pizzeria"/>
+        <ObjectMinCardinality cardinality="5">
+            <ObjectProperty IRI="#ofrece"/>
+            <Class IRI="#Pizza"/>
+        </ObjectMinCardinality>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#VeganFriendly"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#ofrece"/>
+            <Class IRI="#AptaParaVegano"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#ACargoDeTerceros"/>
+        <Class IRI="#Delivery"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ACargoDelLocal"/>
+        <Class IRI="#Delivery"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Agua_Saborizada"/>
+        <Class IRI="#BebidaNoAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bar"/>
+        <Class IRI="#Local"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bebida"/>
+        <Class IRI="#Producto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BebidaAlcoholica"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BebidaNoAlcoholica"/>
+        <Class IRI="#Bebida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CeliacFriendly"/>
+        <Class IRI="#Local"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cerveceria"/>
+        <Class IRI="#Bar"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cerveza"/>
+        <Class IRI="#BebidaAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Comida"/>
+        <Class IRI="#Producto"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Delivery"/>
+        <Class IRI="#MetodoDeEntrega"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Fernet"/>
+        <Class IRI="#BebidaAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Gaseosa"/>
+        <Class IRI="#BebidaNoAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Gin"/>
+        <Class IRI="#BebidaAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Hamburguesa"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Hamburgueseria"/>
+        <Class IRI="#Restaurant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Helado"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Infusion"/>
+        <Class IRI="#BebidaNoAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Papas_Fritas"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pescado"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizza"/>
+        <Class IRI="#Comida"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Pizzeria"/>
+        <Class IRI="#Restaurant"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Restaurant"/>
+        <Class IRI="#Local"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Takeaway"/>
+        <Class IRI="#MetodoDeEntrega"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VeganFriendly"/>
+        <Class IRI="#Local"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Vino"/>
+        <Class IRI="#BebidaAlcoholica"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VinoBlanco"/>
+        <Class IRI="#Vino"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VinoRosado"/>
+        <Class IRI="#Vino"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#VinoTinto"/>
+        <Class IRI="#Vino"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Whiskey"/>
+        <Class IRI="#BebidaAlcoholica"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#ACargoDeTerceros"/>
+        <Class IRI="#ACargoDelLocal"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Agua_Saborizada"/>
+        <Class IRI="#Gaseosa"/>
+        <Class IRI="#Infusion"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Barrio"/>
+        <Class IRI="#Franquicia"/>
+        <Class IRI="#Local"/>
+        <Class IRI="#MetodoDeEntrega"/>
+        <Class IRI="#Producto"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Bebida"/>
+        <Class IRI="#Comida"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#BebidaAlcoholica"/>
+        <Class IRI="#BebidaNoAlcoholica"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Cerveza"/>
+        <Class IRI="#Fernet"/>
+        <Class IRI="#Gin"/>
+        <Class IRI="#Vino"/>
+        <Class IRI="#Whiskey"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Delivery"/>
+        <Class IRI="#Takeaway"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Hamburguesa"/>
+        <Class IRI="#Helado"/>
+        <Class IRI="#Papas_Fritas"/>
+        <Class IRI="#Pescado"/>
+        <Class IRI="#Pizza"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#VinoBlanco"/>
+        <Class IRI="#VinoRosado"/>
+        <Class IRI="#VinoTinto"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Alberto_Olmedo"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Aldea"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Cerveza"/>
+        <NamedIndividual IRI="#Amber_Lager"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Americana"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Local"/>
+        <NamedIndividual IRI="#Antares"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Antartida"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Franquicia"/>
+        <NamedIndividual IRI="#Burger_King"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Local"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Local"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Infusion"/>
+        <NamedIndividual IRI="#Cafe"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Chocolate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Gaseosa"/>
+        <NamedIndividual IRI="#Coca-Cola"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Cerveza"/>
+        <NamedIndividual IRI="#Corona"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pizza"/>
+        <NamedIndividual IRI="#Cuatro_Quesos"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Hamburguesa"/>
+        <NamedIndividual IRI="#Doble_JyQ_XL"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Dulce_de_leche"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Comida"/>
+        <NamedIndividual IRI="#Ensalada_Cesar"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pizza"/>
+        <NamedIndividual IRI="#Especial"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Fernet"/>
+        <NamedIndividual IRI="#Fernet_Branca"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Fisherton"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Frutilla_a_la_crema"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Granizado"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Local"/>
+        <NamedIndividual IRI="#Grido"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ACargoDelLocal"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Cerveza"/>
+        <NamedIndividual IRI="#Guinness"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Hamburguesa"/>
+        <NamedIndividual IRI="#Hamburguesa_clásica"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Cerveza"/>
+        <NamedIndividual IRI="#Heineken"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Whiskey"/>
+        <NamedIndividual IRI="#Johnny_Walker_Etiqueta_Negra"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Las_Malvinas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Agua_Saborizada"/>
+        <NamedIndividual IRI="#Levite_naranja"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Limon_al_agua"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Ludueña"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pizza"/>
+        <NamedIndividual IRI="#Margarita"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pescado"/>
+        <NamedIndividual IRI="#Merlusa"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Fernet"/>
+        <NamedIndividual IRI="#Nero_53"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Papas_Fritas"/>
+        <NamedIndividual IRI="#Papas_Endiabladas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Papas_Fritas"/>
+        <NamedIndividual IRI="#Papas_fritas"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Papas_Fritas"/>
+        <NamedIndividual IRI="#Papas_fritas_con_cheddar"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Cerveza"/>
+        <NamedIndividual IRI="#Patagonia_24.7"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ACargoDeTerceros"/>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Gaseosa"/>
+        <NamedIndividual IRI="#Pepsi"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Comida"/>
+        <NamedIndividual IRI="#Philly_Cheese_Steak"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Pichincha"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Local"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ACargoDelLocal"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pizza"/>
+        <NamedIndividual IRI="#Pizza_de_pollo_a_la_crema"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Pizza"/>
+        <NamedIndividual IRI="#Pizza_de_rucula_y_queso"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Quinotos_al_Whiskey"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ACargoDeTerceros"/>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Barrio"/>
+        <NamedIndividual IRI="#Republica_de_la_sexta"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Sambayon"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Cerveza"/>
+        <NamedIndividual IRI="#Santa_Fe"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Hamburguesa"/>
+        <NamedIndividual IRI="#Stacker_Crispy_Cuádruple"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#SuperFlan"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Infusion"/>
+        <NamedIndividual IRI="#Te"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Helado"/>
+        <NamedIndividual IRI="#Tramontana"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Hamburguesa"/>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Franquicia"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Local"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#VinoTinto"/>
+        <NamedIndividual IRI="#Rutini_malbec_(2010)"/>
+    </ClassAssertion>
+    <DifferentIndividuals>
+        <NamedIndividual IRI="#Alberto_Olmedo"/>
+        <NamedIndividual IRI="#Aldea"/>
+        <NamedIndividual IRI="#Amber_Lager"/>
+        <NamedIndividual IRI="#Americana"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Antartida"/>
+        <NamedIndividual IRI="#Burger_King"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <NamedIndividual IRI="#Cafe"/>
+        <NamedIndividual IRI="#Chocolate"/>
+        <NamedIndividual IRI="#Coca-Cola"/>
+        <NamedIndividual IRI="#Corona"/>
+        <NamedIndividual IRI="#Cuatro_Quesos"/>
+        <NamedIndividual IRI="#Doble_JyQ_XL"/>
+        <NamedIndividual IRI="#Dulce_de_leche"/>
+        <NamedIndividual IRI="#Ensalada_Cesar"/>
+        <NamedIndividual IRI="#Especial"/>
+        <NamedIndividual IRI="#Fernet_Branca"/>
+        <NamedIndividual IRI="#Fisherton"/>
+        <NamedIndividual IRI="#Frutilla_a_la_crema"/>
+        <NamedIndividual IRI="#Granizado"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+        <NamedIndividual IRI="#Guinness"/>
+        <NamedIndividual IRI="#Hamburguesa_clásica"/>
+        <NamedIndividual IRI="#Heineken"/>
+        <NamedIndividual IRI="#Johnny_Walker_Etiqueta_Negra"/>
+        <NamedIndividual IRI="#Las_Malvinas"/>
+        <NamedIndividual IRI="#Levite_naranja"/>
+        <NamedIndividual IRI="#Limon_al_agua"/>
+        <NamedIndividual IRI="#Ludueña"/>
+        <NamedIndividual IRI="#Margarita"/>
+        <NamedIndividual IRI="#Merlusa"/>
+        <NamedIndividual IRI="#Nero_53"/>
+        <NamedIndividual IRI="#Papas_Endiabladas"/>
+        <NamedIndividual IRI="#Papas_fritas"/>
+        <NamedIndividual IRI="#Papas_fritas_con_cheddar"/>
+        <NamedIndividual IRI="#Patagonia_24.7"/>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+        <NamedIndividual IRI="#Pepsi"/>
+        <NamedIndividual IRI="#Philly_Cheese_Steak"/>
+        <NamedIndividual IRI="#Pichincha"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+        <NamedIndividual IRI="#Pizza_de_pollo_a_la_crema"/>
+        <NamedIndividual IRI="#Pizza_de_rucula_y_queso"/>
+        <NamedIndividual IRI="#Quinotos_al_Whiskey"/>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+        <NamedIndividual IRI="#Republica_de_la_sexta"/>
+        <NamedIndividual IRI="#Sambayon"/>
+        <NamedIndividual IRI="#Santa_Fe"/>
+        <NamedIndividual IRI="#Stacker_Crispy_Cuádruple"/>
+        <NamedIndividual IRI="#SuperFlan"/>
+        <NamedIndividual IRI="#Te"/>
+        <NamedIndividual IRI="#Tramontana"/>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <NamedIndividual IRI="#Rutini_malbec_(2010)"/>
+    </DifferentIndividuals>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Pichincha"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Amber_Lager"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Corona"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Guinness"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Heineken"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Patagonia_24.7"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Antares"/>
+        <NamedIndividual IRI="#Santa_Fe"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#concedeA"/>
+        <NamedIndividual IRI="#Burger_King"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#concedeA"/>
+        <NamedIndividual IRI="#Burger_King"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <NamedIndividual IRI="#Las_Malvinas"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <NamedIndividual IRI="#Coca-Cola"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <NamedIndividual IRI="#Levite_naranja"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <NamedIndividual IRI="#Papas_fritas"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <NamedIndividual IRI="#Papas_fritas_con_cheddar"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <NamedIndividual IRI="#Ludueña"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <NamedIndividual IRI="#Coca-Cola"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <NamedIndividual IRI="#Levite_naranja"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <NamedIndividual IRI="#Papas_fritas"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <NamedIndividual IRI="#Papas_fritas_con_cheddar"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Doble_JyQ_XL"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Doble_JyQ_XL"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Fernet_Branca"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Fisherton"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Americana"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Chocolate"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Dulce_de_leche"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Frutilla_a_la_crema"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Granizado"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Limon_al_agua"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Quinotos_al_Whiskey"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#Sambayon"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Grido"/>
+        <NamedIndividual IRI="#SuperFlan"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+        <NamedIndividual IRI="#Aldea"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+        <NamedIndividual IRI="#Antartida"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+        <NamedIndividual IRI="#Fisherton"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esEntregaDe"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+        <NamedIndividual IRI="#Grido"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Hamburguesa_clásica"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Hamburguesa_clásica"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Nero_53"/>
+        <NamedIndividual IRI="#Antares"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Papas_Endiabladas"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+        <NamedIndividual IRI="#Alberto_Olmedo"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+        <NamedIndividual IRI="#Republica_de_la_sexta"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esEntregaDe"/>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <NamedIndividual IRI="#Republica_de_la_sexta"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <NamedIndividual IRI="#Cuatro_Quesos"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <NamedIndividual IRI="#Especial"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <NamedIndividual IRI="#Margarita"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+        <NamedIndividual IRI="#Alberto_Olmedo"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+        <NamedIndividual IRI="#Las_Malvinas"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+        <NamedIndividual IRI="#Republica_de_la_sexta"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esEntregaDe"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Pizza_de_pollo_a_la_crema"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Pizza_de_rucula_y_queso"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+        <NamedIndividual IRI="#Antartida"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+        <NamedIndividual IRI="#Fisherton"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esEntregaDe"/>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+        <NamedIndividual IRI="#Grido"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Stacker_Crispy_Cuádruple"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Stacker_Crispy_Cuádruple"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Tramontana"/>
+        <NamedIndividual IRI="#Grido"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#concedeA"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <NamedIndividual IRI="#Alberto_Olmedo"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <NamedIndividual IRI="#Americana"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <NamedIndividual IRI="#Ensalada_Cesar"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#ofrece"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <NamedIndividual IRI="#Philly_Cheese_Steak"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <NamedIndividual IRI="#Amber_Lager"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">5.6</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#contacto"/>
+        <NamedIndividual IRI="#Antares"/>
+        <Literal>3749271948</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioApertura"/>
+        <NamedIndividual IRI="#Antares"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">18</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioCierre"/>
+        <NamedIndividual IRI="#Antares"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">23</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puntuacion"/>
+        <NamedIndividual IRI="#Antares"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneDineIn"/>
+        <NamedIndividual IRI="#Antares"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#internacional"/>
+        <NamedIndividual IRI="#Burger_King"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#contacto"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <Literal>123456789</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioApertura"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">08</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioCierre"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">23</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puntuacion"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneDineIn"/>
+        <NamedIndividual IRI="#Burger_King_Alto_Rosario"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#contacto"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <Literal>153859603</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioApertura"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">08</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioCierre"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">23</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puntuacion"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneDineIn"/>
+        <NamedIndividual IRI="#Burger_King_Village"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <NamedIndividual IRI="#Corona"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Doble_JyQ_XL"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Ensalada_Cesar"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <NamedIndividual IRI="#Ensalada_Cesar"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#contacto"/>
+        <NamedIndividual IRI="#Grido"/>
+        <Literal>222222233</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioApertura"/>
+        <NamedIndividual IRI="#Grido"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">12</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioCierre"/>
+        <NamedIndividual IRI="#Grido"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">23</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puntuacion"/>
+        <NamedIndividual IRI="#Grido"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneDineIn"/>
+        <NamedIndividual IRI="#Grido"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#costoAdicional"/>
+        <NamedIndividual IRI="#Grido_-_Delivery"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">50</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <NamedIndividual IRI="#Guinness"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4.3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Hamburguesa_clásica"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <NamedIndividual IRI="#Heineken"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <NamedIndividual IRI="#Patagonia_24.7"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4.7</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#costoAdicional"/>
+        <NamedIndividual IRI="#Pedidos_Ya_-_PizzaHot"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">70</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#contacto"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <Literal>2348574638</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioApertura"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">11</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioCierre"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">22</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puntuacion"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneDineIn"/>
+        <NamedIndividual IRI="#PizzaHut"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#costoAdicional"/>
+        <NamedIndividual IRI="#PizzaHut-Delivery"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">67</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Pizza_de_pollo_a_la_crema"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <NamedIndividual IRI="#Pizza_de_pollo_a_la_crema"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Pizza_de_rucula_y_queso"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <NamedIndividual IRI="#Pizza_de_rucula_y_queso"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#costoAdicional"/>
+        <NamedIndividual IRI="#Rappi_-_Grido"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">65</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <NamedIndividual IRI="#Santa_Fe"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4.5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Stacker_Crispy_Cuádruple"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <NamedIndividual IRI="#Whooper_Extreme"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#contacto"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <Literal>5638291736</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioApertura"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">06</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#horarioCierre"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">23</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#puntuacion"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">5</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#tieneDineIn"/>
+        <NamedIndividual IRI="#Rock&amp;Feller&apos;s_Oroño"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#concedeA"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#contieneA"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#entregaPor"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#esAlcanzadoPor"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#esConcedidoPor"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#esEntregaDe"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#ofrece"/>
+        <ObjectProperty abbreviatedIRI="owl:topObjectProperty"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#alcanzaA"/>
+        <ObjectProperty IRI="#esAlcanzadoPor"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#concedeA"/>
+        <ObjectProperty IRI="#esConcedidoPor"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#contieneA"/>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#entregaPor"/>
+        <ObjectProperty IRI="#esEntregaDe"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#esOfrecidoPor"/>
+        <ObjectProperty IRI="#ofrece"/>
+    </InverseObjectProperties>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#esConcedidoPor"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#esEntregaDe"/>
+    </FunctionalObjectProperty>
+    <FunctionalObjectProperty>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+    </FunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#concedeA"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#contieneA"/>
+    </InverseFunctionalObjectProperty>
+    <InverseFunctionalObjectProperty>
+        <ObjectProperty IRI="#entregaPor"/>
+    </InverseFunctionalObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#entregaPor"/>
+        <Class IRI="#Local"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#esAlcanzadoPor"/>
+        <Class IRI="#Barrio"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#esConcedidoPor"/>
+        <Class IRI="#Local"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <Class IRI="#Local"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#ofrece"/>
+        <Class IRI="#Local"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#entregaPor"/>
+        <Class IRI="#MetodoDeEntrega"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#esAlcanzadoPor"/>
+        <Class IRI="#Delivery"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#esConcedidoPor"/>
+        <Class IRI="#Franquicia"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#estaUbicadoEn"/>
+        <Class IRI="#Barrio"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#ofrece"/>
+        <Class IRI="#Producto"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#contacto"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#costoAdicional"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#horarioApertura"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#horarioCierre"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#internacional"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#puntuacion"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#tieneDineIn"/>
+        <DataProperty abbreviatedIRI="owl:topDataProperty"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <Class IRI="#Comida"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <Class IRI="#Comida"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#contacto"/>
+        <Class IRI="#Local"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#costoAdicional"/>
+        <Class IRI="#Delivery"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <Class IRI="#BebidaAlcoholica"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#horarioApertura"/>
+        <Class IRI="#Local"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#horarioCierre"/>
+        <Class IRI="#Local"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#internacional"/>
+        <Class IRI="#Franquicia"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#puntuacion"/>
+        <Class IRI="#Local"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#tieneDineIn"/>
+        <Class IRI="#Local"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#aptoParaCeliaco"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#aptoParaVegano"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#contacto"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#costoAdicional"/>
+        <Datatype abbreviatedIRI="xsd:decimal"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#graduacionAlcoholica"/>
+        <DatatypeRestriction>
+            <Datatype abbreviatedIRI="xsd:decimal"/>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minExclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">0</Literal>
+            </FacetRestriction>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxExclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">100</Literal>
+            </FacetRestriction>
+        </DatatypeRestriction>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#horarioApertura"/>
+        <DatatypeRestriction>
+            <Datatype abbreviatedIRI="xsd:int"/>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">0</Literal>
+            </FacetRestriction>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">24</Literal>
+            </FacetRestriction>
+        </DatatypeRestriction>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#horarioCierre"/>
+        <DatatypeRestriction>
+            <Datatype abbreviatedIRI="xsd:int"/>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">0</Literal>
+            </FacetRestriction>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">24</Literal>
+            </FacetRestriction>
+        </DatatypeRestriction>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#internacional"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#puntuacion"/>
+        <DatatypeRestriction>
+            <Datatype abbreviatedIRI="xsd:int"/>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#minInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">0</Literal>
+            </FacetRestriction>
+            <FacetRestriction facet="http://www.w3.org/2001/XMLSchema#maxInclusive">
+                <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#int">5</Literal>
+            </FacetRestriction>
+        </DatatypeRestriction>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#tieneDineIn"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
