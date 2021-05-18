@@ -1,0 +1,36 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zsection}
+  \SECTION practica1 \parents standard\_toolkit
+\end{zsection}
+
+\section{Apartado 1}
+  \begin{zed}
+    ESTADO ::= on | off
+  \end{zed}
+  \begin{schema}{Sistema}
+    lamp: ESTADO
+  \end{schema}
+  \begin{schema}{SistemaInicial}
+    lamp: ESTADO
+    \where
+    lamp = off
+  \end{schema}
+  \begin{schema}{PrenderB1}
+    \Delta Sistema \\
+    lamp: ESTADO \\
+    \where
+    lamp = off \\
+    lamp' = on
+  \end{schema}
+  \begin{schema}{ApagarB1}
+    \Delta Sistema \\
+    lamp: ESTADO
+    \where
+    lamp = on \\
+    lamp' = off
+  \end{schema}
+Idem con el boton 2
+\end{document}
