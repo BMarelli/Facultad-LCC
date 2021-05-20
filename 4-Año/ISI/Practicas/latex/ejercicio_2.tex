@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zsection}
+  \SECTION ejercicio2 \parents standard\_toolkit
+\end{zsection}
+
+\section{Apartado 2}
+\begin{zed}
+  [MENSAJE] \\
+  ESTADO ::= enviando | recibiendo \\
+  ERROR ::= bufferLleno | errorPariedad
+\end{zed}
+
+\begin{axdef}
+MAXIMOBUF: \nat
+\where
+MAXIMOBUF = 10
+\end{axdef}
+
+\begin{axdef}
+PARIEDAD: \power MENSAJE
+\where
+PARIEDAD \neq \emptyset
+\end{axdef}
+
+\begin{schema}{Dispacher}
+estado : ESTADO \\
+buf: \seq MENSAJE \\
+pariedad: \power MENSAJE
+\end{schema}
+
+\begin{schema}{DispacherInit}
+Dispacher
+\where
+pariedad = \emptyset \\
+estado = recibiendo \\
+buf = \langle  \rangle
+\end{schema}
+
+\begin{schema}{Canal1Ok}
+\Delta Dispacher \\
+m?: MENSAJE \\
+\where
+m? \in pariedad \\
+estado = recibiendo \\
+\# buf \leq MAXIMOBUF \\
+buf' = buf \cat \langle m? \rangle \\
+estado' = estado \\
+pariedad' = pariedad
+\end{schema}
+
+\begin{schema}{Canal1ErrorLleno}
+\Xi Dispacher \\
+m?: MENSAJE \\
+rep!: ERROR
+\where
+m? \in pariedad \\
+estado = recibiendo \\
+\# buf = MAXIMOBUF \\
+rep! = bufferLleno
+\end{schema}
+
+\begin{schema}{BufferLleno}
+\Delta Dispacher \\
+\where
+estado = recibiendo \\
+\# buf = MAXIMOBUF \\
+buf' = buf \\
+pariedad' = pariedad \\
+estado' = enviando
+\end{schema}
+
+\begin{schema}{Canal1ErrorPariedad}
+\Xi Dispacher \\
+m?: MENSAJE \\
+rep!: ERROR
+\where
+m? \notin pariedad \\
+rep! = errorPariedad
+\end{schema}
+
+\begin{zed}
+EnviarMensajeCanal1 == Canal1Ok \lor Canal1ErrorLleno \lor Canal1ErrorPariedad
+\end{zed}
+
+% Porque no me deja hacer rep!: MENSAJE
+\begin{schema}{VaciandoBuffer}
+\Delta Dispacher \\
+rep!: MENSAJE
+\where
+estado = enviando \\
+\# buf \geq 1 \\
+buf' = tail \: buf \\
+rep! = head \: buf
+\end{schema}
+
+\begin{schema}{BufferVacio}
+\Delta Dispacher \\
+\where
+estado = enviando \\
+\# buf = 0 \\
+estado' = recibiendo \\
+pariedad' = pariedad \\
+buf' = buf
+\end{schema}
+
+\begin{zed}
+VaciarBuf == VaciandoBuffer \lor BufferVacio
+\end{zed}
+
+\end{document}
