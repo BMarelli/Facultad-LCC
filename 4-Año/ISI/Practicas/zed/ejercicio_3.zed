@@ -1,0 +1,139 @@
+\documentclass[a4paper, 12pt] {article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+  [ TITULO, DIRECTOR, GUIONISTA ] \\
+  RES ::= errorDirector | errorGuionista | errorPelicula | ok
+\end{zed}
+
+\begin{schema}{Pelicula}
+directores: \power DIRECTOR \\
+guionistas: \power GUIONISTA
+\end{schema}
+
+\begin{schema}{DB}
+  films: TITULO \pfun Pelicula
+\end{schema}
+
+\begin{schema}{DBInit}
+  DB
+\where
+  films = \emptyset
+\end{schema}
+
+\begin{schema}{ObtenerSegunDirector}
+\Xi DB \\
+dir?: DIRECTOR \\
+titulos!: \power Pelicula
+\where
+titulos! = \{ p: Pelicula | p \in \ran films \land dir? \in p.directores \}
+\end{schema}
+
+\begin{schema}{ObtenerSegunGuionista}
+\Xi DB \\
+gui?: GUIONISTA \\
+titulos!: \power Pelicula
+\where
+titulos! = \{ p: Pelicula | p \in \ran films \land gui? \in p.guionistas \}
+\end{schema}
+
+\begin{schema}{CambiarNombreDirPelicula}
+\Delta Pelicula \\
+dir?: DIRECTOR \\
+newDir?: DIRECTOR
+\where
+directores' = (directores \cup \{ newDir? \}) \setminus \{dir? \} \\
+guionistas' = guionistas
+\end{schema}
+
+\begin{schema}{CambiarNombreDirectorOk}
+\Delta DB \\
+CambiarNombreDirPelicula \\
+tit?: TITULO \\
+res!: RES
+\where
+tit? \in \dom films \\
+films \: tit? = \theta Pelicula \\
+films' = films \oplus \{ tit? \mapsto \theta Pelicula \ ' \} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{CambiarNombreDirectorError}
+\Xi DB \\
+CambiarNombreDirPelicula \\
+dir?: DIRECTOR \\
+tit?: TITULO \\
+newDir?: DIRECTOR \\
+res!: RES
+\where
+tit? \notin \dom films \\
+res! = errorDirector
+\end{schema}
+
+\begin{zed}
+CambiarNombreDirector == CambiarNombreDirectorOk \lor CambiarNombreDirectorError
+\end{zed}
+
+
+\begin{schema}{CrearPelicula}
+Pelicula \\
+dir?: \power DIRECTOR \\
+gui?: \power GUIONISTA \\
+\where
+directores = dir? \\
+guionistas = gui?
+\end{schema}
+
+\begin{schema}{AgregarPeliculaOk}
+\Delta DB \\
+CrearPelicula \\
+tit?: TITULO \\
+gui?: \power GUIONISTA \\
+res!: RES
+\where
+tit? \notin \dom films \\
+films' = films \cup \{ tit? \mapsto \theta Pelicula\} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{AgregarPeliculaError}
+\Xi DB \\
+tit?: TITULO \\
+dir?: \power DIRECTOR \\
+gui?: \power GUIONISTA \\
+res!: RES
+\where
+tit? \in \dom films \\
+res! = errorPelicula
+\end{schema}
+
+\begin{zed}
+AgregarPelicula == AgregarPeliculaOk \lor AgregarPeliculaError
+\end{zed}
+
+\begin{schema}{EliminarPeliculaOk}
+\Delta DB \\
+tit?: TITULO \\
+res: RES
+\where
+tit? \in \dom films \\
+films' = \{ tit? \} \ndres films \\
+res = ok
+\end{schema}
+
+\begin{schema}{EliminarPeliculaError}
+\Delta DB \\
+tit?: TITULO \\
+res!: RES
+\where
+tit? \notin \dom films \\
+res! = errorPelicula
+\end{schema}
+
+\begin{zed}
+EliminarPelicula == EliminarPeliculaOk \lor EliminarPeliculaError
+\end{zed}
+
+\end{document}

@@ -1,0 +1,177 @@
+\documentclass[a4paper, 12pt] {article}
+\usepackage{czt}
+
+\begin{document}
+
+\begin{zed}
+[NOMBRE, ENCABEZADO, CUERPO, USUARIO] \\
+ROLES ::= autor | editor | lector \\
+RES ::= ok | errorUsuarioInvalido | errorPermisosInvalidos | errorProgramaExiste \\
+\t1 | errorProgramaNoExiste | errorUsuarioBloqueado
+\end{zed}
+
+\begin{schema}{Programa}
+encabezado: ENCABEZADO \\
+cuerpo: CUERPO
+\end{schema}
+
+\begin{schema}{CVS}
+lineaBase: NOMBRE \pfun \seq Programa \\
+users: USUARIO \pfun \power ROLES \\
+hacerDelta: \power USUARIO
+\end{schema}
+
+\begin{schema}{CreatePrograma}
+Programa \\
+enc?: ENCABEZADO \\
+cuer?: CUERPO
+\where
+encabezado = enc? \\
+cuerpo = cuer?
+\end{schema}
+
+\begin{schema}{CreateOk}
+\Delta CVS \\
+CreatePrograma \\
+auth?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \land autor \in users \: auth? \\
+nom? \notin \dom lineaBase \\
+lineaBase' = lineaBase \cup \{ nom? \mapsto \langle \theta Programa \rangle \} \\
+users' = users \\
+res! = ok
+\end{schema}
+
+\begin{schema}{CreateErrorUsuarioInvalido}
+\Xi CVS \\
+CreatePrograma \\
+auth?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+auth? \notin \dom users \\
+res! = errorUsuarioInvalido
+\end{schema}
+
+\begin{schema}{CreateErrorPermisosInvalidos}
+\Xi CVS \\
+CreatePrograma \\
+auth?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \land autor \notin users \: auth? \\
+res! = errorPermisosInvalidos
+\end{schema}
+
+\begin{schema}{CreateErrorProgramaExiste}
+\Xi CVS \\
+auth?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \land autor \in users \: auth? \\
+nom? \in \dom lineaBase \\
+res! = errorProgramaExiste
+\end{schema}
+
+\begin{zed}
+CreateError == CreateErrorUsuarioInvalido \\
+\t1 \lor CreateErrorPermisosInvalidos \\
+\t1 \lor CreateErrorProgramaExiste \\
+Create == CreateOk \lor CreateError
+\end{zed}
+
+\begin{schema}{GetOk}
+\Xi CVS \\
+edit?: USUARIO \\
+nom?: NOMBRE \\
+prog!: Programa \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \lor lector \in users \: edit? \\
+nom? \in \dom lineaBase \\
+prog! = head (lineaBase \: nom?) \\
+res! = ok
+\end{schema}
+
+\begin{schema}{GetErrorProgramaNoExiste}
+\Xi CVS \\
+lect?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+autor \in users \: lect? \lor editor \in users \: lect? \lor lector \in users \: lect? \\
+nom? \notin \dom lineaBase \\
+res! = errorProgramaExiste
+\end{schema}
+
+\begin{zed}
+Get == GetOk \lor GetErrorProgramaNoExiste
+\end{zed}
+
+\begin{schema}{EditarPrograma}
+\Delta Programa \\
+prog?: Programa
+\where
+encabezado' = prog?.encabezado \\
+cuerpo' = prog?.cuerpo
+\end{schema}
+
+\begin{schema}{EditOk}
+\Delta CVS \\
+edit?: USUARIO \\
+nomb?: NOMBRE \\
+prog!: Programa \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \\
+edit? \notin hacerDelta \\
+nomb? \in \dom lineaBase \\
+prog! = head (lineaBase \: nomb?) \\
+res! = ok
+\end{schema}
+
+\begin{schema}{EditErrorPermisosInvalidos}
+\Xi CVS \\
+edit?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+autor \notin users \: edit? \lor editor \notin users \: edit? \\
+res! = errorPermisosInvalidos
+\end{schema}
+
+\begin{schema}{EditErrorUsuarioBloqueado}
+\Xi CVS \\
+edit?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \\
+edit? \in hacerDelta \\
+res! = errorUsuarioBloqueado
+\end{schema}
+
+\begin{schema}{EditErrorProgramaNoExiste}
+\Xi CVS \\
+edit?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \\
+edit? \notin hacerDelta \\
+nomb? \notin \dom lineaBase \\
+res! = errorProgramaNoExiste
+\end{schema}
+
+\begin{zed}
+EditError == EditErrorPermisosInvalidos \\
+\t1 \lor EditErrorUsuarioBloqueado \\
+\t1 \lor EditErrorProgramaNoExiste \\
+Edit == EditOk \lor EditError
+\end{zed}
+
+\end{document}

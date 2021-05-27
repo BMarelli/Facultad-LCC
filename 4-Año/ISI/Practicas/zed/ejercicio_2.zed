@@ -1,12 +1,7 @@
-\documentclass{article}
+\documentclass[a4paper, 12pt] {article}
 \usepackage{czt}
 
 \begin{document}
-\begin{zsection}
-  \SECTION ejercicio2 \parents standard\_toolkit
-\end{zsection}
-
-\section{Apartado 2}
 \begin{zed}
   [MENSAJE] \\
   ESTADO ::= enviando | recibiendo \\
@@ -92,8 +87,8 @@ rep!: MENSAJE
 \where
 estado = enviando \\
 \# buf \geq 1 \\
-buf' = tail \: buf \\
-rep! = head \: buf
+buf' = tail~buf \\
+rep! = head~buf
 \end{schema}
 
 \begin{schema}{BufferVacio}

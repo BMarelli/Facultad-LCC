@@ -1,0 +1,176 @@
+\documentclass[a4paper, 12pt] {article}
+\usepackage{czt}
+
+\begin{document}
+\begin{zed}
+[USUARIO, PASSWORD, NOMBRE, INFO] \\
+RES ::= ok | errorUsuarioInvalido | errorPasswordIncorrecta | errorUsuarioNoActivo \\
+	  | errorArchivoInvalido | errorAchivoExiste 
+\end{zed}
+
+\begin{schema}{Servidor}
+users: USUARIO \pfun PASSWORD \\
+activos: \power USUARIO \\
+noActivos: \power USUARIO \\
+archivos: NOMBRE \pfun INFO
+\end{schema}
+
+\begin{schema}{ConnectOk}
+\Delta Servidor \\
+usr? : USUARIO \\
+pss? : PASSWORD
+\where
+usr? \in \dom users \land users \: usr? = pss? \\
+usr? \in noActivos \\
+noActivos' = noActivos \setminus \{ usr? \} \\
+activos' = activos \cup \{ usr? \} \\
+users' = users \\
+archivos' = archivos
+\end{schema}
+
+\begin{schema}{ConnectErrorInvalido}
+\Xi Servidor \\
+usr? : USUARIO \\
+pss? : PASSWORD \\
+res!: RES
+\where
+usr? \notin \dom users \\
+res! = errorUsuarioInvalido
+\end{schema}
+
+\begin{schema}{ConnectErrorIncorrecta}
+\Xi Servidor \\
+usr? : USUARIO \\
+pss? : PASSWORD \\
+res!: RES
+\where
+usr? \in \dom users \\
+users \: usr? \neq pss? \\
+res! = errorPasswordIncorrecta
+\end{schema}
+
+\begin{zed}
+Connect == ConnectOk \lor ConnectErrorInvalido \lor ConnectErrorIncorrecta
+\end{zed}
+
+\begin{schema}{GetOk}
+\Xi Servidor \\
+usr?: USUARIO \\
+nom?: NOMBRE \\
+arc!: INFO \\
+res!: RES
+\where
+usr? \in activos \\
+nom? \in \dom archivos \\
+arc! = archivos \: nom? \\
+res! = ok
+\end{schema}
+
+\begin{schema}{GetErrorNoActivo}
+\Xi Servidor \\
+usr?: USUARIO \\
+nom?: NOMBRE \\
+arc!: INFO \\
+res!: RES
+\where
+usr? \notin activos \\
+res! = errorUsuarioNoActivo
+\end{schema}
+
+\begin{schema}{GetErrorArchivoInvalido}
+\Xi Servidor \\
+usr?: USUARIO \\
+nom?: NOMBRE \\
+arc!: INFO \\
+res!: RES
+\where
+usr? \in activos \\
+nom? \notin \dom archivos \\
+res! = errorArchivoInvalido
+\end{schema}
+
+\begin{zed}
+Get == GetOk \lor GetErrorNoActivo \lor GetErrorArchivoInvalido
+\end{zed}
+
+\begin{schema}{PutOk}
+\Delta Servidor \\
+usr?: USUARIO \\
+nom?: NOMBRE \\
+inf?: INFO \\
+res!: RES
+\where
+usr? \in activos \\
+nom? \notin \dom archivos \\
+archivos' = archivos \cup \{ nom? \mapsto inf? \} \\
+users' = users \\
+activos' = activos \\
+noActivos' = noActivos \\
+res! = ok
+\end{schema}
+
+\begin{schema}{PutErrorNoActivo}
+\Xi Servidor \\
+usr?: USUARIO \\
+nom?: NOMBRE \\
+inf?: INFO \\
+res!: RES
+\where
+usr? \notin activos \\
+res! = errorUsuarioNoActivo
+\end{schema}
+
+\begin{schema}{PutErrorAchivoExiste}
+\Xi Servidor \\
+usr?: USUARIO \\
+nom?: NOMBRE \\
+inf?: INFO \\
+res!: RES
+\where
+usr? \in activos \\
+nom? \in \dom archivos \\
+res! = errorAchivoExiste
+\end{schema}
+
+\begin{zed}
+Put == PutOk \lor PutErrorNoActivo \lor PutErrorAchivoExiste
+\end{zed}
+
+\begin{schema}{CloseOk}
+\Delta Servidor \\
+usr?: USUARIO \\
+res!: RES
+\where
+usr? \in \dom users \\
+usr? \in activos \\
+activos' = activos \setminus \{ usr? \} \\
+noActivos' = noActivos \cup \{ usr? \} \\
+users' = users \\
+archivos' = archivos \\
+res! = ok
+\end{schema}
+
+\begin{schema}{CloseErrorUsuarioInvalido}
+\Xi Servidor \\
+usr?: USUARIO \\
+res!: RES
+\where
+usr? \notin \dom users \\
+res! = errorUsuarioInvalido
+\end{schema}
+
+\begin{schema}{CloseErrorUsuarioNoActivo}
+\Xi Servidor \\
+usr?: USUARIO \\
+res!: RES
+\where
+usr? \in \dom users \\
+usr? \notin activos \\
+res! = errorUsuarioNoActivo
+\end{schema}
+
+\begin{zed}
+Close == CloseOk \lor CloseErrorUsuarioInvalido \lor CloseErrorUsuarioNoActivo
+\end{zed}
+
+\end{document}

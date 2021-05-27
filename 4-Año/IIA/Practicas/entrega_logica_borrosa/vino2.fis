@@ -1,0 +1,38 @@
+[System]
+Name='vino'
+Ninputs=1
+Noutputs=1
+Nrules=3
+Nexceptions=0
+Conjunction='min'
+MissingValues='random'
+
+[Input1]
+Active='yes'
+Name='e'
+Range=[       0.000 ,       1.000 ]
+NMFs=3
+MF1='bajo','SemiTrapezoidalInf',[       0.000 ,       0.000 ,       0.500 ]
+MF2='medio','triangular',[       0.000 ,       0.500 ,       1.000 ]
+MF3='alto','SemiTrapezoidalSup',[       0.500 ,       1.000 ,       1.000 ]
+
+[Output1]
+Nature='fuzzy'
+Defuzzification='MeanMax'
+Disjunction='max'
+DefaultValue=      -1.000 
+Classif='no' 
+Active='yes'
+Name='t'
+Range=[       0.000 ,      60.000 ]
+NMFs=3
+MF1='bajo','SemiTrapezoidalInf',[     -15.000 ,      15.000 ,      30.000 ]
+MF2='medio','triangular',[      15.000 ,      30.000 ,      45.000 ]
+MF3='alto','SemiTrapezoidalSup',[      30.000 ,      45.000 ,      75.000 ]
+
+[Rules]
+3,        1.000 ,
+2,        2.000 ,
+1,        3.000 ,
+
+[Exceptions]
