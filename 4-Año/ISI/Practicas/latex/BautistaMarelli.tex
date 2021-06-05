@@ -1,0 +1,328 @@
+\documentclass[a4paper, 12pt] {article}
+\usepackage{czt}
+\usepackage[margin=0.5in]{geometry}
+
+\title{Parcial 1}
+\author{Bautista Marelli}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+El chequeo de tipos se realizo utilizando el plugin Community Z Tools en Eclipse
+
+\begin{itemize}
+\item m es un mail de cliente $\approx$ MAIL(m)
+\item p es un producto $\approx$ NOMBREPRODUCTO(p)
+\item c es un carro de compra $\approx$ Carro(c)
+\item cv es un carro de compra vacio $\approx$ CarroVacio(cv)
+\item s es un sistema de compra $\approx$ SistemaDeCompra(s)
+\item res es un mensaje resportado por el sistema indicando si una operacion se realizo exitosamente o hubo un error $\approx$ RES(res)
+\item Mensaje de exito de una operacion $\approx$ ok
+\item Mensaje de error de un cliente no iniciado al sistema $\approx$ errorClienteNoIniciado
+\item Mensaje de error de un cliente ya iniciado al sistema $\approx$ errorClienteIniciado
+\item Mensaje de error de faltante de un producto en stock $\approx$ errorNoHayStock
+\item Mensaje de error de un producto que no se encuentra en el carro del cliente $\approx$ errorProductoNoExisteEnCarro
+\item Mensaje de error de un producto que ya se encuentra en el carro del cliente $\approx$ errorProductoExiteEnCarro
+\item cant es la cantidad de un producto $\approx$ CANTIDAD(cant)
+\item Operacion para agregar una cantidad de un producto a un carro $\approx$ CAgregarProducto
+\item Operacion para eliminar un producto a un carro $\approx$ CEliminarProducto
+\item Operacion para editar una cantidad de un producto a un carro $\approx$ CEditarCantidadProducto
+\item Operacion para un usuario para agregar una cantidad de un producto a su carro $\approx$ SCAgregarProducto
+\item Operacion para un usuario para eliminar un producto a su carro $\approx$ SCEliminarProducto
+\item Operacion para un usuario para editar una cantidad de un producto a su carro $\approx$ SCEditarProducto
+\item Operacion para un usuario para iniciar al sistema $\approx$ SCIniciarCompra
+\item Operacion para un usuario para finalizar su compra en el sistema $\approx$ SCFinalizarCompra
+\end{itemize}
+
+\begin{zed}
+[ MAIL, NOMBREPRODUCTO ] \\
+RES ::= ok | errorClienteNoIniciado | errorClienteIniciado \\
+\t1 | errorNoHayStock | errorProductoNoExisteEnCarro \\
+\t1 | errorProductoExiteEnCarro \\
+CANTIDAD == \nat
+\end{zed}
+
+\begin{schema}{Carro}
+productos: NOMBREPRODUCTO \pfun CANTIDAD
+\end{schema}
+
+\begin{schema}{SistemaDeCompra}
+clientes: MAIL \pfun Carro \\
+stock: NOMBREPRODUCTO \pfun CANTIDAD
+\end{schema}
+
+\begin{schema}{CAgregarProductoOk}
+\Delta Carro \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: CANTIDAD
+\where
+nombProd? \notin \dom productos \\
+cant? > 0 \\
+productos' = productos \cup \{ nombProd? \mapsto cant? \}
+\end{schema}
+
+\begin{schema}{CAgregarProductoErrorCantidadNula}
+\Xi Carro \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: \nat
+\where
+nombProd? \notin \dom productos \\
+cant? = 0
+\end{schema}
+
+\begin{zed}
+CAgregarProducto == CAgregarProductoOk \\
+\t1 \lor CAgregarProductoErrorCantidadNula
+\end{zed}
+
+\begin{schema}{CEliminarProducto}
+\Delta Carro \\
+nombProd?: NOMBREPRODUCTO
+\where
+productos' = \{ nombProd? \} \ndres productos
+\end{schema}
+
+\begin{schema}{CEditarCantidadProducto}
+\Delta Carro \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: CANTIDAD
+\where
+nombProd? \in \dom productos \\
+cant? > 0 \\
+productos' = productos \oplus \{ nombProd? \mapsto cant? \}
+\end{schema}
+
+\begin{schema}{ErrorClienteNoIniciado}
+\Xi SistemaDeCompra \\
+mail?: MAIL \\
+res!: RES
+\where
+mail? \notin \dom clientes \\
+res! = errorClienteNoIniciado
+\end{schema}
+
+\begin{schema}{CarroASistemaDeCompra}
+\Delta SistemaDeCompra \\
+\Delta Carro \\
+mail?: MAIL
+\where
+mail? \in \dom clientes \\
+clientes \: mail? = \theta Carro \\
+clientes' = clientes \oplus \{ mail? \mapsto \theta Carro\ ' \} \\
+\end{schema}
+
+\begin{schema}{SCAgregarProductoOk}
+CarroASistemaDeCompra \\
+CAgregarProducto \\
+res!: RES
+\where
+nombProd? \in \dom stock \land (stock \: nombProd?) \geq cant? \\
+nombProd? \notin \dom (clientes \: mail?).productos \\
+stock' = stock \oplus \{ nombProd? \mapsto (stock \: nombProd?) - cant? \} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{SCAgregarProductoErrorNoHayStock}
+\Xi SistemaDeCompra \\
+CarroASistemaDeCompra \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: CANTIDAD \\
+res!: RES
+\where
+nombProd? \notin \dom stock \lor (stock \: nombProd?) < cant? \\
+res! = errorNoHayStock
+\end{schema}
+
+\begin{schema}{SCAgregarProductoErrorExisteProducto}
+\Xi SistemaDeCompra \\
+CarroASistemaDeCompra \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: CANTIDAD \\
+res!: RES
+\where
+nombProd? \in \dom stock \land (stock \: nombProd?) \geq cant? \\
+nombProd? \in \dom (clientes \: mail?).productos \\
+res! = errorProductoExiteEnCarro
+\end{schema}
+
+\begin{zed}
+SCAgregarProductoError == SCAgregarProductoErrorNoHayStock \\
+\t1 \lor SCAgregarProductoErrorExisteProducto \\
+SCAgregarProducto == ErrorClienteNoIniciado \\
+\t1 \lor SCAgregarProductoOk \\
+\t1 \lor SCAgregarProductoError  \\
+\end{zed}
+
+\begin{schema}{ErrorProductoNoExisteEnCarro}
+\Xi SistemaDeCompra \\
+CarroASistemaDeCompra \\
+nombProd?: NOMBREPRODUCTO \\
+res!: RES
+\where
+nombProd? \notin \dom (clientes \: mail?).productos \\
+res! = errorProductoNoExisteEnCarro
+\end{schema}
+
+\begin{schema}{SCEliminarProductoOk}
+CarroASistemaDeCompra \\
+CEliminarProducto \\
+res!: RES
+\where
+nombProd? \in \dom (clientes \: mail?).productos \\
+stock' = \\
+\t1 stock \\
+\t1 \oplus \{ nombProd? \mapsto (stock \: nombProd?) + (clientes \: mail?).productos \: nombProd? \} \\
+res! = ok
+\end{schema}
+
+\begin{zed}
+SCEliminarProducto == ErrorClienteNoIniciado \\
+\t1 \lor SCEliminarProductoOk \\
+\t1 \lor ErrorProductoNoExisteEnCarro
+\end{zed}
+
+\begin{schema}{SCEditarDisminuirProductoOk}
+CarroASistemaDeCompra \\
+CEditarCantidadProducto \\
+res!: RES
+\where
+nombProd? \in \dom (clientes \: mail?).productos \\
+nombProd? \in \dom stock \\
+cant? > 0 \\
+cant? \leq ((clientes \: mail?).productos \: nombProd?) \\
+stock' = \\ 
+\t1 stock \\
+\t1 \oplus \{ nombProd? \mapsto \\
+\t2 (stock \: nombProd?) + (((clientes \: mail?).productos \: nombProd?) - cant?) \} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{SCEditarAumentarProductoOk}
+CarroASistemaDeCompra \\
+CEditarCantidadProducto \\
+res!: RES
+\where
+nombProd? \in \dom (clientes \: mail?).productos \\
+nombProd? \in \dom stock \\
+cant? > 0 \\
+cant? \leq ((clientes \: mail?).productos \: nombProd?) + (stock \: nombProd?) \\
+stock' = \\ 
+\t1 stock \\
+\t1 \oplus \{ nombProd? \mapsto \\
+\t2 (stock \: nombProd?) - (cant? - ((clientes \: mail?).productos \: nombProd?)) \} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{SCEditarProductoEliminar}
+CarroASistemaDeCompra \\
+CEliminarProducto \\
+cant?: CANTIDAD \\
+res!: RES
+\where
+nombProd? \in \dom (clientes \: mail?).productos \\
+nombProd? \in \dom stock \\
+cant? = 0 \\
+stock' = \\ 
+\t1 stock \\
+\t1 \oplus \{ nombProd? \mapsto \\
+\t2 (stock \: nombProd?) + ((clientes \: mail?).productos \: nombProd?) \} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{SCEditarAumentarProductoError}
+\Xi SistemaDeCompra \\
+CarroASistemaDeCompra \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: CANTIDAD \\
+res!: RES
+\where
+nombProd? \in \dom (clientes \: mail?).productos \\
+nombProd? \in \dom stock \\
+cant? > 0 \\
+cant? > ((clientes \: mail?).productos \: nombProd?) + (stock \: nombProd?) \\
+res! = errorNoHayStock
+\end{schema}
+
+\begin{schema}{SCEditarProductoErrorProductoNoHayStock}
+\Xi SistemaDeCompra \\
+CarroASistemaDeCompra \\
+nombProd?: NOMBREPRODUCTO \\
+cant?: CANTIDAD \\
+res!: RES
+\where
+nombProd? \in \dom (clientes \: mail?).productos \\
+nombProd? \notin \dom stock \\
+res! = errorNoHayStock
+\end{schema}
+
+\begin{zed}
+SCEditarAumentarProducto == SCEditarAumentarProductoOk \\
+\t1 \lor SCEditarAumentarProductoError \\
+SCEditarProductoError == ErrorClienteNoIniciado \\
+\t1 \lor ErrorProductoNoExisteEnCarro \\
+\t1 \lor SCEditarProductoErrorProductoNoHayStock \\
+SCEditarProducto == SCEditarAumentarProducto \\
+\t1 \lor SCEditarDisminuirProductoOk \\
+\t1 \lor SCEditarProductoEliminar \\
+\t1 \lor SCEditarProductoError 
+\end{zed}
+
+\begin{schema}{CarroVacio}
+Carro
+\where
+productos = \emptyset
+\end{schema}
+
+\begin{schema}{SCIniciarCompraOk}
+\Delta SistemaDeCompra \\
+CarroVacio \\
+mail?: MAIL \\
+res!: RES
+\where
+mail? \notin \dom clientes \\
+clientes' = clientes \cup \{ mail? \mapsto \theta Carro \} \\
+stock' = stock \\
+res! = ok
+\end{schema}
+
+\begin{schema}{SCIniciarCompraError}
+\Xi SistemaDeCompra \\
+CarroVacio \\
+mail?: MAIL \\
+res!: RES
+\where
+mail? \in \dom clientes \\
+res! = errorClienteIniciado
+\end{schema}
+
+\begin{zed}
+SCIniciarCompra == SCIniciarCompraOk \lor SCIniciarCompraError
+\end{zed}
+
+\begin{schema}{SCFinalizarCompraOk}
+\Delta SistemaDeCompra \\
+mail?: MAIL \\
+res!: RES
+\where
+mail? \in \dom clientes \\
+clientes' = \{ mail? \} \ndres clientes \\
+stock' = stock \\
+res! = ok
+\end{schema}
+
+\begin{schema}{SCFinalizarCompraError}
+\Xi SistemaDeCompra \\
+mail?: MAIL \\
+res!: RES
+\where
+mail? \notin \dom clientes \\
+res! = errorClienteNoIniciado
+\end{schema}
+
+\begin{zed}
+SCFinalizarCompra == SCFinalizarCompraOk \lor SCFinalizarCompraError
+\end{zed}
+
+\end{document}

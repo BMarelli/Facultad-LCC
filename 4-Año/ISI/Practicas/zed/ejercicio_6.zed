@@ -7,7 +7,7 @@
 [NOMBRE, ENCABEZADO, CUERPO, USUARIO] \\
 ROLES ::= autor | editor | lector \\
 RES ::= ok | errorUsuarioInvalido | errorPermisosInvalidos | errorProgramaExiste \\
-\t1 | errorProgramaNoExiste | errorUsuarioBloqueado
+\t1 | errorProgramaNoExiste | errorUsuarioBloqueado | errorUsuarioNoBloqueado
 \end{zed}
 
 \begin{schema}{Programa}
@@ -93,7 +93,7 @@ res!: RES
 \where
 autor \in users \: edit? \lor editor \in users \: edit? \lor lector \in users \: edit? \\
 nom? \in \dom lineaBase \\
-prog! = head (lineaBase \: nom?) \\
+prog! = last~ (lineaBase \: nom?) \\
 res! = ok
 \end{schema}
 
@@ -130,7 +130,10 @@ res!: RES
 autor \in users \: edit? \lor editor \in users \: edit? \\
 edit? \notin hacerDelta \\
 nomb? \in \dom lineaBase \\
-prog! = head (lineaBase \: nomb?) \\
+prog! = last~ (lineaBase \: nomb?) \\
+lineaBase' = lineaBase \\
+users' = users \\
+hacerDelta' = hacerDelta \cup \{ edit? \} \\
 res! = ok
 \end{schema}
 
@@ -140,7 +143,7 @@ edit?: USUARIO \\
 nomb?: NOMBRE \\
 res!: RES
 \where
-autor \notin users \: edit? \lor editor \notin users \: edit? \\
+autor \notin users \: edit? \land editor \notin users \: edit? \\
 res! = errorPermisosInvalidos
 \end{schema}
 
@@ -172,6 +175,115 @@ EditError == EditErrorPermisosInvalidos \\
 \t1 \lor EditErrorUsuarioBloqueado \\
 \t1 \lor EditErrorProgramaNoExiste \\
 Edit == EditOk \lor EditError
+\end{zed}
+
+\begin{schema}{DeltaOk}
+\Delta CVS \\
+EditarPrograma \\
+edit?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \\
+nom? \in \dom lineaBase \\
+edit? \in hacerDelta \\
+last~ (lineaBase \: nom?) = \theta Programa \\
+lineaBase' = lineaBase \oplus \{ nom? \mapsto (lineaBase \: nom? \cat \langle \theta Programa\ ' \rangle ) \} \\
+users' = users \\
+hacerDelta' = hacerDelta \setminus \{ edit? \} \\
+res! = ok
+\end{schema}
+
+\begin{schema}{DeltaErrorPermisosInvalidos}
+\Xi CVS \\
+edit?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+autor \notin users \: edit? \land editor \notin users \: edit? \\
+res! = errorPermisosInvalidos
+\end{schema}
+
+\begin{schema}{DeltaErrorProgramaNoExiste}
+\Xi CVS \\
+edit?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \\
+nom? \notin \dom lineaBase \\
+res! = errorProgramaNoExiste
+\end{schema}
+
+\begin{schema}{DeltaErrorUsuarioNoBloqueado}
+\Xi CVS \\
+edit?: USUARIO \\
+nom?: NOMBRE \\
+res!: RES
+\where
+autor \in users \: edit? \lor editor \in users \: edit? \\
+nom? \in \dom lineaBase \\
+edit? \notin hacerDelta \\
+res! = errorUsuarioNoBloqueado
+\end{schema}
+
+\begin{zed}
+  DeltaError == DeltaErrorPermisosInvalidos \\
+  \t1 \lor DeltaErrorProgramaNoExiste \\
+  \t1 \lor DeltaErrorUsuarioNoBloqueado \\
+  Deta == DeltaOk \lor DeltaError
+\end{zed}
+
+\begin{schema}{DeleteOk}
+\Delta CVS \\
+auth?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \land autor \in users \: auth? \\
+nomb? \in \dom lineaBase \\
+lineaBase' = \{ nomb? \} \ndres lineaBase \\
+users' = users \\
+hacerDelta' = hacerDelta \\
+res! = ok 
+\end{schema}
+
+\begin{schema}{DeleteErrorUsuarioInvalido}
+\Xi CVS \\
+auth?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \\
+res! = errorUsuarioInvalido 
+\end{schema}
+
+\begin{schema}{DeleteErrorPermisosInvalidos}
+\Xi CVS \\
+auth?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \land autor \notin users \: auth? \\
+res! = errorPermisosInvalidos
+\end{schema}
+
+\begin{schema}{DeleteErrorProgramaNoExiste}
+\Xi CVS \\
+auth?: USUARIO \\
+nomb?: NOMBRE \\
+res!: RES
+\where
+auth? \in \dom users \land autor \in users \: auth? \\
+nomb? \notin \dom lineaBase \\
+res! = errorProgramaNoExiste
+\end{schema}
+
+\begin{zed}
+  DeleteError == DeleteErrorUsuarioInvalido \\
+  \t1 \lor DeleteErrorPermisosInvalidos \\
+  \t1 \lor DeleteErrorProgramaNoExiste \\
+  Delete == DeleteOk \lor DeleteError
 \end{zed}
 
 \end{document}
