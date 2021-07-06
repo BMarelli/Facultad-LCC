@@ -1,0 +1,74 @@
+[System]
+Name='Trabajo Practico - Etapa 1'
+Ninputs=3
+Noutputs=1
+Nrules=21
+Nexceptions=0
+Conjunction='prod'
+MissingValues='random'
+
+[Input1]
+Active='yes'
+Name='Complejidad'
+Range=[       0.000 ,      10.000 ]
+NMFs=3
+MF1='Baja','SemiTrapezoidalInf',[       0.000 ,       3.000 ,       4.500 ]
+MF2='Media','trapezoidal',[       2.000 ,       3.500 ,       6.500 ,       8.000 ]
+MF3='Alta','SemiTrapezoidalSup',[       5.500 ,       7.000 ,      10.000 ]
+
+[Input2]
+Active='yes'
+Name='Errores'
+Range=[       0.000 ,      20.000 ]
+NMFs=3
+MF1='Muy pocos','SemiTrapezoidalInf',[       0.000 ,       0.000 ,       4.000 ]
+MF2='Pocos','trapezoidal',[       0.000 ,       2.000 ,       8.000 ,      10.000 ]
+MF3='Muchos','SemiTrapezoidalSup',[       8.000 ,      12.000 ,      20.000 ]
+
+[Input3]
+Active='yes'
+Name='Rendimiento'
+Range=[       0.000 ,      10.000 ]
+NMFs=3
+MF1='Pobre','SemiTrapezoidalInf',[       0.000 ,       2.000 ,       4.000 ]
+MF2='Medio','trapezoidal',[       2.000 ,       4.000 ,       6.000 ,       8.000 ]
+MF3='Bueno','SemiTrapezoidalSup',[       6.000 ,       8.000 ,      10.000 ]
+
+[Output1]
+Nature='fuzzy'
+Defuzzification='area'
+Disjunction='sum'
+DefaultValue=      -1.000 
+Classif='yes' 
+Active='yes'
+Name='Nota parcial de codigo'
+Range=[       0.000 ,      10.000 ]
+NMFs=3
+MF1='Mala','SemiTrapezoidalInf',[      -2.309 ,       3.000 ,       4.000 ]
+MF2='Regular','trapezoidal',[       2.000 ,       4.000 ,       6.000 ,       8.000 ]
+MF3='Excelente','SemiTrapezoidalSup',[       6.000 ,       7.000 ,      12.309 ]
+
+[Rules]
+1, 3, 0,        1.000 ,
+1, 2, 1,        1.000 ,
+1, 2, 2,        2.000 ,
+1, 2, 3,        2.000 ,
+1, 1, 1,        2.000 ,
+1, 1, 2,        2.000 ,
+1, 1, 3,        3.000 ,
+2, 3, 1,        1.000 ,
+2, 3, 2,        2.000 ,
+2, 3, 3,        2.000 ,
+2, 2, 0,        2.000 ,
+2, 1, 1,        2.000 ,
+2, 1, 2,        3.000 ,
+2, 1, 3,        3.000 ,
+3, 3, 1,        1.000 ,
+3, 3, 2,        2.000 ,
+3, 3, 3,        2.000 ,
+3, 2, 1,        2.000 ,
+3, 2, 2,        3.000 ,
+3, 2, 3,        3.000 ,
+3, 1, 0,        3.000 ,
+
+[Exceptions]
