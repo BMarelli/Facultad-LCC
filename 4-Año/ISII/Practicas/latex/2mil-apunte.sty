@@ -1,0 +1,80 @@
+\newcommand{\modulo}{{\bf Module }}
+
+\newenvironment{module}[1]{\hypertarget{mi:#1}{}\vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\linewidth} p{0.7\linewidth}|} \hline \modulo &{\bf #1} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{moduleNODP}[1]{\hypertarget{mi:#1}{}\vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\linewidth} p{0.7\linewidth}|} \hline \modulo &{\bf #1} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{gmodule}[2]{\hypertarget{mi:#1}{} \vspace{0.5cm}\noindent\begin{tabular}{|p{0.25\linewidth} p{0.65\linewidth}|} \hline {\bf Generic Module} & {\bf #1(#2)} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{gmoduleNODP}[2]{\hypertarget{mi:#1}{} \vspace{0.5cm}\noindent\begin{tabular}{|p{0.25\linewidth} p{0.65\linewidth}|} \hline & \multicolumn{1}{r|}{\hyperlink{mg:#1}{\fbox{MG}}} \\ {\bf Generic Module} & {\bf #1(#2)} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{hmodule}[2]{\hypertarget{mi:#1}{} \vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\linewidth} p{0.7\linewidth}|} \hline {\bf Module} & {\bf #1 inherits from} \hyperlink{mi:#2}{#2} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{hmoduleNODP}[2]{\hypertarget{mi:#1}{} \vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\linewidth} p{0.7\linewidth}|} \hline & \multicolumn{1}{r|}{\hyperlink{mg:#1}{\fbox{MG}}} \\ {\bf Module} & {\bf #1 inherits from} \hyperlink{mi:#2}{#2} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newcommand{\cmodule}[3]{\hypertarget{mi:#1}{} \vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\linewidth} p{0.7\linewidth}|} \hline {\bf Module} & {\bf #1 is} \hyperlink{mi:#2}{#2}(\hyperlink{mi:#3}{#3})\\ \hline\end{tabular}\vspace{0.5cm}}
+
+\newcommand{\cmoduleNODP}[3]{\hypertarget{mi:#1}{} \vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\linewidth} p{0.7\linewidth}|} \hline & \multicolumn{1}{r|}{\hyperlink{mg:#1}{\fbox{MG}}}  \\ {\bf Module} & {\bf #1 is} \hyperlink{mi:#2}{#2}(\hyperlink{mi:#3}{#3})\\ \hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{pattern}[1]{\vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\textwidth} p{0.75\textwidth}|} \hline{\bf Pattern} & {\bf #1} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{ipattern}[1]{\vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\textwidth} p{0.75\textwidth}|} \hline{\bf Pattern} & {\bf #1} \\}{\hline\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{fpattern}[1]{\vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\textwidth} p{0.75\textwidth}|} \hline\hline & {\bf #1 (cont.)} \\}{\hline\end{tabular}\vspace{0.5cm}}
+
+\newenvironment{mpattern}[1]{\vspace{0.5cm}\noindent\begin{tabular}{|p{0.2\textwidth} p{0.75\textwidth}|} \hline\hline & {\bf #1 (cont.)} \\}{\hline\hline\end{tabular}\vspace{0.5cm}}
+
+\newcommand{\eproc}{{\bf exportsproc}}
+
+\newcommand{\priv}{{\bf private}}
+
+\newcommand{\proc}[1]{& #1 \\}
+
+\newcommand{\e}[1]{{\bf i} \hyperlink{mi:#1}{#1}}
+
+\newcommand{\eb}[1]{{\bf i} #1}
+
+\newcommand{\s}[1]{{\bf o} \hyperlink{mi:#1}{#1}}
+
+\newcommand{\es}[1]{{\bf io} \hyperlink{mi:#1}{#1}}
+
+\newcommand{\compr}{{\bf comprises}}
+
+\newcommand{\subm}[1]{& \hyperlink{mi:#1}{#1} \\}
+
+\newcommand{\imp}[1]{{\bf imports} & #1 \\}
+
+\newcommand{\minh}[1]{{\bf inherits from} & #1 \\}
+
+\newcommand{\super}[1]{{\bf is parent of} & #1 \\}
+
+\newcommand{\comm}[1]{{\bf comments} & #1 \\}
+
+\newcommand{\mdr}[1]{\hyperlink{mi:#1}{#1}}
+
+\newcommand{\rmg}[1]{\hyperlink{mg:#1}{#1}}
+
+\newcommand{\rdp}[1]{\hypertarget{dp:#1}{}\hyperlink{mi:#1}{#1}}
+
+\newcommand*{\ra}{\rightarrow}
+\newcommand*{\new}{\text{{\bf new} }}
+\newcommand*{\ec}{\mathbin{\Box}}
+
+\newcommand{\based}[1]{{\bf based on} & #1 \\}
+
+\newcommand{\assigns}{{\bf where}}
+
+\newcommand{\is}[2]{& #1 {\bf is} #2 \\}
+
+\newcommand{\dueto}[1]{{\bf because} & #1 \\}
+
+\newcommand{\proto}[1]{{\bf protocol} & #1 \\}
+\newcommand{\inp}{{\bf inports}}
+
+\newcommand{\outp}{{\bf outports}}
+
+\newcommand{\ann}{{\bf announces}}
+
+\newcommand{\coe}{{\bf callonevent}}
+
+\newcommand{\call}[2]{& #1 {\bf calls} #2 \\}

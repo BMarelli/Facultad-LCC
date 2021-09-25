@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper,fleqn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\input{2mil-apunte.sty}
+\usepackage[pdftex,colorlinks,linkcolor=blue]{hyperref}
+\usepackage[cm]{fullpage}
+
+\title{DBOI - Ejercicio 2}
+\author{Bautista Marelli}
+\date{September 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Items de Cambio}
+\begin{itemize}
+    \item Sensor iluminación
+    \item Focos luz
+    \item Hardware varillas
+    \item Hardware motor elevación
+    \item Ventana
+    \item Sistema iluminación artificial
+\end{itemize}
+
+\section{Modulos}
+
+\begin{module}{Sensor Luz}
+\eproc
+\proc{inicializar()}
+\proc{medir\_iluminación()}
+\end{module}
+
+\begin{module}{Focos Luz}
+\eproc
+\proc{on():Bool}
+\proc{off():Bool}
+\proc{intensidad(i valor)}
+\end{module}
+
+\begin{module}{Hardware varillas}
+\eproc
+\proc{abrir():Bool}
+\proc{cerrar():Bool}
+\proc{rotar(i grado)}
+\end{module}
+
+\begin{module}{Hardware motor elevación}
+\eproc
+\proc{inicializar()}
+\proc{subir():Bool}
+\proc{bajar():Bool}
+\end{module}
+
+\begin{module}{Ventana}
+\imp{\mdr{Hardware varillas}, \mdr{Hardware motor elevación}}
+\eproc
+\proc{inicializar()}
+\proc{aumentar\_iluminación()}
+\proc{disminuir\_iluminación()}
+\end{module}
+
+\begin{module}{Sistema iluminación artificial}
+\imp{\mdr{Focos Luz}, \mdr{Sensor Luz}}
+\eproc
+\proc{inicializar()}
+\proc{aumentar\_iluminación()}
+\proc{disminuir\_iluminación()}
+\end{module}
+
+\begin{module}{Sistema de Control}
+\imp{\mdr{Sistema iluminación artificial}, \mdr{Ventana}}
+\eproc
+\proc{on()}
+\proc{off()}
+\end{module}
+
+\end{document}

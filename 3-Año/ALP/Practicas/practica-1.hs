@@ -2,141 +2,194 @@ import Parsing
 import Control.Monad
 import Control.Applicative hiding (many)
 
--- EJERCICIO 2
-expr :: Parser Int
-expr = do t <- term
-          (do char '+'
-              e <- expr
-              return (t+e)
-              <|> (do char '-'
-                      e <- expr
-                      return (t-e)
-                      <|> return t))
-
-term :: Parser Int
-term = do f <- factor
-          (do char '*'
-              t <- term
-              return (f*t)
-              <|> (do char '/'
-                      t <- term
-                      return (div f t)
-                      <|> return f))
-
-dig2int :: Char -> Int
-dig2int '0' = 0
-dig2int '1' = 1
-dig2int '2' = 2
-dig2int '3' = 3
-dig2int '4' = 4
-dig2int '5' = 5
-dig2int '6' = 6
-dig2int '7' = 7
-dig2int '8' = 8
-dig2int '9' = 9
-
+-- Ejercicio 1
 
 factor :: Parser Int
-factor = do d <- digit
-            return (dig2int d)
-         <|> do char '('
-                e <- expr
-                char ')'
-                return e
+factor = nat
+         <|>
+         do { char '('; e <- expr; char ')'; return e }
 
-eval :: String -> Int
-eval xs = fst(head(parse expr xs)) 
+term :: Parser Int
+term = do { f <- factor; do { char '*'; t <- term; return (f*t) }
+                         <|>
+                         do { char '/'; t <- term; return (div f t) } }
+       <|> factor
 
--- EJERCICIO 3
-transform :: Parser a -> Parser a
-transform p = do t <- p
-                 return t
-                 <|> do char '('
-                        t <- p
-                        char ')'
-                        return t
+expr :: Parser Int
+expr = do { t <- term; do { char '+'; exp <- expr; return (t+exp) } 
+                       <|>
+                       do { char '-'; exp <- expr; return (t-exp) } }
+       <|> term
 
--- EJERCICIO 4
-data Expr = Num Int | BinOp Op Expr Expr deriving Show
+-- Ejercicio 3
+parens :: Parser a -> Parser a
+parens p = do char '('
+              res <- p
+              char ')'
+              return res
+           <|>
+           do p
+
+-- Ejercicio 4
 data Op = Add | Mul | Min | Div deriving Show
+data Expr = Num Int | BinOp Op Expr Expr deriving Show
 
-exprT :: Parser Expr
-exprT = do t <- termT
-           (do char '+'
-               e <- exprT
-               return (BinOp Add t e)
-               <|>(do char '-'
-                      e <- exprT
-                      return (BinOp Min t e)
-                      <|> return t))
+term' :: Parser Expr
+term' = do f <- factor'
+           do char '*'
+              t <- term'
+              return (BinOp Mul f t)
+            <|>
+            do char '/'
+               t <- term'
+               return (BinOp Div f t)
+        <|> factor'
 
-termT :: Parser Expr
-termT = do f <- factorT
-           (do char '*'
-               t <- termT
-               return (BinOp Mul f t)
-               <|> (do char '/'
-                       t <- termT
-                       return (BinOp Div f t)
-                       <|> return f))
+factor' :: Parser Expr
+factor' = do n <- nat
+             return (Num n)
+          <|>
+          do char '('
+             exp <- expr'
+             char ')'
+             return exp
 
-factorT :: Parser Expr
-factorT = do d <- digit
-             return (Num (dig2int d))
-          <|> do char '('
-                 e <- exprT
-                 char ')'
-                 return e
+expr' :: Parser Expr
+expr' = do t <- term'
+           do char '+'
+              exp <- expr'
+              return (BinOp Add t exp)
+            <|>
+            do char '-'
+               exp <- expr'
+               return (BinOp Min t exp)
+        <|> term'
 
-evalT :: String -> Expr
-evalT xs = fst(head(parse exprT xs)) 
+-- Ejercicio 5
+type Elements = Either Int Char
+lista :: Parser [Elements]
+lista = do char '['
+           xs <- sepBy elements (char ',')
+           char ']'
+           return xs
+    where
+      elements :: Parser Elements
+      elements = do n <- nat
+                    return (Left n)
+                  <|>
+                  do char '\''
+                     l <- letter
+                     char '\''
+                     return (Right l)
 
--- EJERCICIO 5
-type HElement = Either Char Int
-
-elementHList :: Parser HElement
-elementHList = do n <- nat
-                  return (Right n)
-                <|> do char '\''
-                       c <- letter
-                       char '\''
-                       return (Left c)
-
-parserHList :: Parser [HElement]
-parserHList = do char '['
-                 xs <- sepBy elementHList (char ',')
-                 char ']'
-                 return xs
-
--- EJERCICIO 6
+-- Ejercicio 6
 data BaseType = DInt | DChar | DFloat deriving Show
-type HaskType = [BaseType]
+type HaskellType = [BaseType]
 
-parseBase :: Parser BaseType
-parseBase = (string "Int" >> return DInt)
+baseType :: Parser BaseType
+baseType = (string "Int" >> return DInt)
+           <|>
+           (string "Char" >> return DChar)
+           <|>
+           (string "Float" >> return DFloat)
+
+haskellType :: Parser HaskellType
+haskellType = do sepBy baseType (symbol "->")
+
+-- Ejercicio 7
+data HaskellType2 = DInt2 | DChar2 | DFloat2 | Fun HaskellType2 HaskellType2 deriving Show
+
+baseType2 :: Parser HaskellType2
+baseType2 = (string "Int" >> return DInt2)
             <|>
-            (string "Char" >> return DChar)
+            (string "Char" >> return DChar2)
             <|>
-            (string "Float" >> return DFloat)
-               
-parserHasktype :: Parser HaskType
-parserHasktype = sepBy parseBase (symbol "->")
+            (string "Float" >> return DFloat2)
 
--- EJERCICIO 7
-data HaskType_ = DInt_ | DChar_ | Func_ HaskType_ HaskType_ deriving Show
+haskellType2 :: Parser HaskellType2
+haskellType2 = do t <- baseType2
+                  do symbol "->"
+                     t' <- haskellType2
+                     return (Fun t t')
+               <|>
+               baseType2
 
-parseBase_ :: Parser HaskType_
-parseBase_ = (string "Int" >> return DInt_)
+-- Ejercicio 8
+
+expr_ ::Parser Int
+expr_ = do t <- term_
+           expr_' t
+    where
+      expr_' :: Int -> Parser Int
+      expr_' n = do char '+'
+                    t' <- term_
+                    expr_' (n + t')
+                 <|>
+                 do char '-'
+                    t' <- term_
+                    expr_' (n - t')
+                 <|>
+                 return n
+
+term_ :: Parser Int
+term_ = do f <- factor
+           term_' f
+    where
+      term_' :: Int -> Parser Int
+      term_' n = do char '*'
+                    f' <- factor
+                    term_' (n * f')
+                 <|>
+                 do char '/'
+                    f' <- factor
+                    term_' (div n f')
+                 <|>
+                 return n
+
+factor_ :: Parser Int
+factor_ = do nat
+          <|>
+          do char '('
+             exp <- expr_
+             char ')'
+             return exp
+
+-- Ejercicio 9
+{-
+direct_declarator -> '(' direct_declarator ')' direct_declarator' | ident direct_declarator'
+direct_declarator' -> E | '[' constant ']' direct_declarator'
+-}
+
+data Type = TInt | TFloat | TChar deriving Show
+data Values = Array Values Int | Pointer Values | Ident String  deriving Show
+data Declaration = Dec Values Type deriving Show
+
+declaration :: Parser Declaration
+declaration = do t <- typeSpecifier
+                 v <- declarator
+                 symbol ";"
+                 return (Dec v t)
+                 
+typeSpecifier :: Parser Type
+typeSpecifier = (string "int" >> return TInt)
+                 <|>
+                 (string "char" >> return TChar)
+                 <|>
+                 (string "float" >> return TFloat)
+
+declarator :: Parser Values
+declarator = do { symbol "*"; dec <- declarator; return (Pointer dec) }
              <|>
-             (string "Char" >> return DChar_)
+             directDeclarator
 
-parserHasktype_ :: Parser HaskType_
-parserHasktype_ = do h1 <- parseBase_
-                     (do symbol "->"
-                         h2 <- parserHasktype_
-                         return (Func_ h1 h2)
-                         <|> return h1)
-
-
--- EJERCICIO 9
+directDeclarator :: Parser Values
+directDeclarator = do { symbol "("; dd <- directDeclarator; dd' <- directDeclarator' dd; symbol ")"; return dd' }
+                   <|>
+                   do { ss <- identifier; directDeclarator' (Ident ss) }
+    where
+      directDeclarator' :: Values -> Parser Values
+      directDeclarator' v = do { symbol "["; n <- nat; symbol "]"; directDeclarator' (Array v n) }
+                            <|>
+                            return v
+                    
 
