@@ -143,15 +143,15 @@
   (major1) == 2 && (major2) == 23 && (minor) <= 0)
 #endif /* MIN_TOOL_VERSION_haddock */
 
-/* tool happy-1.19.11 */
+/* tool happy-1.19.12 */
 #ifndef TOOL_VERSION_happy
-#define TOOL_VERSION_happy "1.19.11"
+#define TOOL_VERSION_happy "1.19.12"
 #endif /* TOOL_VERSION_happy */
 #ifndef MIN_TOOL_VERSION_happy
 #define MIN_TOOL_VERSION_happy(major1,major2,minor) (\
   (major1) <  1 || \
   (major1) == 1 && (major2) <  19 || \
-  (major1) == 1 && (major2) == 19 && (minor) <= 11)
+  (major1) == 1 && (major2) == 19 && (minor) <= 12)
 #endif /* MIN_TOOL_VERSION_happy */
 
 /* tool hpc-0.67 */
