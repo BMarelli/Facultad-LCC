@@ -183,3 +183,184 @@ Segundo sub-neteo => /28
 200.113.2.111|1 ++++ -> sub-sub-sub-neteo Red
 
 **TODO:** _Hacerlo bien, ni idea de como se hace!!!_
+
+---
+
+# Practica para FINAL
+## Ejercicio 1
+- Clase A:
+1. 0.0.0.0 - 127.0.0.0
+2. 255.0.0.0/8
+3. 10.0.0.0 - 10.255.255.255
+
+- Clase B:
+1. 128.0.0.0 - 191.255.000.000
+2. 255.255.0.0/16
+3. 172.16.0.0 - 172.31.255.255
+
+- Clase C:
+1. 192.0.0.0 - 223.255.255.0
+2. 255.255.255.0/25
+3. 192.168.0.0 - 196.168.255.255
+
+- Clase D:
+1. 224.0.0.0 - 239.255.255.255
+2. /4
+
+- Clase E:
+1. 240.0.0.0 - 255.255.255.255
+2. /4
+
+## Ejercicio 2
+1. IP: 220.200.23.1
+- Clase: C
+- red: 220.200.23
+- host: 1
+- mascara: 255.255.255.0
+
+2. IP: 148.17.9.1
+- Clase: B
+- red: 148.17
+- host: 9.1
+- mascara: 255.255.0.0
+
+3. IP: 33.15.4.13
+- Clase: A
+- red: 33
+- host: 15.4.13
+- mascara: 255.0.0.0
+
+4. IP: 249.240.80.78
+- Clase: E
+
+5. IP: 230.230.45.68
+- Clase: D
+
+6. 192.68.12.8
+- Clase: C
+- red: 192.68.12
+- host: 8
+- mascara: 255.255.255.0
+
+## Ejercicio 3
+Tenemos la IP=174.56.7.0 => Sabemos que es de categoria B => mascara de /16.
+
+Si nosotros queremos representar 1020, busquemos n talque 2^n >= 1020.
+
+Si tomamos n=10 => 2^10 = 1024 > 1020. Luego utilizamos 10 bits para representar
+las subredes.
+
+Por lo tanto nos queda una mascara de 10+16 = /26
+Luego 32-26 = 6 -> 2^6 = 64 > 60 => Nos quedan 6 bits para los host y podemos representar los 60 host que queremos.
+
+## Ejercicio 4
+Tenemos la IP=210.66.56.0 => Categoria C => mascara de /24.
+
+Si queremos representar 6 subredes, necesitamos 3 bits => 2^3 = 8 > 6.
+
+La mascara nos queda 24+3 = /27.
+
+Nos quedan 32-27 = 5 bits para representar host. Para poder representar 30 hosts,
+necesitamos 5 bits, ya que 2^5 = 32 > 30.
+
+## Ejercicio 5
+1. Tenemos la IP=193.52.57.0 => Categoria C => mascara de /24.
+
+Supongamos que queremos representar 8 subredes (una por cada sucursal), necesitamos 3 bits, ya que 2^3 = 8.
+
+Luego la mascara nos queda 24+3 = /27
+
+Con esto, nos quedan 32-27 = 5 bits para represntar los hosts.
+=> 2^5 = 32 => 30 host podemos representar (dejamos para el loopback y brodcast) 
+
+2. Los rangos son:
+- IP-SUC1=193.52.57.0 (000+ ++++) => Rango: 193.52.57.1 - 193.52.57.30
+-> 193.52.57.0 loopback, 193.52.57.31 brodcast
+- IP-SUC2=193.52.57.32 (001+ ++++) => Rango: 193.52.57.32 - 193.52.57.62
+-> 193.52.57.32 loopback, 193.52.57.63 brodcast
+
+- IP-SUC8=193.52.57.224 (111+ ++++) => Rango: 193.52.57.225 - 193.52.57.254
+-> 193.52.57.224 loopback, 193.52.57.255 brodcast
+3. IP brodcast 193.52.57.127
+
+## Ejercicio 7
+1. Tenemos:
+- RED1=200.13.147.0
+- RED2=200.13.148.0
+- RED3=200.13.149.0
+
+Luego nos queda:
+- RED1:
+	- loopback=200.13.147.0
+	- brodcast=200.13.147.255
+	- A=200.13.147.1
+	- B=200.13.147.2
+	- C=200.13.147.3
+- RED2:
+	- loopback=200.13.148.0
+	- brodcast=200.13.148.255
+	- D=200.13.148.1
+	- E=200.13.148.2
+- RED3:
+	- loopback=200.13.149.0
+	- brodcast=200.13.149.255
+	- F=200.13.149.1
+	- G=200.13.149.2
+
+Tabla de ruteo de **R**:
+|       IP     | Mascara | Transmicion |
+|:------------:|:-------:|:-----------:|
+| 200.13.147.0 |   /26   |      ED     |
+| 200.13.148.0 |   /26   |      ED     |
+| 200.13.149.0 |   /26   |      ED     |
+
+
+2. Tenemos la IP=200.13.147.0 => Clase C => mascara /24
+
+Queremos crear 3 subredes => necesitamos 2 bits => mascara de /26.
+
+Podemos tener 32-26=6 bits para los host
+
+Nos queda:
+- RED1=200.13.147.0
+	- loopback=200.13.147.0
+	- brodcast=200.13.147.63
+	- A=200.13.147.1
+	- B=200.13.147.2
+	- C=200.13.147.3
+- RED2=200.13.147.64
+	- loopback=200.13.147.64
+	- brodcast=200.13.147.127
+	- D=200.13.147.65
+	- E=200.13.147.66
+- RED=200.13.147.128
+	- loopback=200.13.147.128
+	- brodcast=200.13.147.191
+	- F=200.13.147.129
+	- G=200.13.147.130
+- Internet=200.13.147.192
+
+Tabla de ruteo de **R**:
+|        IP      | Mascara | Transmicion |
+|:--------------:|:-------:|:-----------:|
+| 200.13.147.0   |   /26   |      ED     |
+| 200.13.147.64  |   /26   |      ED     |
+| 200.13.147.128 |   /26   |      ED     |
+| 200.13.147.192 |   /26   |      ED     |
+
+## Ejercicio 8
+Tenemos la IP=199.199.20.0
+
+1. Como la la IP es de categoria C => mascara /24.
+
+* RED1 y RED5 -> 50 hosts => necesitamos 6 bits
+* RED2, RED3, RED4 -> 28 hosts
+
+Vamos a utilizar 2 bits para realizar sub-neteos:
+
+- RED1=199.199.20.0/26 (00)
+- RED5=199.199.20.64/26 (01)
+- RED2=199.199.20.128/27 (10|0+)
+- RED3=199.199.20.160/27 (10|1+)
+- RED4=199.199.20.192/27 (11|0+)
+- INTERNET=199.199.20.224/27 (11|1+)

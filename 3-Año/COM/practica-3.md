@@ -9,11 +9,8 @@
 | OTROS | OTROS |
 
 ## Ejercicio 2
+Las cabeceras de extension bucan aumentar la velocidad de procesamiento en los
+routers.
+No tienen tamaño fijos ya que pueden aparecer algunas cabeceras y otras no.
 
 ## Ejercicio 3
-
-## Ejercicio 4
-1. FF01::1
-2. 2001:0:1234::C1C0:ABCD:0876
-
-
