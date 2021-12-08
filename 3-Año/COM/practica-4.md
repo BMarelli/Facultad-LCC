@@ -33,15 +33,15 @@ $ORIGIN fceia.unr.ar.
 				                                3h         ; nx = nxdomain ttl
                               				)
 
-		IN	NS	dns.fceia.unr.ar.
-		IN	MX	mail.fceia.unr.ar.
+		IN	NS		dns.fceia.unr.ar.
+		IN	MX		mail.fceia.unr.ar.
 
-PC1		IN	A	192.168.0.101
-PC2             IN      A       192.168.0.102
+PC1		IN	A		192.168.0.101
+PC2     IN  A       192.168.0.102
 ...
-PC12            IN      A       192.168.0.112
+PC12    IN  A       192.168.0.112
 www		IN	CNAME	PC11
-mail		IN	CNAME	PC12
+mail	IN	CNAME	PC12
 dns		IN	CNAME	PC12
 ```
 **Archivo rev.192**
@@ -108,16 +108,16 @@ $ORIGIN netflix.ar
                               	3w         ; expiry
                               	3h         ; nx = nxdomain ttl
                           		)
-			IN	NS		ns1.netflix.ar
-			IN	NS		ns2.lucifer.netflix.ar
-			IN 	MX 10	mx.netflix.ar
-			IN	MX 20	mx.lucifer.netflix.ar
+				IN	NS		ns1.netflix.ar
+				IN	NS		ns2.lucifer.netflix.ar
+				IN 	MX 10	mx.netflix.ar
+				IN	MX 20	mx.lucifer.netflix.ar
 
-www		IN	A	200.13.147.60
-ns1		IN	CNAME	www
-ns2.lucifer	IN	A	200.13.147.90
-mx		IN	A	200.13.147.59
-mx.lucifer	IN	A	200.13.147.113
+www				IN	A		200.13.147.60
+ns1				IN	CNAME	www
+ns2.lucifer		IN	A		200.13.147.90
+mx				IN	A		200.13.147.59
+mx.lucifer		IN	A		200.13.147.113
 ```
 
 **Archivo rev.db**
@@ -131,16 +131,16 @@ $ORIGIN	147.13.200.in-addr-arpa
                                                         3w         ; expiry
                                                         3h         ; nx = nxdomain ttl
                                                 	)
-			IN	NS	ns1.netflix.ar
-			IN 	NS	ns2.lucifer.netflix.ar
-			IN	MX 10	mx.netflix.ar
-			IN	MX 20	mx.lucifer.netflix.ar
+		IN	NS		ns1.netflix.ar
+		IN 	NS		ns2.lucifer.netflix.ar
+		IN	MX 10	mx.netflix.ar
+		IN	MX 20	mx.lucifer.netflix.ar
 
-60		IN	PTR	ns1.netflix.ar
-60		IN	PTR	www.netflix.ar
-59		IN	PTR	mx.netflix.ar
-90		IN	PTR	ns2.lucifer.netflix.ar
-113		IN	PTR	mx.lucifer.netflix.ar
+60		IN	PTR		ns1.netflix.ar
+60		IN	PTR		www.netflix.ar
+59		IN	PTR		mx.netflix.ar
+90		IN	PTR		ns2.lucifer.netflix.ar
+113		IN	PTR		mx.lucifer.netflix.ar
 ```
 
 ---
@@ -197,11 +197,11 @@ $ORIGIN basel.net
                         				3w         ; expiry = expiry
                         				2h         ; nx = nxdomain ttl
                         			)
-				IN	NS	ns1.basel.net
-				IN	NS	ns2.ba.basel.net
-				IN	MX 10	mx.ros.basel.net
+		IN	NS		ns1.basel.net
+		IN	NS		ns2.ba.basel.net
+		IN	MX 10	mx.ros.basel.net
 
-ns1			IN	AAAA	2001:067c:2294:1000:0000:0000:0000:f199
+ns1		IN	AAAA	2001:067c:2294:1000:0000:0000:0000:f199
 ns2.ba	IN	AAAA	2a03:2880:f113:8083:face:b00c:0000:25de
 mx.ros	IN	AAAA	2001:067c:2294:1000:0000:0000:00fe:f199
 ```
@@ -217,13 +217,13 @@ $ORIGIN 0.0.0.1.4.9.2.2.c.7.6.1.0.0.2.IP6.ARPA
                                                   2h         ; nx = nxdomain ttl
                                                 )
 
-								IN			NS			ns1.basel.net
+				IN		NS		ns1.basel.net
                 IN      NS      ns2.ba.basel.net
                 IN      MX 10   mx.ros.basel.net
 
 9.9.1.f.0.0.0.0.0.0.0.0.0.0.0.0				IN	PTR	ns1.basel.net
 9.9.1.f.f.e.0.0.0.0.0.0.0.0.0.0				IN	PTR	mx.ros.basel.net
-2a03:2880:f113:8083:face:b00c:0:25de.	IN 	PTR	ns2.basel.net (1?)
+2a03:2880:f113:8083:face:b00c:0:25de.		IN 	PTR	ns2.basel.net (1?)
 ```
 
 Consultas:
