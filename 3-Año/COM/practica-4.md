@@ -7,7 +7,7 @@
 - Servidor mail, servidor dns: pc12 (192.168.0.112)
 
 **Archivo named.conf**
-```
+```txt
 zone "fceia.unr.ar" {
 	type master;
 	file "etc/bind/db.fceia";
@@ -22,7 +22,7 @@ zone "0.168.192.in-addr.arpa {
 ```
 
 **Archivo db.fceia**
-```
+```txt
 $TTL 2d ; 172800 seconds
 $ORIGIN fceia.unr.ar.
 @		IN	SOA	dns.fceia.unr.ar.	hostmaster.isp.com. (
@@ -45,16 +45,16 @@ mail	IN	CNAME	PC12
 dns		IN	CNAME	PC12
 ```
 **Archivo rev.192**
-```
+```txt
 $TTL 2d ; 172800 seconds
 $ORIGIN 192.168.0.in-addr.arpa.
-@		IN      SOA     dns.fceia.unr.ar.       hostmaster.isp.com. (
-                                                                2003080800 ; serial number
-                                                                3h         ; refresh
-                                                                15m        ; update retry
-                                                                3w         ; expiry
-                                                                3h         ; nx = nxdomain ttl
-                                                        )
+@   IN  SOA     dns.fceia.unr.ar.   hostmaster.isp.com. (
+                                        2003080800 ; serial number
+                                        3h         ; refresh
+                                        15m        ; update retry
+                                        3w         ; expiry
+                                        3h         ; nx = nxdomain ttl
+                                    )
 		IN	NS	dns.fceia.unr.ar.
 		IN	MX	mail.fceia.unr.ar.
 
@@ -77,7 +77,7 @@ $ORIGIN 192.168.0.in-addr.arpa.
 - ns2.lucifer.netflix.ar => 200.13.147.90
 
 **Archivo name.conf.ns1**
-```
+```txt
 zone "netflix.ar" {
 	type master;
 	file "etc/bin/netflix.db";
@@ -98,7 +98,7 @@ zone "lucifer.netflix.ar" {
 **Archivo name.conf.ns2 ?**
 
 **Archivo netflix.db**
-```
+```txt
 $TTL 2d ; 172800 seconds
 $ORIGIN netflix.ar
 @			IN	SOA	ns1.netflix.ar	hostmaster.isp.com. (
@@ -121,7 +121,7 @@ mx.lucifer		IN	A		200.13.147.113
 ```
 
 **Archivo rev.db**
-```
+```txt
 $TTL 2d
 $ORIGIN	147.13.200.in-addr-arpa
 @			IN	SOA	ns1.netflix.ar	hostmaster.isp.com. (
@@ -157,7 +157,7 @@ $ORIGIN	147.13.200.in-addr-arpa
 -  ns2.ba.basel.net: 2a03:2880:f113:8083:face:b00c:0:25de (esclavo directa, master inversa)
 
 **Archivo name.conf.ns1**
-```
+```txt
 zone "basel.net" {
 	type master;
 	file "etc/bin/basel.db";
@@ -172,7 +172,7 @@ zone 0.0.0.1.4.9.2.2.c.7.6.1.0.0.2.IP6.ARPA {
 }
 ```
 **Archivo name.conf.ns2**
-```
+```txt
 zone 3.8.0.8.3.1.1.f.0.8.8.2.3.0.a.2.IP6.ARPA. {
 	type master;
 	file "etc/bin/ba.basel.db";
@@ -187,7 +187,7 @@ zone "ba.basel.net" {
 }
 ```
 **Archivo basel.db**
-```
+```txt
 $TTL 2d
 $ORIGIN basel.net
 @				IN	SOA	ns1.basel.net	hostmaster.example.com. (
@@ -206,7 +206,7 @@ ns2.ba	IN	AAAA	2a03:2880:f113:8083:face:b00c:0000:25de
 mx.ros	IN	AAAA	2001:067c:2294:1000:0000:0000:00fe:f199
 ```
 **Archivo basel.rev.db**
-```
+```txt
 $TTL 2d
 $ORIGIN 0.0.0.1.4.9.2.2.c.7.6.1.0.0.2.IP6.ARPA
 @               IN      SOA     ns1.basel.net   hostmaster.example.com. (
