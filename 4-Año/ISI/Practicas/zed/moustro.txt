@@ -1,0 +1,57 @@
+[CABEZA, CUERPO, EXTREMIDADES, ID]
+
+---- Moustro --------------------
+cabeza: CABEZA
+cuerpo: CUERPO
+ext: EXTREMIDADES
+---------------------------------
+
+---- Juego ----------------------
+moustros: ID -|-> Moustro
+cabezas: P(CABEZA)
+cuerpos: P(CUERPO)
+exts: P(EXTREMIDADES)
+enfrentamientos: Seq((ID,ID))
+---------------------------------
+
+---- CrearMoustro ---------------
+/\ Moustro
+cabeza?: CABEZA
+cuerpo?: CUERPO
+ext? EXTREMIDADES
+---------------------------------
+cabeza' = cabeza?
+cuerpo' = cuerpo?
+ext' = ext?
+---------------------------------
+
+---- JuegoNewMoustro ------------
+/\ Juego
+CrearMoustro
+id?: ID
+---------------------------------
+id? \in dom moustros
+cabeza? \in cabezas
+cuerpo? \in cuerpos
+ext? \in exts
+moustros id? = \theta Moustro
+moustros' = moustros (+) { id? |-> \theta Moustro }
+cabezas' = cabezas
+cuerpos' = cuerpos
+exts' = exts
+enfrentamientos' = enfrentamientos
+---------------------------------
+
+---- JuegoEnfrentar -------------
+/\ Juego
+id1?: ID
+id2?: ID
+---------------------------------
+id1? \in dom moustros
+id2? \in dom moustros
+enfrentamientos' = enfrentamientos^<(id1?, id2?)>
+moustros' = moustros
+cabezas' = cabezas
+cuerpos' = cuerpos
+exts' = exts
+---------------------------------

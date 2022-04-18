@@ -1,0 +1,116 @@
+[NUMHABITACION, IDLLAVE, NOMBRE, DATE, CODE]
+RES ::= ok | ErrorFull
+
+| SetCode: Nat -> CODE
+  La funcion que dado un natural devuelve un codigo random
+
+---- Llave ---------------------------------
+code: CODE
+--------------------------------------------
+
+---- Habitacion ----------------------------
+maximo: Nat
+titular: NOMBRE
+huespedes: P(NOMBRE)
+checkout: DATE
+code: CODE
+--------------------------------------------
+
+---- Hotel -----------------------------
+habitaciones: NUMHABITACION -|-> Habitacion
+llaves: IDLLAVE -|-> Llaves
+--------------------------------------------
+
+---- LlaveCrear ----------------------------
+/\ Llave
+n?: Nat
+--------------------------------------------
+code = SetCode(n)
+--------------------------------------------
+
+---- HabitacionAsignarHuespedOk ------------
+/\ Habitacion
+t?: NOMBRE
+h?: P(NOMBRE)
+d?: Date
+--------------------------------------------
+huespedes = \empty
+# h? <= maximo
+titular' = t?
+huesped' = h?
+checkout' = d?
+--------------------------------------------
+
+---- HabitacionesAsignarHuespedErrU --------
+[-] Habitacion
+h?: P(NOMBRE)
+d?: DATE
+res!: RES
+--------------------------------------------
+huespedes != \empty
+res!: ErrorFull
+--------------------------------------------
+
+---- HabitacionesAsignarHuespedErrM --------
+[-] Habitacion
+h?: P(NOMBRE)
+d?: DATE
+res!: RES
+--------------------------------------------
+huespedes = \empty
+#h? > maximo
+res!: ErrorFull
+--------------------------------------------
+
+HabitacionAsignarHuespedErr == HabitacionAsignarHuespedErrU \/ HabitacionesAsignarHuespedErrM 
+
+
+---- HotelAsignarHabitacionHuespedOk -------
+/\ Hotel
+HabitacionAsignarHuespedOk
+LlaveCrear
+num?: NUMHABITACION
+id?: IDLLAVE
+--------------------------------------------
+num? \in dom habitaciones
+id? \in dom llaves
+habitaciones num? = \theta Habitacion
+llaves id? = \theta Llave
+habitaciones' = habitaciones (+) { num? |-> \theta Habitacion' }
+llaves' = llaves (+) { id? |-> \theta Llave' }
+--------------------------------------------
+
+
+---- HabitacionesOcupadas ------------------
+[-] Hotel
+res!: Habitacion x Date
+--------------------------------------------
+res! = {h \in ran habitaciones | #h.huespedes > 0 @ (h, h.checkout)}
+--------------------------------------------
+
+
+
+
+
+
+---- Op1_Ok -------------------------------
+/\ E
+OpA1
+n?: Nat
+-------------------------------------------
+n? \in dom f
+f n? = \theta A
+f' = f (+) { n? |-> \theta A' }
+-------------------------------------------
+
+---- Op1_Err ------------------------------
+[-] E
+n?: Nat
+-------------------------------------------
+n? !\in dom f
+-------------------------------------------
+
+Op1 == Op1_Ok \/ Op1_Err
+
+Op2 == Op[OpA / OpA1]
+Op == Op1 ; Op2[m? / n?, A1 / A, A2 / A']
