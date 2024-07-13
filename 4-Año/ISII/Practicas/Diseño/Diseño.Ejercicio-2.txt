@@ -1,0 +1,94 @@
+---------
+| Museo |
+---------
+
+Items de Cambios:
+- Hardware motor Persiana
+- Hardawre motor rotacion Varillas
+- Control de Persiana
+- Sensor pasivo 
+- Lampara
+- Control Iluminacion
+
+Diseño:
+
+---
+module      MotorPersiana
+exportproc  up()
+            down()
+            is_limit(* F)
+comments    Las funciones up y down suben y bajan la persiana respectivamente.
+            La funcion is_limit toma un callback y lo ejecuta cuando la persiana
+            llego a algun limite (arriba o abajo).
+---
+
+---
+module      MotorRotacionVarillas
+exportproc  rotate_l()
+            rotate_r()
+            is_limit(i *F)
+comments    Las funciones rotate_l y rotate_r rotan las varillas en
+            sus respectivas direcciones.
+            La funcion is_limit toma un callback y lo ejecuta cuando las varillas
+            llego a algun limite (derecha o izquierda).
+---
+
+---
+module      Persiana
+import      MotorPersiana, MotorRotacionVarillas
+exportproc  up(i Int)
+            down(i Int)
+            open(i Int)
+            close(i Int)
+privateproc persiana_limit()
+            varilla_limit()
+comments    Las funciones up y down suben y bajan la persiana los centimetros que se
+            le pase como argumento.
+            Las funciones open y close giran las varillas para abrir y cerrar la persiana
+            los grados que se le pase como argumento.
+            La funcion persiana_limit se le pasa a MotorPersiana.
+            La funcion varilla_limit se le pasa a MotorRotacionVarillas.
+---
+
+---
+module      Lampara
+import      Valor
+exportproc  init()
+            intensity(i Valor)
+comments    La funcion intensity maneja la intensidad de iluminacion de la lampara.
+---
+
+---
+module      Sensor
+import      Valor
+exportproc  value(): Valor
+---
+
+---
+module      Obra
+import      Sensor, Luz
+exportproc  setNombre(i String)
+            getNombre(): String
+            setSensor(i Sensor)
+            getSensor(): Sensor
+            setLuz(i Luz)
+            getLuz(): Luz
+comments    Este modulo asocia un sensor con una lampara de Luz
+            que pertence a una obra de arte.
+---
+
+---
+module      ControlIluminacionObra
+import      Obra
+exportproc  increaseLight(i Obra)
+            decreaseLight(i Obra)
+---
+
+---
+module      Sistema
+import      Persiana, Obra
+exportproc  init()
+            regPersiana(i List<Persiana>)
+            regObra(i Obra)
+            stop()
+---

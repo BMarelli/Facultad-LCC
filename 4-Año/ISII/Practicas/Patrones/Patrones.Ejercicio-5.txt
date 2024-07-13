@@ -1,0 +1,41 @@
+------------------------------
+| Mantenimiento de Catalogos |
+------------------------------
+
+---
+module      CatalogoAbstracto
+import      Visitante
+exportproc  ...
+            aceptar(i Visitante)
+---
+
+---
+module      Visitante
+import      CatalogoAbstracto
+exportproc  visitar(i CatalogoAbstracto)
+---
+
+---
+module      VisitanteCodigo inherits from Visitante
+---
+
+---
+module      VisitantePrecio inherits from Visitante
+---
+
+---
+Pattern         VisitanteCatalogo
+based on        Visitor
+because         - Cambios: Nos permite agregar operaciones de forma facil sobre
+                la estructura del Composite.
+                - Funcionalidad: Te permite ejecutar operaciones sobre los objetos
+                que tienen diferentes estructura.
+                - Restricciones: Tuvimos que agregar unas funcionalidades al diseño original(?).
+where           Visitante is Visitante
+                VisitanteConcreto is VisitanteCodigo
+                VisitanteConcreto is VisitantePrecio
+                EstructuraDeObjetos is CatalogoAbstracto
+                Elemento is CatalogoAbstracto
+                ElementoConcreto is Seccion
+                ElementoConcreto is Producto
+---

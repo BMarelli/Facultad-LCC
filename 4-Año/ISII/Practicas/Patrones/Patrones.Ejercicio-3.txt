@@ -1,0 +1,51 @@
+------------------------------
+| Mantenimiento de Catalogos |
+------------------------------
+
+---
+module      CatalogoAbstracto
+export      add(i CatalogoAbstracto)
+            delete(i CatalogoAbstracto)
+            getChild(i Int): CatalogoAbstracto
+            getName(): String
+            getPrice(): List<Int>
+            getBrand(): String
+---
+
+---
+module      Seccion inherits from CatalogoAbstracto
+---
+
+---
+module      Ferreteria inherits from Seccion
+---
+
+---
+module      Plomeria inherits from Seccion
+---
+
+---
+module      Producto inherits from CatalogoAbstracto
+---
+
+---
+module      TornilloDeAcero inherits from Producto
+---
+
+---
+module      Tornillo15mm inherits from Producto
+---
+
+---
+Pattern         Catalogo
+based on        Composite
+because         - Funcionalida: Nos permite tener una jerarquia con los
+                productos y dividirlos en secciones.
+where           Componente is CatalogoAbstracto
+                Compuesto is Seccion
+                Compuesto is Producto
+                Hoja is Ferreteria
+                Hoja is Plomeria
+                Hoja is TornilloDeAcero
+                Hoja is Tornillo15mm
+---

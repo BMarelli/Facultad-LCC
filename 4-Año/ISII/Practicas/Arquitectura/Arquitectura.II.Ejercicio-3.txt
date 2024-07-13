@@ -1,0 +1,86 @@
+Eventos:
+- NuevoValor(Sensor s)
+- ValorMantenido(Sensor s)
+- ConsultarValor(Sensor s)
+- ValorSensado(Valor v)
+- On(Sensor s)
+- Off(Sensor s)
+- Reiniciar(Sensor s)
+
+Interfases:
+
+---
+module      Sensor
+import      Valor
+exports     init()
+            stop()
+            restart()
+            restartOrStop()
+            sensar(): Valor
+            current(): Valor
+            setTimeout(int t)
+announces   NuevoValor(Sensor s)
+            ValorMantenido(Sensor s)
+comments    El sensor sensa cada cierto tiempo t que
+            se setea con setTimeout(t).
+---
+
+---
+module      Botonera
+import      Sensor
+exports     setSensor(Sensor s)
+            on()
+            of()
+            reiniciar()
+announces   On(Sensor s)
+            Off(Sensor s)
+            Reiniciar(Sensor s)
+---
+
+---
+module      Sistema
+import      Sensor
+exports     consultarSensor(Sensor s): Valor
+            consultarSensores(): Valor
+announces   ConsultarValor(Sensor s)
+---
+
+Tabla
+
+SensorA
+    - On(SensorA)               -> SensorA::init()
+    - Off(SensorA)              -> SensorA::stop()
+                                -> SensorB::stop()
+                                -> SensorC::restart()
+                                -> SensorD::restart()
+    - Reiniciar(SensorA)        -> SensorA::restart()
+                                -> SensorD::restartOrStop()
+    - ConsultarValor(SensorA)   -> SensorA::current()
+SensorB
+    - On(SensorB)               -> SensorB::init()
+    - Off(SensorB)              -> SensorB::stop()
+    - Reiniciar(SensorB)        -> SensorB::restart()
+    - ConsultarValor(SensorB)   -> SensorB::current()
+SensorC
+    - On(SensorC)               -> SensorC::init()
+    - Off(SensorC)              -> SensorC::stop()
+    - Reiniciar(SensorC)        -> SensorC::restart()
+    - ConsultarValor(SensorC)   -> SensorC::current()
+    - ValorMantenido(SensorC)   -> SensorB::restartOrStop()
+SensorD
+    - On(SensorD)               -> SensorD::init()
+    - Off(SensorD)              -> SensorD::stop()
+    - Reiniciar(SensorD)        -> SensorD::restart()
+    - ConsultarValor(SensorD)   -> SensorD::current()
+Sistema
+    - NuevoValor(SensorA)       -> Sistema::consultarSensores()
+    - NuevoValor(SensorB)       -> Sistema::consultarSensores()
+    - NuevoValor(SensorC)       -> Sistema::consultarSensor(SensorC)
+    - NuevoValor(SensorD)       -> Sistema::consultarSensor(SensorD)
+
+Declaracion Estatica de Eventos
+Parametros por tipo de Eventos
+Asociacion Estatica
+Pasaje Selectivo de Parametros
+Entrega Completa
+Bus de Eventos

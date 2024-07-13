@@ -1,0 +1,100 @@
+Interfaces:
+
+---
+module      Sensor
+imports     Valor
+exports     init()
+            stop()
+            value(): Valor
+announce    Error(Sensor s, Str msj)
+---
+
+---
+module      SensorRitmoCardiaco inherits from Sensor
+exports     active()
+announce    RitmoCardiaco(Valor v)
+comments    sensor activo que anuncia constantemente
+            el valor usando el evento RitmoCardiaco.
+---
+
+---
+module      SensorPresionSanguinea inherits from Sensor
+announce    PresionSanguinea(Valor v)
+---
+
+---
+module      SensorTemperatura inherits from Sensor
+announce    Temperatura(Valor v)
+---
+
+---
+module      Control
+imports     Sensor
+exports     setSensor(i Sensor)
+            setRangos(i Float, i Float)
+            controlar(i Valor)
+            generarMsjError(i Sensor, i Str)
+announce    Warning(Control c, Str msj)
+            ErrorSensor(Str msj)
+callonevent Error(s, msj) calls generarMsjError(s, msj)
+---
+
+---
+module      ControlRitmoCardiaco inherits from Control
+callonevent RitmoCardiaco(v) calls controlar(v)
+---
+
+---
+module      ControlPresionSanguinea inherits from Control
+callonevent PresionSanguinea(v) calls controlar(v)
+---
+
+---
+module      ControlTemperatura inherits from Control
+callonevent Temperatura(v) calls controlar(v)
+---
+
+---
+module      Almacenamiento
+imports     Sensor
+exports     guardarRitmo(i Valor)
+            getRitmo(): List<Valor>
+            guardarPresion(i Valor)
+            getPresion(): List<Valor>
+            guardarTemperatura(i Valor)
+            getTemperatura(): List<Valor>
+callonevent RitmoCardiaco(v) calls guardarRitmo(v)
+            PresionSanguinea(v) calls guardarPresion(v)
+            Temperatura(v) calls guardarTemperatura(v)
+---
+
+---
+module      Enfermeria
+imports     Control
+exports     imprimirError(i Str)
+            imprimirWarning(i Control, i Str)
+callonevent Warning(s, msj) calls imprimirWarning(s, msj)
+            ErrorSensor(msj) calls imprimirError(msj)
+---
+
+---
+module      Reportes
+imports     Almacenamiento
+exports     setAlmacenamiento(i Almacenamiento)
+            generarReportes(): List<Valor>
+---
+
+Diagrama:
+
+------------------------------------------------------------------------------
+| Usuario:                                                                   |
+| Enfermeria                                                                 |
+| Reportes                                                                   |
+------------------------------------------------------------------------------
+| Controles:                                                                 |
+| Control, ControlRitmoCardiaco, ControlPresionSanguinea, ControlTemperatura |
+| Almacenamiento                                                             |
+------------------------------------------------------------------------------
+| Sensores:                                                                  |
+| Sensor, SensorRitmoCardiaco, SensorPresionSanguinea, SensorTemperatura     |
+------------------------------------------------------------------------------

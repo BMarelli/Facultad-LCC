@@ -1,0 +1,108 @@
+Eventos:
+- TapaAbierta
+- TapaCerrada
+- BateriaBaja
+- SinBateria
+- BotonOn
+- BotonMedicionPresionado
+- BotonMedicionSoltado
+- BotonEscala
+- InitialValues(valor: float, escala: str)
+- MedicionOk(valor: float)
+- MedicionFallida
+- BateriaRestante(valor: int)
+- ConsumirBateria(valor: int)
+
+Interfaces:
+
+---
+module      SensorTapa
+exports     init()
+            sensar(): bool
+            desactivar()
+announces   TapaAbierta
+            TapaCerrada
+---
+
+---
+module      Boton
+exports     pulsado()
+            soltado()
+            desactivar()
+---
+
+---
+module      BotonPrendido   inherits from Boton
+announces   BotonOn
+---
+
+---
+module      BotonMedicion   inherits from Boton
+announces   BotonMedicionPresionado
+            BotonMedicionSoltado
+            ConsumirBateria(int consumo)
+---
+
+---
+module      BotonEscala     inherits from Boton
+announces   BotonEscala
+            ConsumirBateria(int consumo)
+---
+
+---
+module      Display
+exports     dibujar(string i)
+comments    dibuja en la pantalla la medicion, la bateria, etc.
+---
+
+---
+module      Bateria
+exports     bateriaBaja(): bool
+            reducir(int consumo)
+announces   SinBateria
+            BateriaBaja
+            BateriaRestante(int valor)
+
+---
+module      PuntaMedicion
+exports     init()
+            desactivar()
+            medir()
+            stop()
+announces   MedicionOk(float valor)
+            MedicionFallida
+            ConsumirBateria(int consumo)
+---
+
+---
+module      Chip
+exports     init()
+            stop()
+announces   InitialValues(float valor)
+---
+
+Tabla
+- TapaCerrada   -> Chip::stop()
+- 
+- BateriaBaja   -> SensorTapa::desactivar()
+                -> BotonMedicion::desactivar()
+                -> BotonEscala::desactivar()
+                -> PuntaMedicion::desactivar()
+- SinBateria    -> Chip::stop()
+- BotonOn       -> Chip::init()
+- BotonMedicionPresionado -> PuntaMedicion::medir()
+- BotonMedicionSoltado -> PuntaMedicion::stop()
+- BotonEscala   -> Display::dibujar(E)
+- InitialValues(v, e) -> Display::dibujar(v+e)
+- MedicionOk(v) -> Display::dibujar(v)
+- MedicionFallida -> Display::dibujar(∑)
+- BateriaRestante(v) -> Display::dibujar(v)
+- ConsumirBateria(v) -> Bateria::reducir(v)
+
+
+Declaracion estatica de eventos
+Parametros por tipo de evento
+Asociacion estatica
+Pasaje selectivo de parametros
+Entrega completa
+Bus de eventos

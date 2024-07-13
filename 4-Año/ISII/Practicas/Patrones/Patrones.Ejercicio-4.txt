@@ -1,0 +1,46 @@
+------------------------------
+| Mantenimiento de Catalogos |
+------------------------------
+
+---
+generic module      Iterador(X)
+import              X
+exportproc          primero(): X
+                    siguiente()
+                    haTerminado(): Bool
+                    elementoActual(): X
+---
+
+---
+module      IteradorCatalogo is Iterador(CatalogoAbstracto)
+---
+
+---
+module      IteradorSecciones inherits from IteradorCatalogo
+---
+
+---
+module      IteradorProductos inherits from IteradorCatalogo
+---
+
+---
+module      CatalogoAbstracto
+import      IteradorCatalogo
+exportproc  ...
+            crearIterador(): IteradorCatalogo
+---
+
+---
+Pattern         IteradorCatalogo
+based on        Iterator
+because         - Cambios a futuro: Nos permite agregar una nueva forma
+                de iterar si agregamos otro Compuesto.
+                - Funcionalida: Nos permite definir un iterador por
+                cada Compuesto que hay (Producto y Seccion).
+                - Restricciones: El resto de la applicacion debe recorrer
+                los agregados usando el iterador.
+where           Iterador is IteradorCatalogo
+                IteradorConcreto is IteradorSecciones
+                IteradorConcreto is IteradorProductos
+                Agregado is CatalogoAbstracto
+---

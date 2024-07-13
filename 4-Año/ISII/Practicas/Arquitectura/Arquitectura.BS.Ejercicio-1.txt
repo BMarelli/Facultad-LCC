@@ -1,0 +1,77 @@
+---
+generic module      Pair<X>
+imports             X
+exports             setFst(i X)
+                    fst(): X
+                    setSnd(i X)
+                    snd(): X
+---
+
+---
+module      Point is Pair(Int)
+---
+
+---
+module      Points is List<Point>
+---
+
+---
+module      Line is Pair<Point>
+---
+
+---
+module      Lines is List<Line>
+---
+
+---
+module      Shape
+imports     Lines
+exports     addLine(i Line)
+            getLines(): Lines
+---
+
+---
+module      Shapes is List<Shape>
+---
+
+---
+module      Figure
+imports     Shape
+exports     addShape(i Shape)
+            getShape(): Shape
+            addColor(i Str)
+            getColor(): Str
+---
+
+---
+module      Figures is List<Figure>
+---
+
+---
+module      FC
+exports     canExec(): Bool
+            exec()
+---
+
+---
+module      FC_Points inherits from FC
+---
+
+---
+module      FC_Lines inherits from FC
+---
+
+---
+module      FC_Shapes inherits from FC
+---
+
+---
+module      FC_Figures inherits from FC
+---
+
+---
+module      Sistem
+import      FC, Image
+exports     addFC(i FC)
+            find(i Image): Image
+---

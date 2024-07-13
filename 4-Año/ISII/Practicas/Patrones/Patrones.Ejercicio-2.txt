@@ -1,0 +1,79 @@
+-----------------------------------
+| Acceso a un canal de Navegacion |
+-----------------------------------
+
+---
+module      Orden
+exportproc  ejecutar()
+---
+
+---
+module      LlegadaBarco inherits from Orden
+import      ControlPuerta
+exportproc  fijarReceptor(i ControlPuerta)
+---
+
+---
+module      SensorBarco
+import      Orden
+exportproc  init()
+            fijarOrden(i Orden)
+            sensar()
+---
+
+---
+Pattern         Orden de Sensor
+based on        Command
+because         - Funcionalidad: despachar una accion mediante la orden correspondiente
+                permitiendo ignorar quien es el receptor real (es decir, tiene el
+                conocimiento para realizar la accion).
+                - Restricciones de diseño: el resto de la aplicacion debe despachar
+                la accion accediendo a la orden correspondiente.
+where           Receptor is ControlPuerta
+                Orden is Orden
+                OrdenConcreta is LlegadaBarco
+                Invocador is Sensor
+---
+
+Otra cosa que se me ocurre es aplicar Command en la utilizacion de la bomba
+
+---
+module      Orden
+exportproc  ejecutar()
+---
+
+---
+module      Llenar inherits from Order
+import      HardwareBomba
+exportproc  fijarReceptor(i HardwareBomba)
+---
+
+---
+module      Vaciar inherits from Order
+import      HardwareBomba
+exportproc  fijarReceptor(i HardwareBomba)
+---
+
+---
+module      ControlBomba
+import      Orden, Sensor
+exportproc  init()
+            fijarOrden(i Orden)
+comments    Llama a orden.ejecutar() cuando tenga que regular el
+            nivel de agua.
+---
+
+---
+Pattern         Orden de HardwareBomba
+based on        Command
+because         - Funcionalidad: Nos permite mandar una accion de llenado
+                o vaciado atravez de la orden correspondiente sin saber
+                quien es el receptor real.
+                - Restricciones: el resto de la aplicacion debe despachar
+                la accion accediendo a la orden correspondiente.
+where           Receptor is HardwareBomba
+                Orden is Orden
+                OrdenConcreta is Vaciar
+                OrdenConcreta is Llenar
+                Invocador is ControlBomba
+---

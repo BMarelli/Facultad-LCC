@@ -1,0 +1,31 @@
+---
+module      Boton
+exports     init()
+            presionar()
+---
+
+---
+module      BotonAumentar inherits from Boton
+announces   Aumentar
+---
+
+---
+module      BotonDisminuir inherits from Boton
+announces   Disminuir
+---
+
+---
+module      ProcesoVelocidad
+...
+---
+
+---
+module      Control
+imports     ProcesoVelocidad
+exports     init()
+            setProceso(i ProcesoVelocidad)
+            aumentar(i Int)
+            disminuir(i Int)
+oncallevent Aumentar calls aumentar(1)
+            Disminuir calls disminuir(1)
+---

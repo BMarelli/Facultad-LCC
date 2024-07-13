@@ -1,0 +1,129 @@
+--------------------
+| Balanza Camiones |
+--------------------
+
+Items de Cambio:
+- Sensores activos limites
+- Hardware Barrera
+- Luz
+- Hardare Balanza
+- Usuario
+- Tarjeta
+- Lector Tarjeta
+- Ticket
+- Hardware Impresora Ticket
+
+Diseño:
+
+---
+module      Sensor
+exportproc  init()
+            onEvent(i *F)
+comments    La funcion onEvent recibe un callback que lo ejecuta
+            cuando sensa algo.
+---
+
+---
+module      HardwareBarrera
+exportproc  up()
+            down()
+---
+
+---
+module      Luz
+exportproc  on()
+            of()
+---
+
+---
+module      ControlBarrera
+import      HardwareBarrera, Sensor
+exportproc  init()
+            stop()
+            up()
+            down()
+privateproc isActive()
+comments    La funcion isActive es el callback que se le pasa
+            al modulo Sensor.
+---
+
+---
+module      ControlLuz
+import      Luz, Sensor
+exportproc  setSensor(i Sensor)
+            getSensor(): Sensor
+            setLuz(i Luz)
+            getLuz(): Luz
+            init()
+privateproc isActive()
+comments    Este modulo asocia una luz con un sensor y permite su control.
+            La funcion isActive es el callback que se le pasa
+            al modulo Sensor.
+---
+
+---
+module      HardareBalanza
+import      Valor
+exportproc  init()
+            weigh(): Valor
+---
+
+---
+module      Usuario
+exportproc  getInfo(): String
+            setInfo(i String)
+---
+
+---
+module      Tarjeta
+import      Usuario
+exportproc  getInfo(): Usuario
+---
+
+---
+module      LectorTarjeta
+import      Tarjeta
+exportproc  init()
+            read(): Usuario
+---
+
+---
+module      Ticket
+import      Valor, Usuario
+exportproc  setValor(i Valor)
+            setUsuario(i Usuario)
+            getValor(): Valor
+            getUsuario(): Usuario
+---
+
+---
+module      HardwareImpresora
+import      Ticket
+exportproc  init()
+            imprimir(): Ticket
+---
+
+---
+module      ControlBalanza
+import      HardareBalanza, LectorTarjeta
+exportproc  init()
+            isValid(i Tarjeta): Bool
+            weigh(): Valor
+comments    La funcion isValid devuelve si la tarjeta es valida.
+---
+
+---
+module      Sistema
+import      ControlBarrera, ControlLuz, ControlBalanza
+            HardwareImpresora
+exportproc  init()
+            showOkPosition()
+            isInPosition(): Bool
+            weigh(): Valor
+            imprimir(): Ticket
+comments    La funcion showOkPosition prende las luces si
+            el camion se encuentra fuera del rectangulo (lados).
+            La funcion isInPosition baja las barreras si el
+            el camion se encuentra bien posicionado y devuelve True,
+            sino no hace nada y devuelve False.
+---

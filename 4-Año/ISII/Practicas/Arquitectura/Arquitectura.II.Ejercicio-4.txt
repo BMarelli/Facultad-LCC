@@ -1,0 +1,42 @@
+Eventos:
+- Extraer(int nCuenta, int v)
+- Multar(int nCuenta, int v)
+- LimiteOk(int nCuenta, int v)
+
+Interfaces:
+
+---
+module      CuentaCorriente
+imports     Persona
+exports     setPersona(i Persona)
+            getPersona(): Persona
+            getSaldo(): Valor
+            getNCuenta(): int
+            extraer(i Valor)
+            depositar(i Valor)
+            setLimite(i Valor)
+            getHistorial(): List<Valor>
+comments    getHistorial devuelve una lista donde los positivos
+            son depositos y los negativos extracciones.
+---
+
+---
+module      LimiteCCOk      inherits from CuentaCorriente
+announce    LimiteOk(nCuenta, v)
+---
+
+---
+module      MultaCC      inherits from CuentaCorriente
+announce    Multar(nCuenta, v)
+---
+
+---
+module      EventManager
+imports     CuentaCorriente, LimiteCCOk, MultaCC
+exports     subscribirExtraccion(i CuentaCorriente)
+            anunciarExtraccion(i CuentaCorriente, i Valor)
+            subscribirLimiteOk(i CuentaCorriente)
+            anunciarLimiteOk(i CuentaCorriente, i Valor)
+            subscribirMulta(i CuentaCorriente)
+            anunciarMulta(i CuentaCorriente, i Valor)
+---

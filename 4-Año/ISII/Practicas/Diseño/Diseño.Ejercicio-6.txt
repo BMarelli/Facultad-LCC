@@ -1,0 +1,73 @@
+-----------------------
+| Canal de Navegacion |
+-----------------------
+
+Items de Cambio:
+- Sensores llegada de Barcos (activo)
+- Sensores de profundida (pasivo)
+- Puertas
+- Bomba hidraulica
+
+Diseño:
+
+---
+module      SensorBarco
+exportproc  init()
+            sensar(i *F)
+---
+
+---
+module      Sensor
+import      Valor
+exportproc  sensar(): Valor
+---
+
+---
+module      Puerta
+exportproc  open()
+            close()
+---
+
+---
+module      HardwareBomba
+import      Valor
+exportproc  init()
+            fill(i Valor)
+            empty(i Valor)
+---
+
+---
+module      ControlBomba
+import      Sensor, HardwareBomba
+exportproc  init()
+            regular(i Valor)
+comments    Este modulo se encarga de llenar o vaciar el agua
+            segun el valor del Sensor.
+---
+
+---
+module      ControlAguaEsclusa
+import      ControlBomba, Sensor
+exportproc  init()
+            nivelar(i Sensor)
+comments    Este modulo nivela el agua de la esclusa segun el valor
+            del sensor del canal.
+---
+
+---
+module      ControlPuerta
+import      Puerta, SensorBarco
+exportproc  open(i Puerta)
+            close(i Puerta)
+privateproc isBoat()
+comments    La funcion isBoat se le pasa al modulo SensorBarco.
+            Las funciones open y close abren y cierran las puestas
+            que se le pasa como argumento.
+---
+
+---
+module      Sistema
+import      ControlPuerta, ControlAguaEsclusa
+exportproc  init()
+            stop()
+---

@@ -1,0 +1,123 @@
+-----------------------------
+| Procesamiento de Imagenes |
+-----------------------------
+
+Items de Cambio:
+- Codificacion del color
+- Codificacion de la imagen
+- Modificacion del brillo
+- Modificacion del constraste
+- Modificacion del tamaño
+- Forma de suavizar la imagen
+- Generar copia negativo
+- Procesamiento de imagenes B/N
+- Procesamiento de imagenes en Color
+
+Diseño:
+
+---
+module      Color
+import      Valor
+exportproc  setR(i Valor)
+            getR(): Valor
+            setG(i Valor)
+            getG(): Valor
+            setB(i Valor)
+            getB(): Valor
+---
+
+---
+module      Imagen
+import      Color, BitMap
+exportproc  set(i BitMap<Color>)
+            get(): BitMap<Color>
+            makeCopy(): Imagen
+---
+
+---
+module      ImagenColor inherits from Imagen
+---
+
+---
+module      ImagenColor2D inherits from ImagenColor
+---
+
+---
+module      ImagenColor3D inherits from ImagenColor
+---
+
+---
+module      ImagenBN inherits from Imagen
+---
+
+---
+module      ImagenBN2D inherits from ImagenBN
+---
+
+---
+module      ImagenBN3D inherits from ImagenBN
+---
+
+---
+module      ControlBrillo
+import      Imagen
+exportproc  increase(i Imagen): Imagen
+            isMax(i Imagen): Bool
+            decrease(i Imagen): Imagen
+            isMin(i Imagen): Bool
+comments    Funciones basicas para controlar el brillo de
+            una imagen. Las funciones isMax y isMin devuelven
+            True si el brillo esta al maximo o minimimo
+            respectivamente, sino False.
+---
+
+---
+module      ControlConstraste
+import      Imagen
+exportproc  increase(i Imagen): Imagen
+            isMax(i Imagen): Bool
+            decrease(i Imagen): Imagen
+            isMin(i Imagen): Bool
+comments    Funciones basicas para controlar el constraste de
+            una imagen. Las funciones isMax y isMin devuelven
+            True si el constraste esta al maximo o minimimo
+            respectivamente, sino False.
+---
+
+---
+module      ControlEscala
+import      Imagen
+exportproc  increase(i Imagen): Imagen
+            isMax(i Imagen): Bool
+            decrease(i Imagen): Imagen
+            isMin(i Imagen): Bool
+comments    Funciones basicas para controlar la escala de
+            una imagen. Las funciones isMax y isMin devuelven
+            True si la escala esta al maximo o minimimo
+            de la cota correspondiente, sino False.
+---
+
+---
+module      SuavizarImagen
+import      Imagen, Color
+exportproc  suavizar(i Imagen): Imagen
+---
+
+---
+module      Negativo
+import      Imagen
+exportproc  generarNegativo(i Imagen): Imagen
+---
+
+---
+module      ProcesamientoImagenBN
+import      Imagen, SuavizarImagen, Negativo,
+            ControlBrillo, ControlConstraste, ControlEscala
+exportproc  procesarImagenBN(i Imagen): Imagen
+---
+
+---
+module      ProcesamientoImagenColor
+import      Imagen, ControlBrillo, ControlEscala, SuavizarImagen
+exportproc  procesarImagenColor(i Imagen): Imagen
+---

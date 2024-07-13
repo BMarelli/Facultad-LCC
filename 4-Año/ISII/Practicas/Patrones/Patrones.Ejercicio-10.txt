@@ -1,0 +1,41 @@
+---------
+| Banco |
+---------
+
+---
+module      CuentaBancaria
+import      Monto
+exportproc  ...
+---
+
+---
+module      CajaAhorros inherits from CuentaBancaria
+---
+
+---
+module      Resolucion inherits from CuentaBancaria
+---
+
+---
+module      A-2156 inherits from Resolucion
+---
+
+---
+module      A-3401 inherits from Resolucion
+---
+
+---
+module      A-3436 inherits from Resolucion
+---
+
+---
+Pattern         Decoradores Cuenta Bancaria
+based on        Wrapper
+because         - Funcionalidad: Nos permite agregar nuevas resoluciones de forma simple
+where           Componente is CuentaBancaria
+                ComponenteConcreto is CajaAhorros
+                Decorador is Resolucion
+                DecoradorConcreto is A-2156
+                DecoradorConcreto is A-3401
+                DecoradorConcreto is A-3436
+---

@@ -1,28 +1,28 @@
 ### Ejercicio 1
 1. 
 ```text
-fix(resta : N -> N -> M)(m : N).
-  fun(n : N).
-    ifz n then m else pred (resta m (pred n))
+fix(resta: N -> N -> N)(m: N).
+  fun(n: N).
+    ifz n then m else resta (pred n) (pred m)
 ```
 
 2. 
 ```text
-fix(mult : N -> N -> N)(m : N).
-  fun(n : N).
-    ifz n then 0 else suma (prod m (pred n))
+fix(mult: N -> N -> N)(m: N).
+  fun(n: N).
+    ifz n then 0 else mult (suma m m) (pred n)
 ```
 
 3. 
 ```text
-fix(exp : N -> N -> N)(m : N).
-  fun(n : N).
-    ifz n then 1 else mult (exp m (pred n))
+fix(exp: N -> N -> N)(m: N).
+  fun(n: N).
+    ifz n then 1 else exp (mult m m) (pred n)
 ```
 4. 
 ```text
-fix(factorial : N -> N)(m: N).
-  ifz m then 1 else mult m (factorial (pred m))
+fix(fact: N -> N)(n: N).
+  ifz n then 1 else mult n (fact (pred n))
 ```
 
 ### Ejercicio 2
@@ -30,36 +30,43 @@ fix(factorial : N -> N)(m: N).
 ```text
 true = 1
 false = 0
-ifthenelse = fun(bool : N).
-               fun(t: N). fun(f : N).
+ifthenelse = fun(bool: N).
+               fun(t: N). fun(f: N).
                  ifz bool then f else t
+```
+(no entiendo el resto)
+```text
+true = fun(t: N). fun(f: N). t
+false = fun(t: N). fun(f: N). f
+ifthenelse = fun(bool: N).
+               fun(t: N). fun(f: N).
+                 bool t f
 ```
 
 2. Podemos representar los pares de la siguiente manera:
 ```text
-pair = fun(x : N).
-  fun(y : N).
+pair = fun(x: N).
+  fun(y: N).
     fun(f : N -> N -> N).
       f x y
-fst = 
-
+fst = fun(x: N). fun(t: N). x
+snd = fun(y: N). fun(t: N). y
 ```
 
 ### Ejercicio 3
 ```text
-fix(gcd : N -> N -> N)(m : N).
-  fun(n : N).
+fix(gcd: N -> N -> N)(m: N).
+  fun(n: N).
     ifz n then m else
-          (ifz m then n 
-                 else ifz (resta n m) then (gcd (resta m n) n)
-                      else gcd m (resta n m))
+      ifz m then n else
+        ifz (resta m n) then gcd m (resta n m) else gcd (resta m n) n
 ```
 
 ### Ejercicio 4
 ```text
-R = fun(z:N).
-      fun(s : N -> N -> N).
-        fix(f: N -> N)(n:N).
+R = fun(z: N).
+      fun(s: N -> N -> N).
+        fix(f: N -> N)(n: N).
           ifz n then z else s (f n) n
 ```
 ### Ejercicio 5

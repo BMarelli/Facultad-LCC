@@ -1,0 +1,29 @@
+Interfaces:
+
+---
+module      PlacaRed
+imports     Sequencia
+exports     read(i Sequencia)
+            codeByte(i Sequencia)
+            decodeByte(i Sequencia)
+            packInicio()
+            packPayload()
+            packFin()
+---
+
+---
+module      CapaTransporte
+imports     IP, Data, PlacaRed
+exports     inicio(i IP, i IP): Bool
+            payload(): Data 
+            fin(): Bool
+            setPlaca(i PlacaRed)
+---
+
+---
+module      Interfaz
+imports     CapaTransporte, Sonido, Imagen
+exports     enviarSonido(i Sonido)
+            enviarImagen(i Imagen)
+            enviarTexto(i Str)
+---

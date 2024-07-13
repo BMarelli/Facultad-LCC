@@ -1,0 +1,46 @@
+---------------------------
+| Estacion Climatometrica |
+---------------------------
+
+---
+generic module      Iterador(X)
+import              X
+exportpoc           primero()
+                    siguiente()
+                    haTerminado(): Bool
+                    actual(): X
+---
+
+---
+module              IteradorSensores is Iterador(Sensor)
+---
+
+---
+module      Sensores
+import      Sensor
+exportpoc   agregar(i Sensor)
+            crearIterador(): IteradorSensores
+---
+
+---
+module      IteradorHistorial is Iterador(Sensor)
+---
+
+---
+module      IteradorTendencia is Iterador(Sensor)
+---
+
+---
+Pattern         Iterador Sensores
+based on        Iterator
+because         - Cambios: Nos permite agregar de forma simple una nueva forma de
+                recorrer los sensores y mostrar sus valores.
+                - Funcionalidad: Podemos separar y abstraer la forma de recorrer
+                la coleccion de Sensores.
+                - Restricciones: El sistema debe usar el iterador para recorrer
+                la coleccion de Sensores.
+where           Iterador is Iterador
+                IteradorConcreto is IteradorSensores
+                Agregado is Sensores
+                AgregadoConcreto is Sensores
+---

@@ -1,0 +1,101 @@
+---
+module      Color
+import      Valor
+exportproc  setR(i Valor)
+            getR(): Valor
+            setG(i Valor)
+            getG(): Valor
+            setB(i Valor)
+            getB(): Valor
+---
+
+---
+module      Imagen
+import      Color, BitMap
+exportproc  set(i BitMap<Color>)
+            get(): BitMap<Color>
+            makeCopy(): Imagen
+---
+
+---
+module      ImagenColor inherits from Imagen
+---
+
+---
+module      ImagenColor2D inherits from ImagenColor
+---
+
+---
+module      ImagenColor3D inherits from ImagenColor
+---
+
+---
+module      ImagenBN inherits from Imagen
+---
+
+---
+module      ImagenBN2D inherits from ImagenBN
+---
+
+---
+module      ImagenBN3D inherits from ImagenBN
+---
+
+---
+module      Filtro
+imports     Imagen
+inports     entrada: Imagen
+outports    salida: Imagen
+---
+
+---
+module      BrilloYConstraste   inherits from Filtro
+---
+
+---
+module      ModificarSize
+exports     setCota(float v)
+inports     entradaBN: Imagen
+            entradaCL: Imagen
+outports    salidaBN: Imagen
+            salidaCL: Imagen
+---
+
+---
+module      SuavizarImagenBN      inherits from Filtro
+---
+
+---
+module      SuavizarImagenCL      inherits from Filtro
+---
+
+---
+module      CopiaImagen         inherits from Filtro
+---
+
+---
+module      TuboImagen  is Tubo<Imagen>
+---
+
+Declaraciones
+- ByC: BrilloYConstraste
+- MS: ModificarSize
+- SIBN: SuavizarImagenBN
+- SICL: SuavizarImagenCL
+- CI: CopiaImagen
+- e->byc, byc->ms, ms->sicl, sicl->e: TuboImagen
+- e->sibn, sibn->ci, ci->byc, byc->ms, ms->e: TuboImagen
+
+Asociaciones
+- ByC.entrada as e->byc.read
+- ByC.salida as byc->ms.write
+- MS.entradaCL as byc->ms.read
+- MS.salidaCL as ms->sicl.write
+- MS.entradaBN as myc->ms.read
+- MS.salidaBN as ms->e.write
+- SIBN.entrada as e->sibn.read
+- SIBN.salida as sibn->ci.write
+- SICL.entrada as ms->sicl.read
+- SICL.salida as sicl->e.write
+- CI.entrada as sibn->ci.read
+- CI.salida as ci->byc.write

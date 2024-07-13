@@ -1,0 +1,61 @@
+---
+module      MotorPersiana
+exports     up()
+            down()
+            is_limit(* F)
+comments    Las funciones up y down suben y bajan la persiana respectivamente.
+            La funcion is_limit toma un callback y lo ejecuta cuando la persiana
+            llego a algun limite (arriba o abajo).
+---
+
+---
+module      MotorRotacionVarillas
+exports     rotate_l()
+            rotate_r()
+            is_limit(i *F)
+comments    Las funciones rotate_l y rotate_r rotan las varillas en
+            sus respectivas direcciones.
+            La funcion is_limit toma un callback y lo ejecuta cuando las varillas
+            llego a algun limite (derecha o izquierda).
+---
+
+---
+module      Persiana
+imports     MotorPersiana, MotorRotacionVarillas
+exports     up(i Int)
+            down(i Int)
+            open(i Int)
+            close(i Int)
+private     persiana_limit()
+            varilla_limit()
+comments    Las funciones up y down suben y bajan la persiana los centimetros que se
+            le pase como argumento.
+            Las funciones open y close giran las varillas para abrir y cerrar la persiana
+            los grados que se le pase como argumento.
+            La funcion persiana_limit se le pasa a MotorPersiana.
+            La funcion varilla_limit se le pasa a MotorRotacionVarillas.
+---
+
+---
+module      Lampara
+import      Valor
+exports     init()
+            intensity(i Valor)
+comments    La funcion intensity maneja la intensidad de iluminacion de la lampara.
+---
+
+---
+module      Sensor
+imports     Valor
+exports     init()
+            sensar()
+announce    Luz(Valor v)
+---
+
+---
+module      ControlObra
+imports     Sensor, Lampara, Persiana
+exports     init()
+            regularIluminacion(i Valor)
+callonevent Luz(v) calls regularIluminacion(v)
+---

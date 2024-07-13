@@ -1,0 +1,120 @@
+---
+generic module      Pair<X, Y>
+imports             X, Y
+exports             setFst(i X)
+                    fst(): X
+                    setSnd(i Y)
+                    snd(): Y
+---
+
+module      Point is Pair<int, int>
+
+module      Line is Pair<Point, Point>
+
+module      Lines is List<Line>
+
+---
+module      Shape
+imports     Lines
+exports     addLines(i Lines)
+            getLines(): Lines
+---
+
+---
+module      Eye inherits from Shape
+exports     setSize(i int)
+            size(): int
+            setColor(i str)
+            color(): str
+            ...
+---
+
+module      Eyes is List<Eye>
+
+---
+module      Mouth inherits from Shape
+exports     setHeight(i int)
+            height(): int
+            ...
+---
+
+module      Mouths is List<Mouth>
+
+---
+module      Hair inherits from Shape
+exports     setColor(i str)
+            color(): str
+            ...
+---
+
+module      Hairs is List<Hair>
+
+---
+module      Head inherits from Shape
+imports     Eye, Mouth, Hair
+exports     setEyes(i Eye, i Eye)
+            eyes(): Pair<Eye, Eye>
+            ...
+---
+
+---
+module      Leg inherits from Shape
+---
+
+module      Legs is List<Leg>
+
+---
+module      Arm inherits from Shape
+---
+
+module      Arms is List<Arm>
+
+---
+module      Body inherits from Shape
+imports     Leg, Arm
+exports     setLegs(i Leg, i Leg)
+            legs(): Pair<Leg, Leg>
+            ...
+---
+
+module      Bodys is List<Body>
+
+---
+module      Person inherits from Shape
+imports     Head, Body
+exports     setHead(i Head)
+            head(): Head
+            setBody(i Body)
+            body(): Body
+            setColor(i str)
+            color(): str
+---
+
+module      Persons is List<Person>
+
+---
+module      FC
+exports     canExec(): bool
+            exec()
+---
+
+---
+module      FC_Eyes inherits from FC
+---
+
+---
+module      FC_Mouth inherits from FC
+---
+...
+
+---
+module      FC_Persons inherits from FC
+---
+
+---
+module      System
+imports     FC, Image
+exports     addFC(i FC)
+            FCs(): List<FC>
+            find(i Image, i Image): Pair<bool, Image>
+---

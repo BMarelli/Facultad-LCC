@@ -1,0 +1,169 @@
+---------------
+| Ejericicio 1 |
+---------------
+
+(a)
+
+---
+module      CapaTransporte
+import      IP, Data, PlacaRed
+exportproc  inicio(i IP, i IP): Bool
+            payload(): Data 
+            fin(): Bool
+            setPlaca(i PlacaRed) <- Esto es por la composicion
+---
+
+---
+module      TCP inherits from CapaTransporte
+---
+
+---
+module      PlacaRed
+import      Sequencia
+exportproc  read(i Sequencia)
+            codeByte(i Sequencia)
+            decodeByte(i Sequencia)
+            packInicio()
+            packPayload()
+            packFin()
+---
+
+---
+module      PlacaRed1 inherits from PlacaRed
+---
+
+---
+module      PlacaRed2 inherits from PlacaRed
+---
+
+---
+module      App
+import      CapaTransporte
+exportproc  iniciar()
+            mandarPaquete()
+---
+
+---
+Pattern         Capa Transporte
+based on        Bridge
+because         - Se pueden agregar distintas capas de transporte o
+                placas de red de forma mas facil.
+                - La capa de transporte no tiene conocimiento de las implementaciones
+                de las placas de red.
+                - Desacoplamos la capa de transporte de las placas de red.
+where           Abstraccion is CapaTransporte
+                AbstraccionRefinada is TCP
+                Implementador is PlacaRed
+                ImplementadorConcreto is PlacaRed1
+                ImplementadorConcreto is PlacaRed2
+                Operacion is inicio
+                OperacionImp is packInicio
+                Operacion is payload
+                OperacionImp is packPayload
+                Operacion is fin
+                OperacionImp is packFin
+                Cliente is App
+---
+
+(b) ...
+
+---------------
+| Ejercicio 2 |
+---------------
+
+---
+module      Usuario
+import      ListaReuniones
+exportproc  setName(i string)
+            getName(): string
+            reuniones(): ListaReuniones
+---
+
+---
+module      ListaUsuario is List(Usuario)
+---
+
+---
+module      Reunion
+import      Time
+exportproc  setTime(i Time)
+            getTime(): Time
+---
+
+---
+module      ListaReuniones is List(Reunion)
+---
+
+---
+module      CoordinarReunion
+import      ListaUsuario
+exportproc  organizarReunion(i ListaUsuario)
+---
+
+---
+module      Falla inherits from CoordinarReunion
+---
+
+---
+module      Postergacion inherits from CoordinarReunion
+---
+
+---
+module      Agenda
+import      CoordinarReunion, ListaUsuario
+exportproc  fijarEstrategia(i CoordinarReunion)
+            crearReunion(i ListaUsuario)
+            set(i Agenda)
+---
+
+---
+Pattern         Agenda de reuniones
+based on        Strategy
+because         - Podemos tener varios algoritmos para poder organizar reuniones,
+                y los podemos agregar muy facilmente.
+                - No utilizamos herencia en el contexto, es decir, no hay que crear una
+                agenda por cada estrategia de organizacion de reuniones.
+where           Contexto is Agenda
+                InterfazContexto is crearReunion
+                Estrategia is CoordinarReunion
+                EstrategiaConcreta is Falla
+                EstrategiaConcreta is Postergacion
+                InterfazAlgoritmo is organizarReunion
+---
+
+
+---------------
+| Ejercicio 3 |
+---------------
+
+---
+module      AgendaDecorada inherits from Agenda
+---
+
+---
+module      AvisoJefe inherits from AgendaDecorada
+import      Usuario
+exportproc  avisar(i Usuario)
+---
+
+---
+module      AvisoCambios inherits from AgendaDecorada
+import      ListaUsuario, Time
+exportproc  avisar(i ListaUsuario, i Time)
+---
+
+---
+module      GoogleCalendar inherits from Agenda
+---
+
+---
+Pattern         Agenda Reuniones 2.0
+based on        Wrapper
+because         - Evita cargar la agenda con funciones.
+                - Nos permite agregar funcionalidades a la agenda.
+where           Componente is Agenda
+                ComponenteConcreto is GoogleCalendar
+                Decorador is AgendaDecorada
+                DecoradorConcreto is AvisoJefe
+                DecoradorConcreto is AvisoCambios
+---

@@ -1,0 +1,76 @@
+---------------------------
+| Estacion Climatometrica |
+---------------------------
+
+Items de Cambio:
+- Representacion sensor
+- Representacion sensor Calibrados
+- Representacion sensor con historia
+- Representacion sensor con tendencia
+- Sistema
+
+Diseño:
+
+Supongamos que ya hay un modulo Teclado, Display que existen
+
+---
+module      Sensor
+import      Valor
+exportpoc   sensar(): Valor
+---
+
+---
+module      SensorCalibrado inherits from Sensor
+import      Valor
+exportpoc   calibrar(i Valor)
+comments    Permite la calibracion de los sensores
+---
+
+---
+module      SensorHistorial inherits from SensorCalibrado
+import      Time
+exportpoc   valorMax(): Valor
+            timeMax(): Time
+            valorMin(): Valor
+            timeMin(): Time
+comments    Permite obtener los maximos y minimos en las ultimas 24hs
+---
+
+---
+module      SensorTendencia inherits from SensorCalibrado
+exportpoc   tendencia(): Valor
+comments    Permite la obtencion de la tendencia
+---
+
+---
+module      SensorTemperatura inherits from SensorTendencia
+---
+
+---
+module      SensorPresion inherits from SensorTendencia
+---
+
+---
+module      SensorHumedad inherits from SensorCalibrado
+---
+
+---
+module      SensorViento inherits from SensorCalibrado
+---
+
+---
+module      Sensores
+import      Sensor
+exportpoc   set(i Sensor)
+            get(): Sensor
+            next()
+            isEmpty(): Bool
+---
+
+---
+module      Sistema
+import      Display, Teclado, Sensores
+exportpoc   init()
+            mostrarInformacion()
+            stop()
+---

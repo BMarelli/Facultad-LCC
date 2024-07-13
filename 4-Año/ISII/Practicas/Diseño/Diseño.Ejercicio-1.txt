@@ -1,0 +1,89 @@
+-----------------------
+| Celda de Produccion |
+-----------------------
+
+Items de Cambios
+- Hardware Cinta Transportadora
+- Hardware Brazos
+- Hardware Mano
+- Hardware Prensa
+- Sensor pasivo Prensa
+- Sensor activo Prensa
+- Sistema
+
+
+Diseño de Interfaces:
+
+---
+module      CintaTransportadora
+exportproc  on()
+            off()
+            speed(i Int)
+comments    La funcion speed cambia la velocidad de la Cinta.
+---
+
+---
+module      BrazoHardware
+exportproc  left(i Int)
+            rigth(i Int)
+            up(i Int)
+            down(i Int)
+---
+
+---
+module      ManoHardware
+exportproc  grab()
+            drop()
+---
+
+---
+module      Brazo
+import      BrazoHardware, ManoHardware
+exportproc  mover_a_cinta()
+            mover_a_prensa()
+            tomar()
+            soltar()
+---
+
+---
+module      HardwarePrensa
+exportproc  prensar()
+            dejar_prensar()
+---
+
+---
+module      SensorPasivo
+exportproc  free(): Bool
+---
+
+---
+module      SensorActivo
+exportproc  inicializar()
+            evento(i *F)
+comments    El callback que recibe evento es el que se llama
+            cuando el sensor sensa algo.
+---
+
+---
+module      ControlBrazo
+import      Brazo, SensorPasivo
+exportproc  inicializar()
+            stop()
+---
+
+---
+module      ControlPrensa
+import      Prensa, SensorActivo, SensorPasivo
+exportproc  inicializar()
+            stop()
+---
+
+---
+module      Sistema
+import      ControlBrazo, ControlPrensa
+exportproc  inicializar()
+            stop()
+privateproc callback_sensor()
+comments    La funcion callback_sensor es la funcion que se
+            pasa al sensor activo.
+---

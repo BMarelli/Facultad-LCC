@@ -1,0 +1,177 @@
+--------------
+| Ejericio 1 |
+--------------
+
+Items de Cambio:
+- Representacion del Input text
+- Representacion del Boton
+- Representacion Textos y idiomas
+- Representacion del Formulario
+- Representacion info Usuario
+- Representacion repositorio de datos
+
+Especificacion de Interfaces:
+
+---
+module      Usuario
+exportproc  setNombre(i String)
+            getNombre(): String
+            setDNI(i Int)
+            getDNI(): Int
+comments    Este modulo representa la informacion del Usuario.
+---
+
+---
+module      Idioma
+exportproc  traducir(i String): String
+---
+
+---
+module      Español inherits from Idioma
+---
+
+---
+module      Ingles inherits from Idioma
+---
+
+---
+module      Portugues inherits from Idioma
+---
+
+---
+module      Texto
+import      Idioma
+exportproc  set(i String)
+            get(): String
+---
+
+---
+module      Boton
+exportproc  click(i *F)
+---
+
+---
+module      InputText
+exportproc  set(i String)
+            get(): String
+---
+
+---
+module      Repositorio
+import      Usuario
+exportproc  empty(): Bool
+            insert(i Usuario)
+            delete(i Int): Bool
+            get(i Int): Usuario
+---
+
+---
+module      RepositorioDBR inherits from Repositorio
+---
+
+---
+module      RepositorioText inherits from Repositorio
+---
+
+---
+module      FormularioUsuario
+import      InputText, Boton, Texto
+exportproc  mostrar()
+---
+
+---
+module      ControlUsuario
+import      Repositorio
+exportproc  existeDNI(i Int): Bool
+            existeUsuario(i Int, i Usuario): Bool
+---
+
+---
+module      Formulario
+import      FormularioUsuario, ControlUsuario
+exportproc  mostrar()
+privateproc validar()
+comments    La funcion validar es el callback que se pasa al Boton
+            de FormularioUsuario y se ejecuta cuando es clickeado
+            y valida con ControlUsuario la existencia del Usuario.
+---
+
+Estructura de Modulos:
+
+---
+module      Texto
+comprise    Idioma
+            Español
+            Ingles
+            Portugues
+            Texto
+---
+
+---
+module      FormularioUsuario
+comprise    InputText
+            Boton
+            Texto
+            FormularioUsuario
+---
+
+---
+module      Repositorio
+comprise    Repositorio
+            RepositorioDBR
+            RepositorioText
+---
+
+---
+module      Formulario
+comprise    Texto
+            FormularioUsuario
+            Repositorio
+            ControlUsuario
+---
+
+
+---------------
+| Ejercicio 2 |
+---------------
+(a)
+
+---
+module      TransferenciaCuenta
+import      Monto, Cuenta
+exportproc  transferir(i Cuenta, i Cuenta, i Monto): Bool
+---
+
+(b)
+
+---
+generic module      Lista(X)
+import              X
+exportproc          isEmpty(): Bool
+                    head(): X
+                    insert(i X)
+                    next()
+---
+
+---
+module      Cuentas is Lista(Cuenta)
+---
+
+---
+module      Serializer
+import      Cuenta
+exportproc  serializar(i Cuenta): String
+---
+
+---
+module      Almacenamiento
+exportproc  insert(i String)
+            isEmpty(): Bool
+            getLine(): String
+---
+
+---
+module      GuardarCuenta
+import      Cuentas, Serializer, Almacenamiento
+exportproc  save(i Cuentas)
+---

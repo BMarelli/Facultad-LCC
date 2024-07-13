@@ -1,0 +1,42 @@
+---------
+| Banco |
+---------
+
+---
+module      CajaAhorros
+import      Monto
+exportproc  ...
+---
+
+---
+module      CuentaCorriente
+import      Monto
+exportproc  ...
+---
+
+---
+module      CajaAhorrosBanco1 inherits from CajaAhorros
+---
+
+---
+module      FabricaCuentaAbstracta
+import      CajaAhorros, CuentaCorriente
+exportproc  crearCajaAhorros(): CajaAhorros
+            crearCuentaCorriente(): CuentaCorriente
+---
+
+---
+module      FabricaCuentaBanco1 inherits from FabricaCuentaAbstracta
+---
+
+---
+Pattern         FabricaBanco
+based on        Abstract Factory
+because         - Cambios: Nos permite abstraernos de la creacion de las cuentas
+                y es facil agregar nuevas cuentas si pertenecen a nuevos bancos.
+where           FabricaAbstracta is FabricaCuentaAbstracta
+                FabricaConcreta is FabricaCuentaBanco1
+                ProductoAbstracto is CajaAhorros
+                ProductoAbstracto is CuentaCorriente
+                ProductoConcreto is CajaAhorrosBanco1
+---

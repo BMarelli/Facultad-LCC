@@ -1,0 +1,95 @@
+Interfaces:
+
+---
+module      Sonido  is List<Bytes>
+---
+
+---
+module      Filtro
+inports     entrada: Sonido
+outports    salida: Sonido
+            salidaR: Sonido
+            salidaA: Sonido
+comments    salidaR es la salida para reproducir.
+            salidaA es la salida para guardar el archivo.
+---
+
+---
+module      DividirSonido   inherits from Filtro
+---
+
+---
+module      DisminuirVelocidad  inherits from Filtro
+exports     regular(float factor)
+---
+
+---
+module      EliminarFrecuencias  inherits from Filtro
+exports     eliminar(float frecuencia)
+---
+
+---
+module      RegularVolumen  inherits from Filtro
+exports     regular(int volumen)
+---
+
+---
+module      Almacenamiento
+imports     Sonido
+exports     guardar(Sonido sonido)
+inports     dividirSonido: Sonido
+            disminuirVelocidad: Sonido
+            eliminarFrecuencias: Sonido
+            regularVolumen: Sonido
+---
+
+---
+module      Reproductor
+imports     Sonido
+exports     reproducir(Sonido sonido)
+inports     dividirSonido: Sonido
+            disminuirVelocidad: Sonido
+            eliminarFrecuencias: Sonido
+            regularVolumen: Sonido
+---
+
+---
+module      TuboSonido  is Tubo<Sonido>
+---
+
+Declaraciones
+- DS: DividirSonido
+- DV: DisminuirVelocidad
+- EF: EliminarFrecuencias
+- RV: RegularVolumen
+- A: Almacenamiento
+- R: Reproductor
+- e->ds, ds->dv, dv->ef, ef->rv, rv->e : TuboSonido
+- ds->r, dv->r, ef->r, rv->r : TuboSonido
+- ds->a, dv->a, ef->a, rv->a : TuboSonido
+
+Asociaciones
+- DS.entrada as e->ds.read
+- DS.salida as ds->dv.write
+- DS.salidaR as ds->r.write
+- DS.salidaA as ds->a.write
+- DV.entrada as ds->dv.read
+- DV.salida as dv->ef.write
+- DV.salidaR as dv->r.write
+- DV.salidaA as dv->a.write
+- EF.entrada as dv->ef.read
+- EF.salida as ef->rv.write
+- EF.salidaR as ef->r.write
+- EF.salidaA as ef->a.write
+- RV.entrada as ef->rv.read
+- RV.salida as rv->e.write
+- RV.salidaR as rv->r.write
+- RV.salidaA as rv->a.write
+- A.dividirSonido as ds->a.read
+- A.disminuirVelocidad as dv->a.read
+- A.eliminarFrecuencias as ef->a.read
+- A.regularVolumen as rv->a.read
+- R.dividirSonido as ds->r.read
+- R.disminuirVelocidad as dv->r.read
+- R.eliminarFrecuencias as ef->r.read
+- R.regularVolumen as rv->r.read
